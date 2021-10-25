@@ -12,6 +12,16 @@ async function index(req, res){
     }
 }
 
+// habits show route
+async function show(req, res){
+    try {
+        const habit = await Habit.findById(req.params.id);
+        res.json(habit);
+    } catch(err) {
+        res.status(404).json({err})
+    }
+}
+
 async function create(req, res){
     try {
         const habit = await Habit.create(req.body.habitname, req.body.streak,  req.body.current_count, req.body.frequency);
@@ -44,4 +54,4 @@ async function destroy (req, res) {
     };
 }
 
-module.exports = { index , create , update ,destroy };
+module.exports = { index , show, create , update ,destroy };

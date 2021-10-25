@@ -15,8 +15,8 @@ class Habit {
             try {
                 const db = await init();
                 const habitData = await db.collection('habits').find().toArray();
-                const habits = habitData.map(d => new Habit({ ...d, id: d._id }));
-                resolve(habits);
+                let habit = new Habit({...habitData[0], id: habitData[0]._id});
+                resolve(habit);
             } catch (err) {
                 console.log(err);
                 reject("Error retrieving habits");
@@ -58,7 +58,7 @@ class Habit {
     destroy(){
         return new Promise(async(resolve, reject) => {
             try {
-                const result = await db.habits.deleteOne( {id : this.id});
+                const result = await db.collection('habits').deleteOne( {id : this.id});
                 console.log(result);
                 resolve('Habit was deleted');
             } catch (err) {
