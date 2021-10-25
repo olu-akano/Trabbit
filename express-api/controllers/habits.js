@@ -45,10 +45,10 @@ async function update(req, res) {
 
 async function destroy (req, res) {
     try {
-        const habit =await Habit.findById(parseInt(req.params.id));
-        const habits = await habit.destroy();
-        console.log(habits);
-        res.status(204).end();
+        const habit =await Habit.findById(req.params.id);
+        await habit.destroy();
+        console.log(habit);
+        res.status(204).json('Habit deleted')
     } catch (err) {
         res.status(404).json({err});
     };

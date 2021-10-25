@@ -61,7 +61,8 @@ class Habit {
     destroy(){
         return new Promise(async(resolve, reject) => {
             try {
-                const result = await db.collection('habits').deleteOne( {id : this.id});
+                const db = await init();
+                const result = await db.collection('habits').deleteOne({ _id: ObjectId(this.id) });
                 console.log(result);
                 resolve(result);
             } catch (err) {
