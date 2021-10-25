@@ -48,7 +48,19 @@ class Habit {
             }
         })
     };
-
+    
+    update(){
+        return new Promise(async(resolve, reject) => {
+            try {
+                //add an if function later so it olnly increament the count if the task is not compelete yet
+                const result = await db.habits.updateOne( {id : this.id},{ $set : {current_count:current_count++}});
+                console.log(result);
+                resolve('Habit was updated');
+            } catch (err) {
+                reject('Habit could not be updated');
+            }
+        })
+    }
 
 }
 
