@@ -1,3 +1,4 @@
+//Opening and closing the navbar
 const navBtn = document.getElementById('show-nav-btn')
 const navBar = document.getElementById('hidden-userpage-nav')
 
