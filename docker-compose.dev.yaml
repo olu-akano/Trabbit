@@ -17,17 +17,16 @@ services:
       - 3000:3000
     environment: 
       - DB_NAME=habits
-      - DB_CONNECTION=mongodb://habits:corgie@db:27017
-      - NODE_ENV=development
+      - DB_CONNECTION=mongodb://trabbit:corgie@db:27017
     depends_on:
       - db
-    command: bash -c "npm install && npm run seedDev && npm run dev"
+    command: bash -c "npm install && npm run dev"
 
   db:
     container_name: trabbit_dev_db
     volumes:
       - "dbdata:/var/lib/mongodb/data"
-      - "./db:/docker-entrypoint-initdb.d/:ro"
+      - "./db/seeds.js:/docker-entrypoint-initdb.d/seeds.js:ro"
     environment: 
       - MONGO_INITDB_ROOT_USERNAME=trabbit
       - MONGO_INITDB_DATABASE=habits

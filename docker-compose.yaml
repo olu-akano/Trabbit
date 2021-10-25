@@ -5,12 +5,11 @@ services:
     working_dir: /code
     volumes:
       - type: bind
-        source: ./api
+        source: ./express-api
         target: /code
-
+        
   db:
-    image: mongodb:latest
+    image: mongo:latest
     environment: 
-      -MONGO_INITDB_ROOT_USERNAME=trabbit
-    volumes:
-      - "./db/migrations:/docker-entrypoint-initdb.d/:ro"
+      - MONGO_INITDB_ROOT_USERNAME=trabbit
+    
