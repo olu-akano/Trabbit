@@ -37,6 +37,18 @@ class Habit {
         });
     }
 
+    destroy(){
+        return new Promise(async(resolve, reject) => {
+            try {
+                const result = await db.habits.deleteOne( {id : this.id});
+                console.log(result);
+                resolve('Habit was deleted');
+            } catch (err) {
+                reject('Habit could not be deleted');
+            }
+        })
+    };
+
 
 }
 
