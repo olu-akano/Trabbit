@@ -14,7 +14,7 @@ async function index(req, res){
 
 async function create(req, res){
     try {
-        const user = await User.create(req.body.name, req.body.email,  req.body.habit);
+        const user = await User.create(req.body.email, req.body.username,  req.body.password_digest);
         res.json(user)
     } catch(err) {
         res.status(500).json({err})
