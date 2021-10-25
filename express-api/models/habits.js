@@ -24,6 +24,32 @@ class Habit {
         })
     }
 
+    static create(name, streak, count, frequency ){
+        return new Promise (async (resolve, reject) => {
+            try {
+                const db = await init();
+                const habitData = await db.collection('habits').insertOne({ name, streak, count, frequency })
+                const newHabit = new Habit(habitData.ops[0]);
+                resolve (newHabit);
+            } catch(err) {
+                reject('Error creating habit');
+            }
+        });
+    }
+
+    destroy(){
+        return new Promise(async(resolve, reject) => {
+            try {
+                const result = await db.habits.deleteOne( {id : this.id});
+                console.log(result);
+                resolve('Habit was deleted');
+            } catch (err) {
+                reject('Habit could not be deleted');
+            }
+        })
+    };
+
+
 }
 
 module.exports = Habit;

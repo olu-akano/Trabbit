@@ -3,6 +3,7 @@ const { init } = require ('../db_config/config')
 class User {
     constructor(data){
         this.id = data.id;
+        this.email=data.email;
         this.name = data.name;
         this.habit = data.habit;
         //add any other variables a user has later
@@ -21,6 +22,22 @@ class User {
             }
         })
     }
+
+
+    static create(name, email ,habit){
+        return new Promise (async (resolve, reject) => {
+            try {
+                const db = await init();
+                const userData = await db.collection('users').insertOne({ name, email, habit })
+                console.log(userData);
+                const newUser = new User(newUser.ops[0]);
+                resolve (newUser);
+            } catch(err) {
+                reject('Error creating user');
+            }
+        });
+    }
+
 
 }
 
