@@ -1,10 +1,17 @@
+:root {
+    --main: rgb(255, 127, 80);
+    --secondary: rgb(65, 105, 225);
+    --tertiary: rgb(250, 213, 4);
+    --background: rgb(233, 231, 208);
+}
+
 * {
     font-family: 'Balsamiq Sans';
     margin-top: 0;
 }
 
 #show-nav-btn {
-    color: rgb(255, 127, 80);
+    color: var(--main);
     font-size: 30px;
     position: fixed;
     z-index: 100;
@@ -20,27 +27,27 @@
     z-index: 50;
     height: 100vh;
     width: 15vw;
-    background-color: rgb(65, 105, 225);
+    background-color: var(--secondary);
 }
 
 body {
-    background-color: rgb(233, 231, 208);
-    color: rgb(255, 255, 255);
+    background-color: var(--background);
+    color: white;
     margin: 0;
 }
 
 #userpage-header {
     text-align: center;
-    color: rgb(255, 127, 80);
+    color: var(--main);
     padding-top: 10px;
 }
 
 #userpage-habits {
     padding: 10px;
     margin: 10px 300px;
-    border: 5px solid rgb(255, 127, 80);;
+    border: 5px solid var(--main);;
     position: relative;
-    background-color: rgb(255, 127, 80);
+    background-color: var(--main);
     font-size: 25px;
     border-radius: 5px;
 }
@@ -51,20 +58,20 @@ body {
 
 .more-info-btn {
     cursor: pointer;
-    color: rgb(65, 105, 225);
+    color: var(--secondary);
 }
 
 .more-info-btn:hover {
-    color: rgb(250, 213, 4);
+    color: var(--tertiary);
 }
 
 #new-habit-btn {
     position: absolute;
     right: 5px;
     bottom: 5px;
-    color: rgb(250, 213, 4);
-    background-color:rgb(65, 105, 225);
-    border-color: rgb(65, 105, 225);
+    color: var(--tertiary);
+    background-color:var(--secondary);
+    border-color: var(--secondary);
     font-size: 20px;
     padding: 5px;
     border-radius: 12px;
@@ -73,8 +80,8 @@ body {
 }
 
 #new-habit-btn:hover {
-    color: rgb(65, 105, 225);
-    background-color: rgb(250, 213, 4);
-    border-color: rgb(250, 213, 4);
+    color: var(--secondary);
+    background-color: var(--tertiary);
+    border-color: var(--tertiary);
     transition: 0.3s;
 }
