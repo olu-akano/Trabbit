@@ -25,3 +25,9 @@ body {
     font-size: 25px;
     border-radius: 5px;
 }
+
+textarea {
+    resize: none;
+    border: none;
+    outline: none;
+}

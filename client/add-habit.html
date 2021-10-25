@@ -26,11 +26,21 @@
 
     <header class="header">
         <h2>Add your new habits below!</h2>
-        <p>[INSTRUCTIONS ON HOW TO USE]</p>
+        <p>Enter the name of your new habit, a description of how to achieve it, and how often you would like to achieve it, below! Then submit to see your new habit on your <a style="color: var(--primary);" href="userpage.html">homepage</a>.</p>
     </header>
 
     <main id="new-habit-main">
-        <input type="text" placeholder="Enter your new habit here!">
+        <form action="">
+            <textarea name="title" id="new-habit-title" rows="1" cols="20" placeholder="Name of habit..." maxlength="20"></textarea>
+            <textarea name="description" id="new-habit-desription" cols="30" rows="1" placeholder="Description of habit..." maxlength="200"></textarea>
+            <select id="how-often">
+                <option value="1-day">Once a week</option>
+                <option value="7-day">Everyday</option>
+                <option value="twice">Twice a day</option>
+                <option value="3-day">Three times a week</option>
+              </select>
+            <input type="submit" value="Add your new habit!">
+        </form>
     </main>
 </body>
 </html>
