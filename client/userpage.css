@@ -34,17 +34,19 @@ body {
     border-radius: 5px;
 }
 
-#habits-textcontent {
-    display: grid;
-    /* justify-content: space-around; */
-}
-
 .habit {
-    display: flex;
-    justify-content: space-around;
+    height: 100px;
 }
 
-#more-info-btn {
+tr {
+    border-bottom: 1px solid rgb(10, 10, 10);
+}
+
+tr:hover {
+    font-weight: 700;
+}
+
+.more-info-btn {
     cursor: pointer;
 }
 
@@ -52,10 +54,18 @@ body {
     position: absolute;
     right: 5px;
     bottom: 5px;
+    color: rgb(250, 213, 4);
     background-color:rgb(65, 105, 225);
     border-color: rgb(65, 105, 225);
     font-size: 20px;
     padding: 5px;
     border-radius: 12px;
     font-weight: 600;
+}
+
+#new-habit-btn:hover {
+    color: rgb(65, 105, 225);
+    background-color: rgb(250, 213, 4);
+    border-color: rgb(250, 213, 4);
+    transition: 0.3s;
 }
