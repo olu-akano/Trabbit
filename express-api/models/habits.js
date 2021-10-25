@@ -3,9 +3,9 @@ const { init } = require ('../db_config/config')
 class Habit {
     constructor(data){
         this.id = data.id;
-        this.name = data.name;
+        this.habitname = data.habitname;
         this.streak = data.streak;
-        this.count=data.count;
+        this.current_count=data.current_count;
         this.frequency=data.frequency;
         //add any other variables a habit has later
     }
@@ -24,11 +24,11 @@ class Habit {
         })
     }
 
-    static create(name, streak, count, frequency ){
+    static create(habitname, streak, current_count, frequency ){
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init();
-                const habitData = await db.collection('habits').insertOne({ name, streak, count, frequency })
+                const habitData = await db.collection('habits').insertOne({ habitname, streak, current_count, frequency })
                 const newHabit = new Habit(habitData.ops[0]);
                 resolve (newHabit);
             } catch(err) {

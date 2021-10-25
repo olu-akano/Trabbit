@@ -4,8 +4,8 @@ class User {
     constructor(data){
         this.id = data.id;
         this.email=data.email;
-        this.name = data.name;
-        this.habit = data.habit;
+        this.username = data.username;
+        this.password_digest = data.password_digest;
         //add any other variables a user has later
     }
 
@@ -24,11 +24,11 @@ class User {
     }
 
 
-    static create(name, email ,habit){
+    static create(username, email ,password_digest){
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init();
-                const userData = await db.collection('users').insertOne({ name, email, habit })
+                const userData = await db.collection('users').insertOne({ username, email, password_digest })
                 console.log(userData);
                 const newUser = new User(newUser.ops[0]);
                 resolve (newUser);

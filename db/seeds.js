@@ -1,4 +1,5 @@
-db = connect("localhost:27017/")
+db = connect("localhost:27017/habits")
+
 db.users.drop()
 db.habits.drop()
 

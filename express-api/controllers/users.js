@@ -22,4 +22,4 @@ async function create(req, res){
 }
 
 
-module.exports = router;
+module.exports = {index,create};

@@ -9,7 +9,7 @@ const userRoutes = require('./routes/users')
 const habitRoutes = require('./routes/habits')
 
 server.use('/users', userRoutes)
-server.use('/routes', habitRoutes)
+server.use('/habits', habitRoutes)
 
 // Root route
 server.get('/', (req, res) => res.send('Hello to Trabbit website!'))
