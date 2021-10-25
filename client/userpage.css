@@ -26,7 +26,6 @@ body {
 #userpage-habits {
     padding: 10px;
     margin: 10px 300px;
-    height: 70vh;
     border: 5px solid rgb(255, 127, 80);;
     position: relative;
     background-color: rgb(255, 127, 80);
@@ -38,16 +37,13 @@ body {
     height: 100px;
 }
 
-tr {
-    border-bottom: 1px solid rgb(10, 10, 10);
-}
-
-tr:hover {
-    font-weight: 700;
-}
-
 .more-info-btn {
     cursor: pointer;
+    color: rgb(65, 105, 225);
+}
+
+.more-info-btn:hover {
+    color: rgb(250, 213, 4);
 }
 
 #new-habit-btn {
