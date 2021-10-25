@@ -7,58 +7,64 @@
         <title>Trabbit - Track your habits!</title>
         <link rel="shortcut icon" href="./static/images/favicon.webp" type="image/x-icon">
         <link rel="stylesheet" href="./static/css/index.css">
-        <script src="./static/js/index.js"></script>
     </head>
     <body>
-        <!--Split page in two with login and welcome on left, quotes on right-->
-        <div class="split left">
-            <div id="loginContainer" class="login-container">
-                <form id="loginForm" class="login-form">
-                    <div id="emailContainer" class="email-container">
-                        <input type="email" name="email" id="email" placeholder="Enter email address" autocomplete="email" required>
-                    </div>
-                    <div id="passwordContainer" class="password-container">
-                        <input type="password" name="password" id="password" placeholder="Enter password" autocomplete="current-password" required>
-                    </div>
-                    <div id="buttonContainer" class="button-container centered">
-                        <button id="loginButton" class="login-button" type="submit">Sign In!</button>
-                        <button>Sign Up!</button><!--Will show signup modal-->
-                    </div>
-                </form>
-            </div>
-            <div id="signupModal" class="signup-modal hide-modal">
-                <form id="signupForm" class="signup-form">
-                    <div id="usernameContainer" class="username-container centered">
-                        <input type="text" name="username" id="username" placeholder="Enter username" autocomplete="off" required>
-                    </div>
-                    <div id="newEmailContainer" class="new-email-container centered">
-                        <input type="email" name="newEmail" id="newEmail" placeholder="Enter email address" autocomplete="off" required>
-                    </div>
-                    <div id="newPasswordContainer" class="newPasswordContainer centered">
-                        <input type="password" name="newPassword" id="newPassword" placeholder="Enter new password" autocomplete="new-password" required>
-                        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password" autocomplete="new-password" required>
-                    </div>
-                    <div id="submitButtonContainer" class="submit-button-container centered">
-                        <button type="submit">Create Account</button>
-                    </div>
-                </form>
-            </div>
-            <div id="welcomeContainer" class="welcome-container">
-                <h3 id="welcome">welcome to...</h3>
-                <h1 id="trabbit">Trabbit</h1>
-            </div>
-        </div>
-        <!--split page here-->
-        <div class="split right">
-            <div id="quotesContainer" class="quotes-container">
-                <!--JS retrieves random quote and inserts into these containers-->
-                <div id="quoteText" class="quote-text">
-                    <p>example text</p>
+        <noscript>I love coffee, I love tea. No JavaScript? Get outta here!</noscript>
+
+        <main>
+            <!--Split page in two with login and welcome on left, quotes on right-->
+            <div class="split left">
+                <div id="loginContainer" class="login-container">
+                    <form id="loginForm" class="login-form">
+                        <div id="emailContainer" class="email-container">
+                            <input type="email" name="email" id="email" placeholder="Enter email address" autocomplete="email" required>
+                        </div>
+                        <div id="passwordContainer" class="password-container">
+                            <input type="password" name="password" id="password" placeholder="Enter password" autocomplete="current-password" required>
+                        </div>
+                        <div id="buttonContainer" class="button-container centered">
+                            <button id="loginButton" class="login-button" type="submit">Sign In!</button>
+                            <button id="signupButton" class="signup-button">Sign Up!</button><!--Will show signup modal-->
+                        </div>
+                    </form>
                 </div>
-                <div id="quoteAuthor" class="quote-author">
-                    <p>example author</p>
+                <div id="signupModal" class="signup-modal hide-modal">
+                    <form id="signupForm" class="signup-form">
+                        <div id="usernameContainer" class="username-container centered">
+                            <input type="text" name="username" id="username" placeholder="Enter username" autocomplete="off" required>
+                        </div>
+                        <div id="newEmailContainer" class="new-email-container centered">
+                            <input type="email" name="newEmail" id="newEmail" placeholder="Enter email address" autocomplete="off" required>
+                        </div>
+                        <div id="newPasswordContainer" class="newPasswordContainer centered">
+                            <input type="password" name="newPassword" id="newPassword" placeholder="Enter new password" autocomplete="new-password" required>
+                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password" autocomplete="new-password" required>
+                        </div>
+                        <div id="submitButtonContainer" class="submit-button-container centered">
+                            <button id="registrationButton" class="registration-button" type="submit" disabled=true>Create Account</button>
+                        </div>
+                    </form>
+                </div>
+                <div id="welcomeContainer" class="welcome-container">
+                    <h3 id="welcome">welcome to...</h3>
+                    <h1 id="trabbit">Trabbit</h1>
                 </div>
             </div>
-        </div>
+            <!--split page here-->
+            <div class="split right">
+                <div id="quotesContainer" class="quotes-container">
+                    <!--JS retrieves random quote and inserts into these containers-->
+                    <div id="quoteText" class="quote-text">
+                        <p>example text</p>
+                    </div>
+                    <div id="quoteAuthor" class="quote-author">
+                        <p>example author</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src='https://cdn.jsdelivr.net/npm/jwt-decode@1.5.1/build/jwt-decode.min.js'></script>
+        <script src="./static/js/auth.js"></script>
+        <script src="./static/js/index.js"></script>
     </body>
-</html>
+    </html>
