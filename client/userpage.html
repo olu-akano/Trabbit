@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Source+Code+Pro:wght@200&family=Work+Sans:wght@200&display=swap" rel="stylesheet">  
     <link rel="stylesheet" href="userpage.css">
     <title>Trabbit - Userpage</title>
 </head>
 <body>
-    <button class="our-btn">Show nav bar</button>
+    <button id="show-nav-btn">Show nav bar</button>
     <nav id="userpage-nav">
         <a href="userpage.html">Profile</a><br>
         <a href="">Add habit</a><br>
@@ -22,7 +23,14 @@
 
     <main id="userpage-habits">
         <div id="habits-textcontent">
-            <p>Drink water</p> <button class="our-btn">More info...</button> <p>[STREAK COUNTER]</p>
+
+            <div class="habit" id="habit1">
+                <p>&#8226;</p><p>Drink water</p> <p id="more-info-btn">More info...</p> <p>[STREAK COUNTER]</p>
+            </div>
+
+            <div class="habit" id="habit2">
+                <p>&#8226;</p><p>Sleep</p> <p id="more-info-btn">More info...</p> <p>[STREAK COUNTER]</p>
+            </div>
         </div>
         <button id="new-habit-btn" class="our-btn">Add a new habit</button>
     </main>
