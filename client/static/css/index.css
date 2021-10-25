@@ -53,16 +53,31 @@ button {
 }
 
 .signup-modal {
-    height: 50%;
+    height: 30%;
     display: flex;
     align-items: center;
 }
 
 .welcome-container {
     height: 25%;
+    width: 75%;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    /* /* flex-direction: column; */
+    justify-content: space-between;
+}
+
+.text-container {
+    width: 50%;
+    margin: auto;
+}
+
+.logo-container {
+    width: 50%;
+    margin: auto;
+}
+
+.logo {
+    width: 100%;
 }
 
 .quotes-container {
@@ -78,6 +93,25 @@ button {
     background-position-x: center;
 }
 
+.quote-text-container {
+    width: 60%;
+    text-align: justify;
+}
+
+.quote-text {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.quote-author-container {
+    width: 50%;
+    text-align: left;
+}
+
+.quote-author {
+    font-size: 1.2rem;
+}
+
 .centered {
     display: flex;
     align-self: center;
@@ -86,5 +120,5 @@ button {
 }
 
 .hide-modal {
-    /* display: none; */
+    display: none;
 }
