@@ -13,14 +13,45 @@ async function renderQuote(){
 window.onload = renderQuote;
 
 // Show/hide signup form
-    // Later swap to modal?
-const signupButton = document.getElementById('signupButton');
-signupButton.addEventListener('click', showSignup);
+//     // Later swap to modal?
+// const signupButton = document.getElementById('signupButton');
+// signupButton.addEventListener('click', showSignup);
+// function showSignup(e){
+//     e.preventDefault();
+//     const signupModal = document.getElementById('signupModal');
+//     signupModal.classList.toggle('hide-modal');
+// }
+// Get the modal
+var signupModal = document.getElementById("signupModal");
+
+// Get the button that opens the modal
+var signupButton = document.getElementById("signupButton");
+
+// Get the <span> element that closes the modal
+var closeButton = document.getElementById("closeModal")
+
+// When the user clicks on the button, open the modal
 function showSignup(e){
     e.preventDefault();
-    const signupModal = document.getElementById('signupModal');
-    signupModal.classList.toggle('hide-modal');
+    // signupModal.style.display = "flex";
+    signupModal.classList.add("signup-flex");
 }
+signupButton.addEventListener('click', showSignup);
+
+// When the user clicks on <span> (x), close the modal
+closeButton.onclick = () => { 
+    // signupModal.style.display = "none"; 
+    signupModal.classList.remove("signup-flex");
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = (event) => {
+  if (event.target == signupModal) {
+    // signupModal.style.display = "none";
+    signupModal.classList.remove("signup-flex");
+  }
+} 
+
 
 // Check password confirmation in registration form
 const password = document.getElementById('newPassword');

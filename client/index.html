@@ -28,23 +28,6 @@
                         </div>
                     </form>
                 </div>
-                <div id="signupModal" class="signup-modal hide-modal">
-                    <form id="signupForm" class="signup-form">
-                        <div id="usernameContainer" class="username-container centered">
-                            <input type="text" name="username" id="username" placeholder="Enter username" autocomplete="off" required>
-                        </div>
-                        <div id="newEmailContainer" class="new-email-container centered">
-                            <input type="email" name="newEmail" id="newEmail" placeholder="Enter email address" autocomplete="off" required>
-                        </div>
-                        <div id="newPasswordContainer" class="newPasswordContainer centered">
-                            <input type="password" name="newPassword" id="newPassword" placeholder="Enter new password" autocomplete="new-password" required>
-                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password" autocomplete="new-password" required>
-                        </div>
-                        <div id="submitButtonContainer" class="submit-button-container centered">
-                            <button id="registrationButton" class="registration-button" type="submit" disabled=true>Create Account</button>
-                        </div>
-                    </form>
-                </div>
                 <div id="welcomeContainer" class="welcome-container">
                     <div id="textContainer" class="text-container">
                         <h3 id="welcome">welcome to...</h3>
@@ -67,6 +50,31 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Registration form is shown when signup button clicked-->
+            <div id="signupModal" class="signup-modal">
+                <div id="signupContent" class="signup-content">
+                    <span id="closeModal" class="close">&times;</span>
+                    <form id="signupForm" class="signup-form">
+                        <div id="usernameContainer" class="username-container centered">
+                            <span class="form-heading">Username:</span>
+                            <input type="text" name="username" id="username" placeholder="Enter username" autocomplete="off" required>
+                        </div>
+                        <div id="newEmailContainer" class="new-email-container centered">
+                            <span class="form-heading">Email Address:</span>
+                            <input type="email" name="newEmail" id="newEmail" placeholder="Enter email address" autocomplete="off" required>
+                        </div>
+                        <div id="newPasswordContainer" class="newPasswordContainer centered">
+                            <span class="form-heading">Password:</span>
+                            <input type="password" name="newPassword" id="newPassword" placeholder="Enter new password" autocomplete="new-password" required>
+                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password" autocomplete="new-password" required>
+                        </div>
+                        <div id="submitButtonContainer" class="submit-button-container centered">
+                            <button id="registrationButton" class="registration-button" type="submit" disabled=true>Create Account</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </main>
         <script src='https://cdn.jsdelivr.net/npm/jwt-decode@1.5.1/build/jwt-decode.min.js'></script>
         <script src="./static/js/auth.js"></script>
