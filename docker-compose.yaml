@@ -9,8 +9,8 @@ services:
         target: /code
 
   db:
-    image: mongodb:latest
+    image: mongo:latest
     environment: 
-      -MONGO_INITDB_ROOT_USERNAME=trabbit
+      - MONGO_INITDB_ROOT_USERNAME=trabbit
     volumes:
       - "./db/migrations:/docker-entrypoint-initdb.d/:ro"

@@ -17,7 +17,7 @@ services:
       - 3000:3000
     environment: 
       - DB_NAME=habits
-      - DB_CONNECTION=mongodb://habits:corgie@db:27017
+      - DB_CONNECTION=mongodb://trabbit:corgie@db:27017
       - NODE_ENV=development
     depends_on:
       - db
