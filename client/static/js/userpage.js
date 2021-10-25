@@ -4,7 +4,7 @@ const navBar = document.getElementById('hidden-userpage-nav')
 navBtn.addEventListener('click', () => {
     switch(navBtn.id) {
     case 'show-nav-btn':
-        navBtn.innerHTML = '&#9747';
+        navBtn.innerHTML = '&times;';
         navBtn.id = 'hide-nav-btn';
         navBar.id = 'show-userpage-nav';
         break;
