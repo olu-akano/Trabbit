@@ -1,0 +1,24 @@
+#userpage-header {
+    text-align: center;
+    border: 5px solid black;
+    margin: 10px 200px;
+}
+
+#userpage-habits {
+    padding: 10px;
+    margin: 10px 300px;
+    height: 70vh;
+    border: 5px solid black;
+    position: relative;
+}
+
+#habits-textcontent {
+    display: flex;
+    justify-content: space-around;
+}
+
+#new-habit-btn {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
