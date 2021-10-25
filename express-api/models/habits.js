@@ -1,4 +1,5 @@
 const { init } = require ('../db_config/config')
+const { ObjectId } = require('mongodb')
 
 class Habit {
     constructor(data){
@@ -27,13 +28,14 @@ class Habit {
 
     static findById(id){
         return new Promise (async (resolve, reject) => {
-            // console.log(ObjectId(id));
             try {
-                let habitData = await db.collection('habits').find( { _id: ObjectId(id) }).toArray;
-                console.log(habitData.rows[0])
-                let habit = new Habit(habitData.rows[0]);
+                const db = await init();
+                let habitData = await db.collection('habits').find( { _id: ObjectId(id) }).toArray();
+                console.log(habitData);
+                let habit = new Habit({...habitData[0], id: habitData[0]._id});
                 resolve (habit);
             } catch (err) {
+                console.log(err);
                 reject('Habit not found');
             }
         });
@@ -61,7 +63,7 @@ class Habit {
             try {
                 const result = await db.collection('habits').deleteOne( {id : this.id});
                 console.log(result);
-                resolve('Habit was deleted');
+                resolve(result);
             } catch (err) {
                 reject('Habit could not be deleted');
             }
