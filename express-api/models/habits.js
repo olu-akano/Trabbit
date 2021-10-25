@@ -15,7 +15,7 @@ class Habit {
             try {
                 const db = await init();
                 const habitData = await db.collection('habits').find().toArray();
-                let habit = new Habit({...habitData[0], id: habitData[0]._id});
+                let habit = habitData.map(d => new Habit({...d, id: d._id}));
                 resolve(habit);
             } catch (err) {
                 console.log(err);
@@ -27,6 +27,7 @@ class Habit {
 
     static findById(id){
         return new Promise (async (resolve, reject) => {
+            // console.log(ObjectId(id));
             try {
                 let habitData = await db.collection('habits').find( { _id: ObjectId(id) }).toArray;
                 console.log(habitData.rows[0])
