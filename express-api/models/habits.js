@@ -75,6 +75,7 @@ class Habit {
         return new Promise(async(resolve, reject) => {
             try {
                 //add an if function later so it olnly increament the count if the task is not compelete yet
+                const db = await init();
                 const updateHabit = await db.collection('habits').findOneAndUpdate({ _id: ObjectId(this.id) }, { $inc: { current_count: 1 } }, { returnOriginal: false });
                 const  updatedHabit= new Habit(updateHabit.value);
                 resolve (updatedHabit);
