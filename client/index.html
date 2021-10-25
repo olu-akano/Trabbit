@@ -8,6 +8,54 @@
         <link rel="shortcut icon" href="./static/images/favicon.webp" type="image/x-icon">
     </head>
     <body>
-        
+        <section id="splitPage" class="split-page">
+            <!--Split page in two with login and welcome on left, quotes on right-->
+            <div id="loginContainer" class="login-container">
+                <form id="loginForm" class="login-form">
+                    <div id="emailContainer" class="email-container">
+                        <input type="email" name="email" id="email" placeholder="Enter email address" autocomplete="email" required>
+                    </div>
+                    <div id="passwordContainer" class="password-container">
+                        <input type="password" name="password" id="password" placeholder="Enter password" autocomplete="current-password" required>
+                    </div>
+                    <div id="loginButtonContainer" class="login-button-container">
+                        <button id="loginButton" class="login-button" type="submit">Sign In!</button>
+                    </div>
+                </form>
+            </div>
+            <div id="signupContainer" class="signup-container">
+                <div id="signupButtonContainer" class="signup-button-container">
+                    <!--Will show signup modal-->
+                    <button>Sign Up!</button>
+                </div>
+                <div id="signupModal" class="signup-modal">
+                    <form id="signupForm" class="signup-form">
+                        <div id="usernameContainer" class="username-container">
+                            <input type="text" name="username" id="username" placeholder="Enter username" autocomplete="off" required>
+                        </div>
+                        <div id="newEmailContainer" class="new-email-container">
+                            <input type="email" name="newEmail" id="newEmail" placeholder="Enter email address" autocomplete="off" required>
+                        </div>
+                        <div id="newPasswordContainer" class="newPasswordContainer">
+                            <input type="password" name="newPassword" id="newPassword" placeholder="Enter new password" autocomplete="new-password" required>
+                            <input type="password" name="newPassword" id="newPassword" placeholder="Confirm password" autocomplete="new-password" required>
+                        </div>
+                        <div id="submitButtonContainer" class="submit-button-container">
+                            <button type="submit">Create Account</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="welcomeContainer" class="welcome-container">
+                <h3 id="welcome">welcome to...</h3>
+                <h1 id="trabbit">Trabbit</h1>
+            </div>
+            <!--split page here-->
+            <div id="quotesContainer" class="quotes-container">
+                <!--JS retrieves random quote and inserts into these containers-->
+                <div id="quoteText" class="quote-text"></div>
+                <div id="quoteAuthor" class="quote-author"></div>
+            </div>
+        </section>
     </body>
 </html>
