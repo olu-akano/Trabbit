@@ -60,9 +60,24 @@ button {
 
 .welcome-container {
     height: 25%;
+    width: 75%;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    /* /* flex-direction: column; */
+    justify-content: space-between;
+}
+
+.text-container {
+    width: 50%;
+    margin: auto;
+}
+
+.logo-container {
+    width: 50%;
+    margin: auto;
+}
+
+.logo {
+    width: 100%;
 }
 
 .quotes-container {
