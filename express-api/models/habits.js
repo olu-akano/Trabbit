@@ -24,6 +24,20 @@ class Habit {
         })
     }
 
+    static create(name, streak, count, frequency ){
+        return new Promise (async (resolve, reject) => {
+            try {
+                const db = await init();
+                const habitData = await db.collection('habits').insertOne({ name, streak, count, frequency })
+                const newHabit = new Habit(habitData.ops[0]);
+                resolve (newHabit);
+            } catch(err) {
+                reject('Error creating habit');
+            }
+        });
+    }
+
+
 }
 
 module.exports = Habit;

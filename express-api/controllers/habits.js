@@ -12,5 +12,13 @@ async function index(req, res){
     }
 }
 
+async function create(req, res){
+    try {
+        const habit = await Habit.create(req.body.name, req.body.streak,  req.body.count, req.body.frequency);
+        res.json(habit)
+    } catch(err) {
+        res.status(500).json({err})
+    }
+}
 
 module.exports = router;
