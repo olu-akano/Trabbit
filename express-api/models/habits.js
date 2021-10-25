@@ -47,11 +47,17 @@ class Habit {
             try {
                 const db = await init();
                 // const habitData = await db.collection('habits').insertOne({ habitname : habit, streak: streak, current_count:count, frequency :frequency});
-                const habitData = await db.collection('habits').insertOne({ habitname, streak, current_count, frequency });
+                const habitData = await db.collection('habits').insertOne({ habitname:"habitname",streak: "streak",current_count: "current_count", frequency:"frequency" });
+                console.log('habitData');
+                const h=this.findById(habitData.insertedId);
+                console.log(h);
                 console.log(habitData);
-                const newHabit = new Habit(habitData.ops[0]);
+                const newHabit = new Habit(h);
+                // const newHabit = new Habit({habitData , id: habitData._id});
+                console.log(newHabit);
                 resolve (newHabit);
-            } catch(err) {
+            } catch(err) { 
+                console.log(err);
                 reject('Error creating habit');
                 console.log(err);
             }
