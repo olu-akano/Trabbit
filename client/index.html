@@ -59,17 +59,18 @@
             <div class="split right">
                 <div id="quotesContainer" class="quotes-container">
                     <!--JS retrieves random quote and inserts into these containers-->
-                    <div id="quoteText" class="quote-text">
-                        <p>example text</p>
+                    <div id="quoteTextContainer" class="quote-text-container">
+                        <p id="quoteText" class="quote-text"></p>
                     </div>
-                    <div id="quoteAuthor" class="quote-author">
-                        <p>example author</p>
+                    <div id="quoteAuthorContainer" class="quote-author-container">
+                        <p id="quoteAuthor" class="quote-author"></p>
                     </div>
                 </div>
             </div>
         </main>
         <script src='https://cdn.jsdelivr.net/npm/jwt-decode@1.5.1/build/jwt-decode.min.js'></script>
         <script src="./static/js/auth.js"></script>
+        <script src="./static/js/request.js"></script>
         <script src="./static/js/index.js"></script>
     </body>
     </html>

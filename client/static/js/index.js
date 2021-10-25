@@ -1,6 +1,16 @@
-// Log in form submission
-const loginForm = document.getElementById('loginForm');
-loginForm.addEventListener('submit', requestLogin);
+// Retrieve random inspirational quote
+async function renderQuote(){
+    const quote = await getQuote();
+    const quoteText = document.getElementById('quoteText');
+    const quoteAuthor = document.getElementById('quoteAuthor');
+    quoteText.textContent = `"${quote.text}"`;
+    if (!!quote.author){
+        quoteAuthor.textContent = `- ${quote.author}`;
+    } else {
+        quoteAuthor.textContent = '';
+    }
+}
+window.onload = renderQuote;
 
 // Show/hide signup form
     // Later swap to modal?
@@ -24,6 +34,10 @@ function checkPassword(){
         submitButton.disabled = true;
     }
 }
+
+// Log in form submission
+const loginForm = document.getElementById('loginForm');
+loginForm.addEventListener('submit', requestLogin);
 
 // Registration form submission
 const signupForm = document.getElementById('signupForm');

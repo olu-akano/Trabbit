@@ -93,6 +93,25 @@ button {
     background-position-x: center;
 }
 
+.quote-text-container {
+    width: 60%;
+    text-align: justify;
+}
+
+.quote-text {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.quote-author-container {
+    width: 50%;
+    text-align: left;
+}
+
+.quote-author {
+    font-size: 1.2rem;
+}
+
 .centered {
     display: flex;
     align-self: center;
