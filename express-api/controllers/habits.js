@@ -21,4 +21,14 @@ async function create(req, res){
     }
 }
 
-module.exports = {index,create};
+async function destroy (req, res) {
+    try {
+        const habit =await Habit.findById(parseInt(req.params.id));
+        const habits = await habit.destroy();
+        res.status(204).end();
+    } catch (err) {
+        res.status(404).json({err});
+    };
+}
+
+module.exports = { index , create ,destroy };
