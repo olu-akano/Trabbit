@@ -24,6 +24,21 @@ class Habit {
         })
     }
 
+
+    static findById(id){
+        return new Promise (async (resolve, reject) => {
+            try {
+                let habitData = await db.collection( {id : {$eq : id}} );
+                console.log(habitData.rows[0])
+                let habit = new Habit(habitData.rows[0]);
+                resolve (habit);
+            } catch (err) {
+                reject('Habit not found');
+            }
+        });
+    };
+
+
     static create(habitname, streak, current_count, frequency ){
         return new Promise (async (resolve, reject) => {
             try {
