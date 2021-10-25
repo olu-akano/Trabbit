@@ -16,12 +16,6 @@ body {
     margin: 0;
 }
 
-#userpage-header {
-    text-align: center;
-    color: var(--primary);
-    padding-top: 10px;
-}
-
 #userpage-habits {
     padding: 10px;
     margin: 10px 300px;

@@ -64,3 +64,8 @@ a:hover{
     color: white;
 }
 
+.header {
+    text-align: center;
+    color: var(--primary);
+    padding-top: 10px;
+}
