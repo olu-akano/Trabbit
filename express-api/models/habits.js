@@ -28,7 +28,7 @@ class Habit {
     static findById(id){
         return new Promise (async (resolve, reject) => {
             try {
-                let habitData = await db.collection( {id : {$eq : id}} );
+                let habitData = await db.collection('habits').find( { _id: ObjectId(id) }).toArray;
                 console.log(habitData.rows[0])
                 let habit = new Habit(habitData.rows[0]);
                 resolve (habit);
@@ -43,11 +43,14 @@ class Habit {
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init();
-                const habitData = await db.collection('habits').insertOne({ habitname, streak, current_count, frequency })
+                // const habitData = await db.collection('habits').insertOne({ habitname : habit, streak: streak, current_count:count, frequency :frequency});
+                const habitData = await db.collection('habits').insertOne({ habitname, streak, current_count, frequency });
+                console.log(habitData);
                 const newHabit = new Habit(habitData.ops[0]);
                 resolve (newHabit);
             } catch(err) {
                 reject('Error creating habit');
+                console.log(err);
             }
         });
     }
@@ -68,9 +71,10 @@ class Habit {
         return new Promise(async(resolve, reject) => {
             try {
                 //add an if function later so it olnly increament the count if the task is not compelete yet
-                const result = await db.habits.updateOne( {id : this.id},{ $set : {current_count:current_count++}});
-                console.log(result);
-                resolve('Habit was updated');
+                const updateHabit = await db.collection('habits').findOneAndUpdate({ _id: ObjectId(this.id) }, { $inc: { current_count: 1 } }, { returnOriginal: false });
+                const  updatedHabit= new Habit(updateHabit.value);
+                resolve (updatedHabit);
+                console.log(updatedHabit);
             } catch (err) {
                 reject('Habit could not be updated');
             }
