@@ -12,4 +12,9 @@ services:
     image: mongo:latest
     environment: 
       - MONGO_INITDB_ROOT_USERNAME=trabbit
+<<<<<<< HEAD
+    volumes:
+      - "./db/migrations:/docker-entrypoint-initdb.d/:ro"
+=======
     
+>>>>>>> 690f94fc6d3add78af39e3d072f684443a79df43

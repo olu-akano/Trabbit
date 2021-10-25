@@ -53,5 +53,4 @@ async function destroy (req, res) {
         res.status(404).json({err});
     };
 }
-
 module.exports = { index , show, create , update ,destroy };
