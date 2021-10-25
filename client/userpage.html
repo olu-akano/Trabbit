@@ -5,33 +5,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Source+Code+Pro:wght@200&family=Work+Sans:wght@200&display=swap" rel="stylesheet">  
-    <link rel="stylesheet" href="userpage.css">
-    <title>Trabbit - Userpage</title>
+    <link rel="stylesheet" href="./static/css/userpage.css">
+    <script defer src="./static/js/userpage.js"></script>
+    <title>Trabbit - Profile</title>
 </head>
 <body>
-    <button id="show-nav-btn">Show nav bar</button>
-    <nav id="userpage-nav">
-        <a href="userpage.html">Profile</a><br>
-        <a href="">Add habit</a><br>
-        <a href="">Logout</a>
+    <div id="show-nav-btn">&#9776;</div>
+    <nav id="hidden-userpage-nav">
+        <li>
+            <a href="userpage.html">Profile</a>
+        </li>
+        <li>
+            <a href="add-habit.html">Add habit</a>
+        </li>
+        <li>
+            <a href="index.html">Logout</a>
+        </li>
     </nav>
 
     <header id="userpage-header">
-        <h1>Welcome to your userpage!</h1>
-        <p>Here you can see and add to your current progress on your active habits and how close you are to your goal.</p>
+        <h1>Welcome to your Profile!</h1>
+        <p style="font-size: 23px;">Below you can see your current progress on your active habits and how close you are to your goals.</p>
     </header>
 
     <main id="userpage-habits">
-        <div id="habits-textcontent">
+        <h3 style="text-align: center;">Your Active Habits</h3>
+        <table style="width:100%;" id="habits-textcontent">
+            <tr class="habit" id="habit1">
+                <td style="width: 10%;">&#8226;</td>
+                <td style="width: 50%;">Drink water</td>
+                <td style="width: 20%;"class="more-info-btn">More info...</td>
+                <td>Streak: 5 &#128293</td>
+            </tr>
 
-            <div class="habit" id="habit1">
-                <p>&#8226;</p><p>Drink water</p> <p id="more-info-btn">More info...</p> <p>[STREAK COUNTER]</p>
-            </div>
-
-            <div class="habit" id="habit2">
-                <p>&#8226;</p><p>Sleep</p> <p id="more-info-btn">More info...</p> <p>[STREAK COUNTER]</p>
-            </div>
-        </div>
+            <tr class="habit" id="habit2">
+                <td>&#8226;</td>
+                <td>Sleep</td> 
+                <td class="more-info-btn">More info...</td> 
+                <td>Streak: 2 &#128293</td>
+            </tr>
+        </table>
         <button id="new-habit-btn" class="our-btn">Add a new habit</button>
     </main>
     <script src="./static/js/requests.js"></script>
