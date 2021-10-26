@@ -51,3 +51,11 @@ frequency.onchange = () => {
     description.style.display = 'initial';
     submit.style.display = 'initial';
 }
+
+
+////Text counter for description box
+countChars = () => {
+    let len = description.value.length;
+    document.getElementById('character-counter').innerHTML = `${len}/500 characters used`
+}
+
