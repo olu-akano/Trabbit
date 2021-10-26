@@ -41,7 +41,19 @@ class User {
         });
     }
 
-
-}
+    static findbyEmail(email){
+        return new Promise(async (res, rej)=> {
+            try {
+                const db = await init();
+                let userData = await db.collection('users').find({email: {$eq: `${email}`}})
+                let user = new User ({...userData[0], email: userData[0].email});
+                resolve(user);
+            } catch (err) {
+                console.log(err)
+                reject("Error retrieving email")
+            }
+         });
+        }
+    };
 
 module.exports = User;
