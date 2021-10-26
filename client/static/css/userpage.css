@@ -38,3 +38,7 @@ body {
 .more-info-btn:hover {
     color: var(--tertiary);
 }
+
+.more-info-btn{
+    background-color: azure;
+}

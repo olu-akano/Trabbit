@@ -16,3 +16,11 @@ navBtn.addEventListener('click', () => {
         break;
     }
 })
+
+// Log user out
+function logout(){
+    localStorage.clear();
+    window.location.href = "./index.html"
+}
+const logoutOption = document.getElementById("logout");
+logoutOption.addEventListener('click', logout);

@@ -12,15 +12,7 @@ async function renderQuote(){
 }
 window.onload = renderQuote;
 
-// Show/hide signup form
-//     // Later swap to modal?
-// const signupButton = document.getElementById('signupButton');
-// signupButton.addEventListener('click', showSignup);
-// function showSignup(e){
-//     e.preventDefault();
-//     const signupModal = document.getElementById('signupModal');
-//     signupModal.classList.toggle('hide-modal');
-// }
+//--- Show/hide signup form ---
 // Get the modal
 var signupModal = document.getElementById("signupModal");
 
@@ -33,21 +25,18 @@ var closeButton = document.getElementById("closeModal")
 // When the user clicks on the button, open the modal
 function showSignup(e){
     e.preventDefault();
-    // signupModal.style.display = "flex";
     signupModal.classList.add("signup-flex");
 }
 signupButton.addEventListener('click', showSignup);
 
 // When the user clicks on <span> (x), close the modal
 closeButton.onclick = () => { 
-    // signupModal.style.display = "none"; 
     signupModal.classList.remove("signup-flex");
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = (event) => {
   if (event.target == signupModal) {
-    // signupModal.style.display = "none";
     signupModal.classList.remove("signup-flex");
   }
 } 
@@ -68,8 +57,14 @@ function checkPassword(){
 
 // Log in form submission
 const loginForm = document.getElementById('loginForm');
-loginForm.addEventListener('submit', requestLogin);
+loginForm.addEventListener('submit', e => {
+    e.preventDefault();
+    requestLogin(e)
+});
 
 // Registration form submission
 const signupForm = document.getElementById('signupForm');
-signupForm.addEventListener('submit', requestRegistration);
+signupForm.addEventListener('submit', e => {
+    e.preventDefault();
+    requestRegistration(e)
+});
