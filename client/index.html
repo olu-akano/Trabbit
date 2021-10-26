@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Trabbit - Track your habits!</title>
         <link rel="shortcut icon" href="./static/images/favicon.webp" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Source+Code+Pro:wght@200&family=Work+Sans:wght@200&display=swap" rel="stylesheet">  
+        <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="./static/css/index.css">
     </head>
     <body>
@@ -14,6 +16,15 @@
         <main>
             <!--Split page in two with login and welcome on left, quotes on right-->
             <section class="split left">
+                <div id="welcomeContainer" class="welcome-container">
+                    <div id="textContainer" class="text-container">
+                        <h3 id="welcomeHeading">welcome to...</h3>
+                        <h1 id="trabbitHeading" class="trabbit-heading">Trabbit</h1>
+                    </div>
+                    <div id="logoContainer" class="logo-container">
+                        <img src="./static/images/trabbit.webp" alt="trabbit logo" id="logo" class="logo">
+                    </div>
+                </div>
                 <div id="loginContainer" class="login-container">
                     <form id="loginForm" class="login-form">
                         <div id="emailContainer" class="email-container">
@@ -27,15 +38,6 @@
                             <button id="signupButton" class="signup-button">Sign Up!</button><!--Will show signup modal-->
                         </div>
                     </form>
-                </div>
-                <div id="welcomeContainer" class="welcome-container">
-                    <div id="textContainer" class="text-container">
-                        <h3 id="welcome">welcome to...</h3>
-                        <h1 id="trabbit">Trabbit</h1>
-                    </div>
-                    <div id="logoContainer" class="logo-container">
-                        <img src="./static/images/trabbit.webp" alt="trabbit logo" id="logo" class="logo">
-                    </div>
                 </div>
             </section>
             <!--split page here-->
@@ -64,10 +66,13 @@
                             <span class="form-heading">Email Address:</span>
                             <input type="email" name="email" id="newEmail" placeholder="Enter email address" autocomplete="off" required>
                         </div>
-                        <div id="newPasswordContainer" class="newPasswordContainer centered">
+                        <div id="newPasswordContainer" class="new-password-container centered">
                             <span class="form-heading">Password:</span>
-                            <input type="password" name="password" id="newPassword" placeholder="Enter new password" autocomplete="new-password" required>
-                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password" autocomplete="new-password" required>
+                            <input type="password" name="password" id="newPassword" placeholder="Enter new password" autocomplete="new-password" minlength="6" maxlength="20" required>
+                        </div>
+                        <div id="confirmPasswordContainer" class="confirm-password-container centered">
+                            <span class="form-heading">Confirm Password:</span>
+                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password" autocomplete="new-password" minlength="6" maxlength="20" required>
                         </div>
                         <div id="submitButtonContainer" class="submit-button-container centered">
                             <button id="registrationButton" class="registration-button" type="submit" disabled=true>Create Account</button>

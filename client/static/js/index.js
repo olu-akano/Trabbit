@@ -3,7 +3,7 @@ async function renderQuote(){
     const quote = await getQuote();
     const quoteText = document.getElementById('quoteText');
     const quoteAuthor = document.getElementById('quoteAuthor');
-    quoteText.textContent = `"${quote.text}"`;
+    quoteText.textContent = `${quote.text}`;
     if (!!quote.author){
         quoteAuthor.textContent = `- ${quote.author}`;
     } else {

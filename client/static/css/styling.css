@@ -5,7 +5,7 @@
 }
 
 * {
-    font-family: 'Balsamiq Sans';
+    font-family: 'Balsamiq Sans', sans-serif;
     margin-top: 0;
 }
 
@@ -68,4 +68,25 @@ a:hover{
     text-align: center;
     color: var(--primary);
     padding-top: 10px;
+}
+
+.btn {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    color: var(--tertiary);
+    background-color:var(--secondary);
+    border-color: var(--secondary);
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn:hover {
+    color: var(--secondary);
+    background-color: var(--tertiary);
+    border-color: var(--tertiary);
+    transition: 0.3s;
 }
