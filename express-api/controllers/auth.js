@@ -8,6 +8,8 @@ const jwt = require("jsonwebtoken");
 
 const User = require('../models/user');
 
+// register route
+
 router.post('/register', async (req, res) => {
     try {
         const salt = await bcrypt.genSalt();
@@ -18,6 +20,8 @@ router.post('/register', async (req, res) => {
         res.status(500).json({err});
     }
 })
+
+// login route
 
 router.post('/login', async (req, res) => {
     try {
