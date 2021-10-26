@@ -1,6 +1,6 @@
-//Opening and closing the navbar
-const navBtn = document.getElementById('show-nav-btn')
-const navBar = document.getElementById('hidden-userpage-nav')
+////Opening and closing the navbar
+const navBtn = document.getElementById('show-nav-btn');
+const navBar = document.getElementById('hidden-userpage-nav');
 
 navBtn.addEventListener('click', () => {
     switch(navBtn.id) {
