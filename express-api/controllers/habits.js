@@ -27,12 +27,9 @@ async function create(req, res){
         const habit = await Habit.create(req.body.habitname,req.body.streak ,req.body.current_count ,req.body.frequency);
         res.status(201).json(habit);
     } catch(err) {
-        console.log(err);
         res.status(500).json({err})
-        console.log(err);
     }
 }
-
 
 async function update(req, res) {
     try {
