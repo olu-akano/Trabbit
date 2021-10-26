@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Source+Code+Pro:wght@200&family=Work+Sans:wght@200&display=swap" rel="stylesheet">  
     <link rel="stylesheet" href="./static/css/userpage.css">
-    <script defer src="./static/js/userpage.js"></script>
+    <link rel="stylesheet" href="./static/css/styling.css">
+    <script defer src="./static/js/nav-bar.js"></script>
     <title>Trabbit - Profile</title>
 </head>
 <body>
-    <div id="show-nav-btn">&#9776;</div>
-    <nav id="hidden-userpage-nav">
+    <div class="nav-btn" id="show-nav-btn">&#9776;</div>
+    <nav class="navbar" id="hidden-userpage-nav">
         <li>
             <a href="userpage.html">Profile</a>
         </li>
@@ -23,7 +24,7 @@
         </li>
     </nav>
 
-    <header id="userpage-header">
+    <header class="header">
         <h1>Welcome to your Profile!</h1>
         <p style="font-size: 23px;">Below you can see your current progress on your active habits and how close you are to your goals.</p>
     </header>
@@ -45,7 +46,7 @@
                 <td>Streak: 2 &#128293</td>
             </tr>
         </table>
-        <button id="new-habit-btn" class="our-btn">Add a new habit</button>
+        <button onclick="location.href='add-habit.html'" id="new-habit-btn">Add a new habit</button>
     </main>
     <script src="./static/js/requests.js"></script>
     <script src="./static/js/content.js"></script>

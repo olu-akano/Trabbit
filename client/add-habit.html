@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Source+Code+Pro:wght@200&family=Work+Sans:wght@200&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="./static/css/add-habit.css">
+    <link rel="stylesheet" href="./static/css/styling.css">
+    <script defer src="./static/js/nav-bar.js"></script>
+    <title>Trabbit - Add new habit</title>
+</head>
+<body>
+    <div class="nav-btn" id="show-nav-btn">&#9776;</div>
+    <nav class="navbar" id="hidden-userpage-nav">
+        <li>
+            <a href="userpage.html">Profile</a>
+        </li>
+        <li>
+            <a href="add-habit.html">Add habit</a>
+        </li>
+        <li>
+            <a href="index.html">Logout</a>
+        </li>
+    </nav>
+
+    <header class="header">
+        <h2>Add your new habits below!</h2>
+        <p>Enter the name of your new habit, a description of how to achieve it, and how often you would like to achieve it, below! Then submit to see your new habit on your <a style="color: var(--primary);" href="userpage.html">homepage</a>.</p>
+    </header>
+
+    <main id="new-habit-main">
+        <form action="">
+            <textarea name="title" id="new-habit-title" rows="1" cols="20" placeholder="Name of habit..." maxlength="20"></textarea>
+            <textarea name="description" id="new-habit-desription" cols="30" rows="1" placeholder="Description of habit..." maxlength="200"></textarea>
+            <select id="how-often">
+                <option value="1-day">Once a week</option>
+                <option value="7-day">Everyday</option>
+                <option value="twice">Twice a day</option>
+                <option value="3-day">Three times a week</option>
+              </select>
+            <input type="submit" value="Add your new habit!">
+        </form>
+    </main>
+</body>
+</html>
