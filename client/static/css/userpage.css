@@ -61,6 +61,17 @@ body {
 }
 
 
-.more-info-btn{
+/* .more-info-btn{
     background-color: azure;
+} */
+
+.hideClass {
+    visibility: hidden;
+}
+
+#activity{
+    position: sticky;   
+    width: 50vw;
+    margin-left: 25vw;
+    background-color: var(--primary);
 }

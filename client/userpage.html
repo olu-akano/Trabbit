@@ -10,7 +10,7 @@
     <script defer src="./static/js/nav-bar.js"></script>
     <title>Trabbit - Profile</title>
 </head>
-<body>
+<body id='classOverview'>
     <div class="nav-btn" id="show-nav-btn">&#9776;</div>
     <nav class="navbar" id="hidden-userpage-nav">
         <li>
@@ -32,7 +32,7 @@
     <main id="userpage-habits">
         <h3 style="text-align: center;">Your Active Habits</h3>
         <table style="width:100%;" id="habits-textcontent">
-            <tr class="habit" id="habit1">
+            <!-- <tr class="habit" id="habit1">
                 <td style="width: 10%;">&#8226;</td>
                 <td style="width: 50%;">Drink water</td>
                 <td style="width: 20%;"class="more-info-btn" id='more-info-btn-1'>More info...</td>
@@ -44,11 +44,12 @@
                 <td>Sleep</td> 
                 <td class="more-info-btn" id='more-info-btn-2'>More info...</td> 
                 <td>Streak: 2 &#128293</td>
-            </tr>
+            </tr> -->
         </table>
         <br>
         <button onclick="location.href='add-habit.html'" id="new-habit-btn">Add a new habit</button>
     </main>
+    <div id="activity"></div>
     <script src="./static/js/requests.js"></script>
     <script src="./static/js/content.js"></script>
 </body>
