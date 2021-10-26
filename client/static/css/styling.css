@@ -70,7 +70,7 @@ a:hover{
     padding-top: 10px;
 }
 
-.habit-btn {
+.btn {
     position: absolute;
     right: 5px;
     bottom: 5px;
@@ -84,7 +84,7 @@ a:hover{
     cursor: pointer;
 }
 
-.habit-btn:hover {
+.btn:hover {
     color: var(--secondary);
     background-color: var(--tertiary);
     border-color: var(--tertiary);
