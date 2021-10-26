@@ -57,8 +57,14 @@ function checkPassword(){
 
 // Log in form submission
 const loginForm = document.getElementById('loginForm');
-loginForm.addEventListener('submit', requestLogin);
+loginForm.addEventListener('submit', e => {
+    e.preventDefault();
+    requestLogin(e)
+});
 
 // Registration form submission
 const signupForm = document.getElementById('signupForm');
-signupForm.addEventListener('submit', requestRegistration);
+signupForm.addEventListener('submit', e => {
+    e.preventDefault();
+    requestRegistration(e)
+});
