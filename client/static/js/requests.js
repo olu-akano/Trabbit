@@ -56,7 +56,7 @@ async function addNewHabit(e) {
         console.log(newHabit);
         const options = {
             method: 'POST',
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json", "Authorization": localStorage.getItem('token') },
             body: JSON.stringify(newHabit)
         };
 
