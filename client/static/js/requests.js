@@ -18,6 +18,7 @@ async function getAllHabits(){
         }
         const r = await fetch('http://localhost:3000/habits', options);
         const data = await r.json();
+        console.log(data);
         if(data.err){
             console.warn(data.err);
             logout();

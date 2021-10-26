@@ -59,3 +59,8 @@ body {
     border-color: var(--tertiary);
     transition: 0.3s;
 }
+
+
+.more-info-btn{
+    background-color: azure;
+}
