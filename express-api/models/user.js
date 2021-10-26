@@ -41,11 +41,11 @@ class User {
         });
     }
 
-    static findbyEmail(email){
-        return new Promise(async (res, rej)=> {
+    static findByEmail(email){
+        return new Promise(async (resolve, reject)=> {
             try {
                 const db = await init();
-                let userData = await db.collection('users').find({email: {$eq: `${email}`}})
+                let userData = await db.collection('users').find({email: {$eq: `${email}`}}).toArray()
                 let user = new User ({...userData[0], email: userData[0].email});
                 resolve(user);
             } catch (err) {
