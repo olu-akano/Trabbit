@@ -64,3 +64,6 @@ countChars = () => {
     document.getElementById('character-counter').innerHTML = `${len}/500 characters used`
 }
 
+const form = document.getElementById('habit-form');
+
+form.addEventListener('submit', addNewHabit)

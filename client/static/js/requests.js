@@ -31,10 +31,6 @@ async function getAllHabits(){
 }
 
 //Post user's new habit
-const form = document.getElementById('habit-form');
-
-form.addEventListener('submit', addNewHabit)
-
 async function addNewHabit(e) {
     e.preventDefault();
     try {

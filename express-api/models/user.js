@@ -42,7 +42,7 @@ class User {
     }
 
     static findByEmail(email){
-        return new Promise(async (res, rej)=> {
+        return new Promise(async (resolve, reject)=> {
             try {
                 const db = await init();
                 let userData = await db.collection('users').find({email: {$eq: `${email}`}}).toArray()
