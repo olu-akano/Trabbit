@@ -46,14 +46,13 @@ async function requestRegistration(e){
 }
 
 function login(token){
-    const user = jwt_decode(token);
-    localStorage.setItem("token", token);
-    localStorage.setItem("username", user.username);
-    localStorage.setItem("userEmail", user.email);
-    window.location.href = "./userpage.html"
-}
-
-function logout(){
-    localStorage.clear();
-    window.location.href = "./index.html"
+    try{
+        const user = jwt_decode(token);
+        localStorage.setItem("token", token);
+        localStorage.setItem("username", user.username);
+        localStorage.setItem("userEmail", user.email);
+        window.location.href = "./userpage.html"
+    } catch(err) {
+        console.warn(`Error in logging in: ${err}`);
+    }
 }
