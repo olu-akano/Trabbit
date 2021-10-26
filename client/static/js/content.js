@@ -1,27 +1,17 @@
 
 let count=2;
 
-async function renderHabits(){
+async function rhs(){
     try {
-        // Retrieve user's stored habits
         console.log('renderHabits');
         const habits = await getAllHabits();
-        // const habits = {"id":"6176be0038f71fecad35da56","habitname":"exercising","streak":2,"current_count":10,"frequency":5};
-        // Render habits on page
         console.log(habits.length); 
-        // habits.map(d => render(d))
-        // console.log(habits.ops[0]);
+
         for(var i=0;i< habits.length; i++){
-            // console.log(habits[i]);
             console.log(`num: ${i}`);
             render(habits[i])
         }
-        // console.log('habits[0]');
-        // console.log(habits[0]);
-        //  console.log(habits[1]);
-        // render(habits[0]);
-        // render(habits[1]);
-        
+
     } catch(err) {
         console.warn(err);
     }
@@ -56,7 +46,7 @@ async function render(data){
     
 }
 
-renderHabits();
+rhs();
 
 // for(var i=0; i < count; i++){
 
