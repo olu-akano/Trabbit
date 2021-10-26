@@ -1,14 +1,19 @@
-let count = 2;
-const text=[];
-const textSelect=[];
+const classOverview=document.getElementById("classOverview");
+const checkIds=[];
+const checkDatas=[];
+let count=0;
 
 async function renderHabits(){
     try {
-        // Retrieve user's stored habits
-        // const habits = await getAllHabits();
-        const habits = {"id":"6176be0038f71fecad35da56","habitname":"exercising","streak":2,"current_count":10,"frequency":5};
-        // Render habits on page
-        render(habits)
+        console.log('renderHabits');
+        const habits = await getAllHabits();
+        console.log(habits.length); 
+
+        for(var i=0;i< habits.length; i++){
+            console.log(`num: ${i}`);
+            render(habits[i])
+        }
+
     } catch(err) {
         console.warn(err);
     }
@@ -16,20 +21,21 @@ async function renderHabits(){
 
 async function render(data){
 
-    count++;
-
     const table=document.getElementById('habits-textcontent');
     const tableRow=document.createElement('tr');
     tableRow.className="habit";
     const tableData_1=document.createElement('td');
     tableData_1.textContent=`\u2022`;
+    tableData_1.style.width='10%';
     const tableData_2=document.createElement('td');
     tableData_2.textContent=data.habitname;
+    tableData_2.style.width='50%';
     const tableData_3=document.createElement('td');
     tableData_3.textContent='More info...';
     tableData_3.className='more-info-btn';
     tableData_3.id='more-info-btn-'+count;
-    console.log(tableData_3);
+    tableData_3.style.width='20%';
+    checkIds.push(tableData_3.id);
     const tableData_4=document.createElement('td');
     const emojy="🔥";
     tableData_4.textContent=`Streak: ${data.streak} ${emojy} `;
@@ -40,20 +46,86 @@ async function render(data){
     tableRow.append(tableData_4);
 
     table.append(tableRow);
-    
+    checkDatas.push(data);
+    console.log(`checkData: ${checkDatas[0].streak}`);
+    console.log(`checkId: ${checkIds}`);
+
+    setID(checkIds[count],checkDatas[count])
+    count++;
+
+    function setID(checkIds,checkDatas){
+        const getIdNum=document.getElementById(checkIds);
+        getIdNum.addEventListener('click', (e) => {
+            classOverview.className="hideClass";
+            getPostById(checkDatas);
+        })
+    } 
 }
 
 renderHabits();
 
-for(var i=0; i < count; i++){
+async function getPostById(data){
+    console.log(data.habitname);
+    console.log('working');
+    const sec=document.getElementById('activity');
+    const newHabitName=document.createElement('h2');
+    const taskSitiuation=document.createElement('h2');
+    const taskCount=document.createElement('h2');
+    const newStrak=document.createElement('h2');
+    const strakCount=document.createElement('h2');
+    const addCount=document.createElement('button');
 
-    text.push(`more-info-btn-${i+1}`);
-    textSelect.push(document.getElementById(`${text[i]}`));
-    console.log(text[i]);
-    textSelect[i].addEventListener('click', (e)=> {
-        textSelect[i].style.backgroundColor="red";
+    newHabitName.textContent=`Your ${data.habitname} activity information`;
+    taskSitiuation.textContent=`Task situation `;
+    taskCount.textContent=`${data.current_count} of ${data.frequency}`;
+    newStrak.textContent=`Streak`;
+    strakCount.textContent=data.streak;
+
+    newHabitName.style.textAlign='center';
+    taskSitiuation.style.textAlign='center';
+    taskCount.style.textAlign='center';
+    newStrak.style.textAlign='center';
+    strakCount.style.textAlign='center';
+    addCount.style.textAlign='center';
+
+
+    addCount.type='submit';
+    addCount.textContent=data.current_count;
+
+    sec.append(newHabitName);
+    sec.append(taskSitiuation);
+    sec.append(taskCount);
+    sec.append(newStrak);
+    sec.append(strakCount);
+    sec.append(addCount);
+
+
+    function addActivityCount(e) {
+        const data = {
+            current_count: Number,
+        };
+        const options = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        };
+        console.log(data._id);
+        fetch(`https://localhost:3000/habits/${data.id}`, options)
+            .then(console.log("Count increased"))
+            .catch(err => console.warn("Oops, something went wrong."))
+    };
+
+
+    addCount.addEventListener('click', (e) => {
+        e.preventDefault();
+        addActivityCount(e);
+        addCount.textContent =   1 + data.current_count;
     })
+
 }
+
 
 // When page is loaded, render habits
 // window.onload = renderHabits

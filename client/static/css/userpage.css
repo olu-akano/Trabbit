@@ -39,6 +39,38 @@ body {
     color: var(--tertiary);
 }
 
-.more-info-btn{
-    background-color: azure;
+#new-habit-btn {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    color: var(--tertiary);
+    background-color:var(--secondary);
+    border-color: var(--secondary);
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
 }
+
+#new-habit-btn:hover {
+    color: var(--secondary);
+    background-color: var(--tertiary);
+    border-color: var(--tertiary);
+    transition: 0.3s;
+}
+
+.hideClass {
+    visibility: hidden;
+    position: fixed;
+}
+
+#activity{
+    visibility: visible;
+    position: fixed;   
+    width: 50vw;
+    margin-left: 25vw;
+    top: 25vh;
+    background-color: var(--primary);
+}
+

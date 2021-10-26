@@ -9,6 +9,6 @@ db.users.insertMany([
 ])
 
 db.habits.insertMany ([
-    {habitname: "exercising", frequency: 5, current_count: 10, streak: 2 },
+    {habitname: "exercising", frequency: 5, current_count: 4, streak: 2 },
     {habitname: "reading", frequency: 3, current_count: 3, streak: 1 }
 ])
