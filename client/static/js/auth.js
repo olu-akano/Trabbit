@@ -1,9 +1,16 @@
 async function requestLogin(e){
-    e.preventDefault();
+    // e.preventDefault();
     try {
         // Get login form data
-        const email = e.target.email.value;
-        const password = e.target.password.value;
+        let email;
+        let password;
+        if (!!e.target){
+            email = e.target.email.value;
+            password = e.target.password.value;
+        } else {
+            email = e.email;
+            password = e.password
+        }
         const loginData = { email, password};
         // Make request to server
         const options = {
@@ -23,7 +30,7 @@ async function requestLogin(e){
 }
 
 async function requestRegistration(e){
-    e.preventDefault();
+    // e.preventDefault();
     try {
         // Get form data
         const username = e.target.username.value;
@@ -39,7 +46,7 @@ async function requestRegistration(e){
         const r = await fetch('http://localhost:3000/auth/register', options);
         const data = await r.json();
         if (data.err){ throw new Error(data.err) }
-        requestLogin(e);
+        requestLogin(regData);
     } catch(err) {
         console.warn(err);
     }
