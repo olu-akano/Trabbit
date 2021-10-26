@@ -1,4 +1,4 @@
-const classOverview=document.getElementById("userpage-habits");
+const classOverview=document.getElementById("classOverview");
 const checkIds=[];
 const checkDatas=[];
 let count=0;
@@ -54,16 +54,12 @@ async function render(data){
     count++;
 
     function setID(checkIds,checkDatas){
-        // for (let i =0 ; checkIds.length > i;  i++) {
-            const getIdNum=document.getElementById(checkIds);
-            getIdNum.addEventListener('click', (e) => {
-                classOverview.className="hideClass";
-                getPostById(checkDatas);
-            })
-        // }
-    }
-
-    
+        const getIdNum=document.getElementById(checkIds);
+        getIdNum.addEventListener('click', (e) => {
+            classOverview.className="hideClass";
+            getPostById(checkDatas);
+        })
+    } 
 }
 
 renderHabits();
@@ -71,22 +67,38 @@ renderHabits();
 async function getPostById(data){
     console.log(data.habitname);
     console.log('working');
-    const div=document.getElementById('activity');
+    const sec=document.getElementById('activity');
     const newHabitName=document.createElement('h2');
-    const newCount=document.createElement('h2');
-    const newFrequency=document.createElement('h2');
+    const taskSitiuation=document.createElement('h2');
+    const taskCount=document.createElement('h2');
     const newStrak=document.createElement('h2');
+    const strakCount=document.createElement('h2');
+    const addCount=document.createElement('button');
 
-    div.textContent='activity information';
-    newHabitName.textContent=data.habitname;
-    newCount.textContent=data.current_count;
-    newFrequency.textContent=data.frequency;
-    newStrak.textContent=data.streak;
+    newHabitName.textContent=`Your ${data.habitname} activity information`;
+    taskSitiuation.textContent=`Task situation `;
+    taskCount.textContent=`${addCountt} of ${data.frequency}`;
+    newStrak.textContent=`Streak`;
+    strakCount.textContent=data.streak;
 
-    div.append(newHabitName);
-    div.append(newCount);
-    div.append(newFrequency);
-    div.append(newStrak);
+    newHabitName.style.textAlign='center';
+    taskSitiuation.style.textAlign='center';
+    taskCount.style.textAlign='center';
+    newStrak.style.textAlign='center';
+    strakCount.style.textAlign='center';
+
+    addCount.type='submit';
+    addCount.textContent=data.current_count;
+
+
+    sec.append(newHabitName);
+    sec.append(taskSitiuation);
+    sec.append(taskCount);
+    sec.append(newStrak);
+    sec.append(strakCount);
+    // sec.append(addCount);
+
+
 
 }
 
