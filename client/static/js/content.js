@@ -1,7 +1,7 @@
-
+const checkIds=[];
 let count=2;
 
-async function rhs(){
+async function renderHabits(){
     try {
         console.log('renderHabits');
         const habits = await getAllHabits();
@@ -20,6 +20,7 @@ async function rhs(){
 async function render(data){
 
     count++;
+    
 
     const table=document.getElementById('habits-textcontent');
     const tableRow=document.createElement('tr');
@@ -32,7 +33,7 @@ async function render(data){
     tableData_3.textContent='More info...';
     tableData_3.className='more-info-btn';
     tableData_3.id='more-info-btn-'+count;
-    console.log(tableData_3);
+    checkIds.push(tableData_3.id);
     const tableData_4=document.createElement('td');
     const emojy="🔥";
     tableData_4.textContent=`Streak: ${data.streak} ${emojy} `;
@@ -43,10 +44,32 @@ async function render(data){
     tableRow.append(tableData_4);
 
     table.append(tableRow);
+    console.log(`checkId: ${checkIds}`);
+    setID(checkIds)
+
+    
+
+
+
+    function setID(checkIds){
+        for (let i =0 ; checkIds.length > i;  i++) {
+            const getIdNum=document.getElementById(checkIds[i]);
+            getIdNum.addEventListener('click', (e) => {
+                console.log();
+                getIdNum.style.backgroundColor="red";
+                // getPostById(checkIds[i],selectPostID[i]);
+            })
+        }
+    }
+
     
 }
 
-rhs();
+renderHabits();
+
+async function zoomIn(data){
+
+}
 
 // for(var i=0; i < count; i++){
 
