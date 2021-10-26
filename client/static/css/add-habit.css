@@ -26,6 +26,13 @@ body {
     border-radius: 5px;
 }
 
+#habit-form { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 0.5;
+}
+
 textarea {
     resize: none;
     border: none;

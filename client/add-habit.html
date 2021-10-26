@@ -25,20 +25,64 @@
     </nav>
 
     <header class="header">
-        <h2>Add your new habits below!</h2>
-        <p>Enter the name of your new habit, a description of how to achieve it, and how often you would like to achieve it, below! Then submit to see your new habit on your <a style="color: var(--primary);" href="userpage.html">homepage</a>.</p>
+        <h1>Add your new habits below!</h1>
+        <p style="font-size: 23px;">Fill out the form below to add your new habit to your <a style="color: var(--primary);" href="userpage.html">homepage</a>.</p>
+        <p style="font-size: 23px;">First select the category, then pick the relevant new habbit and the number of days you want to achieve it. If you select 'other', make sure to say what it is in the description box!</p>
     </header>
 
     <main id="new-habit-main">
-        <form action="">
-            <textarea name="title" id="new-habit-title" rows="1" cols="20" placeholder="Name of habit..." maxlength="20"></textarea>
-            <textarea name="description" id="new-habit-desription" cols="30" rows="1" placeholder="Description of habit..." maxlength="200"></textarea>
-            <select id="how-often">
-                <option value="1-day">Once a week</option>
-                <option value="7-day">Everyday</option>
-                <option value="twice">Twice a day</option>
-                <option value="3-day">Three times a week</option>
+        <form id="habit-form" action="">
+
+            <label for="habit-category">Choose your category:</label>
+            <select class="habit-form-child" name="habit-name" id="habit-name-selector">
+                <option value=""selected disabled hidden>---Category---</option>
+                <option value="exercise">Exercise</option>
+                <option value="dietary">Health</option>
+                <option value="hobby">Hobby</option>
+            </select>
+
+            <label for="exercise-name">Choose your habit:</label>
+            <select id="exercise-name">
+                <option value=""selected disabled hidden>---Habit---</option>
+                <option value="run">Run</option>
+                <option value="cycle">Cycle</option>
+                <option value="walk">Walk</option>
+                <option value="gym">Gym</option>
+                <option value="other-exercise">Other exercise</option>
+            </select>
+
+            <label for="dietary-name">Choose your habit:</label>
+            <select id="dietary-name">
+                <option value=""selected disabled hidden>---Habit---</option>
+                <option value="water">Water</option>
+                <option value="breakfast">Breakfast</option>
+                <option value="5-a-day">5-a-day</option>
+                <option value="sleep">8 hours sleep</option>
+                <option value="other-dietary">Other dietary</option>
+            </select>
+
+            <label for="hobby-name">Choose your habit:</label>
+            <select id="hobby-name">
+                <option value=""selected disabled hidden>---Habit---</option>
+                <option value="music">Music</option>
+                <option value="art">Art</option>
+                <option value="sport">Sport</option>
+                <option value="other-hobby">Other hobby</option>
               </select>
+            
+            <label for="frequency">Choose how many days a week:</label>
+            <select id="frequency">
+                <option value=""selected disabled hidden>---Frequency---</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select>  
+
+            <textarea name="description" id="new-habit-description" cols="30" rows="10" maxlength="200" placeholder="Enter a description of your new habit here..."></textarea>
             <input type="submit" value="Add your new habit!">
         </form>
     </main>
