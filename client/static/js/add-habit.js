@@ -1,4 +1,4 @@
-////Form selectors load based on what is chosen
+//----Form selectors load based on what is chosen----
 //All the required selectors
 const categorySelector = document.getElementById('habit-category-selector');
 const exerciseDiv = document.getElementById('exercise-habit');
@@ -17,17 +17,17 @@ const frequency = document.getElementById('frequency');
 categorySelector.onchange = () => { 
     let categoryType = categorySelector.value;       
     switch(categoryType) {
-        case 'exercise':
+        case 'Exercise':
             exerciseDiv.style.display = 'initial';
             dietDiv.style.display = 'none';
             hobbyDiv.style.display = 'none';            
             break;
-        case 'dietary':
+        case 'Dietary':
             exerciseDiv.style.display = 'none';
             dietDiv.style.display = 'initial';
             hobbyDiv.style.display = 'none';           
             break;
-        case 'hobby':
+        case 'Hobby':
             exerciseDiv.style.display = 'none';
             dietDiv.style.display = 'none';
             hobbyDiv.style.display = 'initial';
@@ -53,7 +53,7 @@ frequency.onchange = () => {
 }
 
 
-////Text counter for description box
+//----Text counter for description box----
 countChars = () => {
     let len = description.value.length;
     document.getElementById('character-counter').innerHTML = `${len}/500 characters used`
