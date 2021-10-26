@@ -13,21 +13,25 @@ async function renderHabits(){
 async function render(data){
 
     const table=document.getElementById('habits-textcontent');
-    const tableRow_1=document.createElement('td');
-    tableRow_1.textContent=`\u2022`;
-    const tableRow_2=document.createElement('td');
-    tableRow_2.textContent=data.habitname;
-    const tableRow_3=document.createElement('td');
-    tableRow_3.textContent='More info...';
-    tableRow_3.className='more-info-btn';
-    const tableRow_4=document.createElement('td');
+    const tableRow=document.createElement('tr');
+    tableRow.className="habit";
+    const tableData_1=document.createElement('td');
+    tableData_1.textContent=`\u2022`;
+    const tableData_2=document.createElement('td');
+    tableData_2.textContent=data.habitname;
+    const tableData_3=document.createElement('td');
+    tableData_3.textContent='More info...';
+    tableData_3.className='more-info-btn';
+    const tableData_4=document.createElement('td');
     const emojy="🔥";
-    tableRow_4.textContent=`Streak: ${data.streak} ${emojy} `;
+    tableData_4.textContent=`Streak: ${data.streak} ${emojy} `;
 
-    table.append(tableRow_1);
-    table.append(tableRow_2);
-    table.append(tableRow_3);
-    table.append(tableRow_4);
+    tableRow.append(tableData_1);
+    tableRow.append(tableData_2);
+    tableRow.append(tableData_3);
+    tableRow.append(tableData_4);
+
+    table.append(tableRow);
     
 
 
