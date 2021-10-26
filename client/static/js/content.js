@@ -1,12 +1,10 @@
-let count = 2;
-const text=[];
-const textSelect=[];
+
 
 async function renderHabits(){
     try {
         // Retrieve user's stored habits
-        // const habits = await getAllHabits();
-        const habits = {"id":"6176be0038f71fecad35da56","habitname":"exercising","streak":2,"current_count":10,"frequency":5};
+        const habits = await getAllHabits();
+        // const habits = {"id":"6176be0038f71fecad35da56","habitname":"exercising","streak":2,"current_count":10,"frequency":5};
         // Render habits on page
         render(habits)
     } catch(err) {
@@ -54,6 +52,8 @@ for(var i=0; i < count; i++){
         textSelect[i].style.backgroundColor="red";
     })
 }
+
+
 
 // When page is loaded, render habits
 // window.onload = renderHabits
