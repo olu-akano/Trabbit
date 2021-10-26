@@ -1,3 +1,7 @@
+let count = 2;
+const text=[];
+const textSelect=[];
+
 async function renderHabits(){
     try {
         // Retrieve user's stored habits
@@ -12,6 +16,8 @@ async function renderHabits(){
 
 async function render(data){
 
+    count++;
+
     const table=document.getElementById('habits-textcontent');
     const tableRow=document.createElement('tr');
     tableRow.className="habit";
@@ -22,6 +28,8 @@ async function render(data){
     const tableData_3=document.createElement('td');
     tableData_3.textContent='More info...';
     tableData_3.className='more-info-btn';
+    tableData_3.id='more-info-btn-'+count;
+    console.log(tableData_3);
     const tableData_4=document.createElement('td');
     const emojy="🔥";
     tableData_4.textContent=`Streak: ${data.streak} ${emojy} `;
@@ -33,13 +41,19 @@ async function render(data){
 
     table.append(tableRow);
     
-
-
-
-
 }
 
 renderHabits();
+
+for(var i=0; i < count; i++){
+
+    text.push(`more-info-btn-${i+1}`);
+    textSelect.push(document.getElementById(`${text[i]}`));
+    console.log(text[i]);
+    textSelect[i].addEventListener('click', (e)=> {
+        textSelect[i].style.backgroundColor="red";
+    })
+}
 
 // When page is loaded, render habits
 // window.onload = renderHabits
