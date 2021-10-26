@@ -46,14 +46,12 @@ class Habit {
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init();
-                // const habitData = await db.collection('habits').insertOne({ habitname : habit, streak: streak, current_count:count, frequency :frequency});
-                const habitData = await db.collection('habits').insertOne({ habitname, streak, current_count, frequency });
-                console.log(habitData);
-                const newHabit = new Habit(habitData.ops[0]);
+                const habitData = await db.collection('habits').insertOne({ habitname:habitname,streak: streak,current_count: current_count, frequency:frequency });
+                const habit=this.findById(habitData.insertedId);
+                const newHabit = new Habit(habit);
                 resolve (newHabit);
-            } catch(err) {
+            } catch(err) { 
                 reject('Error creating habit');
-                console.log(err);
             }
         });
     }

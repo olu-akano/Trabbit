@@ -24,13 +24,16 @@ class User {
     }
 
 
-    static create(username, email ,password_digest){
+    static create(data){
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init();
+                const { username, email } = data;
+                const password_digest = data.password
                 const userData = await db.collection('users').insertOne({ username, email, password_digest })
-                console.log(userData);
-                const newUser = new User(newUser.ops[0]);
+                const newId = userData.insertedId
+                const newUserData = await db.collection('users').find({_id: newId}).toArray();
+                const newUser = new User(newUserData[0]);
                 resolve (newUser);
             } catch(err) {
                 reject('Error creating user');
@@ -38,11 +41,11 @@ class User {
         });
     }
 
-    static findbyEmail(email){
-        return new Promise(async (res, rej)=> {
+    static findByEmail(email){
+        return new Promise(async (resolve, reject)=> {
             try {
                 const db = await init();
-                let userData = await db.collection('users').find({email: {$eq: `${email}`}})
+                let userData = await db.collection('users').find({email: {$eq: `${email}`}}).toArray()
                 let user = new User ({...userData[0], email: userData[0].email});
                 res(user);
             } catch (err) {

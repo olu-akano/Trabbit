@@ -1,6 +1,6 @@
-//Opening and closing the navbar
-const navBtn = document.getElementById('show-nav-btn')
-const navBar = document.getElementById('hidden-userpage-nav')
+////Opening and closing the navbar
+const navBtn = document.getElementById('show-nav-btn');
+const navBar = document.getElementById('hidden-userpage-nav');
 
 navBtn.addEventListener('click', () => {
     switch(navBtn.id) {
@@ -16,3 +16,11 @@ navBtn.addEventListener('click', () => {
         break;
     }
 })
+
+// Log user out
+function logout(){
+    localStorage.clear();
+    window.location.href = "./index.html"
+}
+const logoutOption = document.getElementById("logout");
+logoutOption.addEventListener('click', logout);
