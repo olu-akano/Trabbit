@@ -40,7 +40,7 @@ async function addNewHabit(e) {
         
         //for loop to get the right habit form
         let habit = "";
-        for(i = 1; i < form.length - 4; i++) {
+        for(i = 1; i < form.length - 4; i++) {            
             if(!!e.target[i].value) {
                 habit = e.target[i].value
             }

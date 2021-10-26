@@ -20,18 +20,23 @@ categorySelector.onchange = () => {
         case 'Exercise':
             exerciseDiv.style.display = 'initial';
             dietDiv.style.display = 'none';
-            hobbyDiv.style.display = 'none';            
+            hobbyDiv.style.display = 'none';
+            diet.value = "";
+            hobby.value = "";
             break;
         case 'Dietary':
             exerciseDiv.style.display = 'none';
             dietDiv.style.display = 'initial';
-            hobbyDiv.style.display = 'none';           
+            hobbyDiv.style.display = 'none';     
+            exercise.value = "";      
+            hobby.value = "";
             break;
         case 'Hobby':
             exerciseDiv.style.display = 'none';
             dietDiv.style.display = 'none';
-            hobbyDiv.style.display = 'initial';
-            
+            hobbyDiv.style.display = 'initial'; 
+            exercise.value = "";
+            diet.value = "";           
             break;
         default:
             console.log('number 4', categoryType);
