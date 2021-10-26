@@ -77,7 +77,7 @@ async function getPostById(data){
 
     newHabitName.textContent=`Your ${data.habitname} activity information`;
     taskSitiuation.textContent=`Task situation `;
-    taskCount.textContent=`${addCountt} of ${data.frequency}`;
+    taskCount.textContent=`${data.current_count} of ${data.frequency}`;
     newStrak.textContent=`Streak`;
     strakCount.textContent=data.streak;
 
@@ -86,19 +86,43 @@ async function getPostById(data){
     taskCount.style.textAlign='center';
     newStrak.style.textAlign='center';
     strakCount.style.textAlign='center';
+    addCount.style.textAlign='center';
+
 
     addCount.type='submit';
     addCount.textContent=data.current_count;
-
 
     sec.append(newHabitName);
     sec.append(taskSitiuation);
     sec.append(taskCount);
     sec.append(newStrak);
     sec.append(strakCount);
-    // sec.append(addCount);
+    sec.append(addCount);
 
 
+    function addActivityCount(e) {
+        const data = {
+            current_count: Number,
+        };
+        const options = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        };
+        console.log(data._id);
+        fetch(`https://localhost:3000/habits/${data.id}`, options)
+            .then(console.log("Count increased"))
+            .catch(err => console.warn("Oops, something went wrong."))
+    };
+
+
+    addCount.addEventListener('click', (e) => {
+        e.preventDefault();
+        addActivityCount(e);
+        addCount.textContent =   1 + data.current_count;
+    })
 
 }
 
