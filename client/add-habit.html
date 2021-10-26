@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./static/css/styling.css">
     <script defer src="./static/js/nav-bar.js"></script>
     <script defer src="./static/js/add-habit.js"></script>
+    <script defer src="./static/js/requests.js"></script>
     <title>Trabbit - Add new habit</title>
 </head>
 <body>
@@ -32,15 +33,15 @@
     </header>
 
     <main id="new-habit-main">
-        <form id="habit-form" action="">
+        <form id="habit-form">
 
             <div class="habit-form-child">
                 <label for="habit-category">Choose your category:</label>
                 <select name="habit-name" id="habit-category-selector">
                     <option value="" selected disabled hidden>---Category---</option>
-                    <option value="exercise">Exercise</option>
-                    <option value="dietary">Health</option>
-                    <option value="hobby">Hobby</option>
+                    <option value="Exercise">Exercise</option>
+                    <option value="Dietary">Health</option>
+                    <option value="Hobby">Hobby</option>
                 </select>
             </div>    
 
@@ -48,11 +49,11 @@
                 <label for="exercise-name">Choose your habit:</label>
                 <select id="exercise-name">
                     <option value=""selected disabled hidden>---Exercise---</option>
-                    <option value="run">Run</option>
-                    <option value="cycle">Cycle</option>
-                    <option value="walk">Walk</option>
-                    <option value="gym">Gym</option>
-                    <option value="other-exercise">Other exercise</option>
+                    <option value="Run">Run</option>
+                    <option value="Cycle">Cycle</option>
+                    <option value="Walk">Walk</option>
+                    <option value="Gym">Gym</option>
+                    <option value="Other exercise">Other exercise</option>
                 </select>
             </div>
 
@@ -60,11 +61,11 @@
                  <label for="dietary-name">Choose your habit:</label>
                 <select id="dietary-name">
                     <option value=""selected disabled hidden>---Health---</option>
-                    <option value="water">Water</option>
-                    <option value="breakfast">Breakfast</option>
+                    <option value="Water">Water</option>
+                    <option value="Breakfast">Breakfast</option>
                     <option value="5-a-day">5-a-day</option>
-                    <option value="sleep">8 hours sleep</option>
-                    <option value="other-dietary">Other dietary</option>
+                    <option value="Sleep">8 hours sleep</option>
+                    <option value="Other dietary">Other dietary</option>
                 </select>
             </div>
 
@@ -72,23 +73,23 @@
                 <label for="hobby-name">Choose your habit:</label>
                 <select id="hobby-name">
                     <option value=""selected disabled hidden>---Hobby---</option>
-                    <option value="music">Music</option>
-                    <option value="art">Art</option>
-                    <option value="sport">Sport</option>
-                    <option value="other-hobby">Other hobby</option>
+                    <option value="Music">Music</option>
+                    <option value="Art">Art</option>
+                    <option value="Sport">Sport</option>
+                    <option value="Other hobby">Other hobby</option>
                 </select>
             </div>
             <div id="frequency-selector" style="display: none;" class="habit-form-child">
                 <label for="frequency">Choose how many days a week:</label>
                 <select id="frequency">
                     <option value=""selected disabled hidden>---Frequency---</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
+                    <option value=6>6</option>
+                    <option value=7>7</option>
                 </select>  
             </div>
 

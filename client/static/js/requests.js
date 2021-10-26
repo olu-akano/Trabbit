@@ -29,3 +29,42 @@ async function getAllHabits(){
         console.warn(err);
     }
 }
+
+//Post user's new habit
+const form = document.getElementById('habit-form');
+
+form.addEventListener('submit', addNewHabit)
+
+async function addNewHabit(e) {
+    e.preventDefault();
+    try {
+        
+        //for loop to get the right habit form
+        let habit = "";
+        for(i = 1; i < form.length - 4; i++) {            
+            if(!!e.target[i].value) {
+                habit = e.target[i].value
+            }
+        }
+
+        newHabit = {
+            habitname: habit,
+            frequency: e.target[4].value,
+            currentcount: 0,
+            streak: 0,
+            // description: e.target[5].value ---Commented out for now
+        };
+        console.log(newHabit);
+        const options = {
+            method: 'POST',
+            headers: { "Content-Type": "application/json", "Authorization": localStorage.getItem('token') },
+            body: JSON.stringify(newHabit)
+        };
+
+        const response = await fetch('http://localhost:3000/habits', options);
+        const data = await response.json();
+
+    } catch(err) {
+        console.warn('The error is:', err)
+    }
+}
