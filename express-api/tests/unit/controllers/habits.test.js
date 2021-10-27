@@ -57,7 +57,7 @@ describe ('habits controller', () => {
 
     describe('destroy', () => {
         test('it returns a 204 status code on successful deletion', async () => {
-            jest.spyOn(Book.prototype, 'destroy')
+            jest.spyOn(Habit.prototype, 'destroy')
                 .mockResolvedValue('Deleted');
             
             const mockReq = { params: { frequency: 2 } }
