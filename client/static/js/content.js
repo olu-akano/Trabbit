@@ -93,7 +93,9 @@ async function getPostById(givenData){
         let currentCount=data.current_count;
     
         newHabitName.textContent=`Your ${data.habitname} activity information`;
-        description.textContent=`*(${data.description})*`;
+        if(data.description){
+            description.textContent=`*(${data.description})*`;
+        }      
         taskSitiuation.textContent=`Task situation `;
         taskCount.textContent=`${currentCount} of ${data.frequency}`;
         newStrak.textContent=`Streak`;
@@ -106,7 +108,7 @@ async function getPostById(givenData){
         newStrak.style.textAlign='center';
         strakCount.style.textAlign='center';
         addCount.style.textAlign='center';
-        addCount.style.position='center';
+        addCount.style.transform='translateX(27vw)';
         
         section.id='post'
         section.className='showHabit';
