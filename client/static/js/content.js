@@ -110,23 +110,6 @@ async function getPostById(data){
 
 
     async function addActivityCount() {
-       
-        // const options = {
-        //     method: "PATCH",
-        //     headers: {
-        //         'Authorization': localStorage.getItem('token'),
-        //         "Content-Type": "application/json",
-        //     },
-        //     body:  JSON.stringify(data),
-    
-        // };
-        // var t=localStorage.getItem('token');
-        // console.log(t);
-   
-        // fetch(`https://localhost:3000/habits/${data.id}`, options)
-        //     .then(console.log("Count increased"))
-        //     .then(console.log(data.current_count))
-        //     .catch(err => console.warn("Oops, something went wrong."))
 
         const options = {
             method: "PATCH",
