@@ -1,4 +1,8 @@
 const classOverview=document.getElementById("classOverview");
+const header=document.querySelector("header");
+const sec=document.getElementById('activity');
+const backButton=document.createElement('button');
+
 const checkIds=[];
 const checkDatas=[];
 let count=0;
@@ -10,7 +14,6 @@ async function renderHabits(){
         console.log(habits.length); 
 
         for(var i=0;i< habits.length; i++){
-            console.log(`num: ${i}`);
             render(habits[i])
         }
 
@@ -65,9 +68,7 @@ async function render(data){
 renderHabits();
 
 async function getPostById(data){
-    console.log(data.habitname);
-    console.log('working');
-    const sec=document.getElementById('activity');
+
     const newHabitName=document.createElement('h2');
     const taskSitiuation=document.createElement('h2');
     const taskCount=document.createElement('h2');
@@ -87,11 +88,19 @@ async function getPostById(data){
     newStrak.style.textAlign='center';
     strakCount.style.textAlign='center';
     addCount.style.textAlign='center';
+    addCount.style.position='center';
+    
+    sec.className='showHabit';
+    backButton.type='submit';
+    backButton.textContent="Back";
+    backButton.id="showButton";
+    backButton.className="showHabit";
 
 
     addCount.type='submit';
-    addCount.textContent=data.current_count;
+    addCount.textContent="Add count";
 
+    sec.append(backButton);
     sec.append(newHabitName);
     sec.append(taskSitiuation);
     sec.append(taskCount);
@@ -100,30 +109,56 @@ async function getPostById(data){
     sec.append(addCount);
 
 
-    function addActivityCount(e) {
-        const data = {
-            current_count: Number,
-        };
+    async function addActivityCount() {
+       
+        // const options = {
+        //     method: "PATCH",
+        //     headers: {
+        //         'Authorization': localStorage.getItem('token'),
+        //         "Content-Type": "application/json",
+        //     },
+        //     body:  JSON.stringify(data),
+    
+        // };
+        // var t=localStorage.getItem('token');
+        // console.log(t);
+   
+        // fetch(`https://localhost:3000/habits/${data.id}`, options)
+        //     .then(console.log("Count increased"))
+        //     .then(console.log(data.current_count))
+        //     .catch(err => console.warn("Oops, something went wrong."))
+
         const options = {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
+            method: "PATCH",
+            headers:new Headers( {
+                'Authorization': localStorage.getItem('token') }),
+    
         };
-        console.log(data._id);
-        fetch(`https://localhost:3000/habits/${data.id}`, options)
+        var t=localStorage.getItem('token');
+        console.log(t);
+   
+        await fetch(`http://localhost:3000/habits/${data.id}`, options)
             .then(console.log("Count increased"))
+            .then(console.log(data))
             .catch(err => console.warn("Oops, something went wrong."))
     };
 
 
-    addCount.addEventListener('click', (e) => {
-        e.preventDefault();
-        addActivityCount(e);
-        addCount.textContent =   1 + data.current_count;
+    addCount.addEventListener('click', () => {
+        addActivityCount();
+        taskCount.textContent=`${data.current_count+1} of ${data.frequency}`;
     })
 
+
+    backButton.addEventListener('click',() => {
+        goBack();
+    })
+}
+
+function goBack(){
+    sec.className='hideClass';
+    backButton.className='hideClass';
+    classOverview.className='showClass';
 }
 
 
