@@ -18,13 +18,11 @@ body {
 
 #new-habit-main {
     padding: 10px;
-    margin: 10px 300px;
     border: 5px solid var(--primary);;
     position: relative;
     background-color: var(--primary);
     font-size: 25px;
     border-radius: 5px;
-    z-index: 1;
     width: 70vw;
 }
 
@@ -46,4 +44,18 @@ textarea {
     resize: none;
     border: none;
     outline: none;
+}
+
+/* Responsiveness for tablet */
+@media (max-width: 1000px) and (min-width: 530px) and (max-height: 1100px) {
+    #new-habit-main {
+        font-size: 20px;
+    }
+}
+
+/* Responsiveness for phone */
+@media (max-width: 530px) and (max-height: 1000px) {
+    #new-habit-main {
+        font-size: 20px;
+    }
 }

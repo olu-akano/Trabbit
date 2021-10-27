@@ -98,6 +98,10 @@ a:hover{
     li {
         font-size: 20px;        
     }
+
+    .btn {
+        font-size: 13px;
+    }
 }
 
 /* Responsiveness for phone */
@@ -105,7 +109,7 @@ a:hover{
     li {
         font-size: 35px;
         text-align: center;
-        margin-top: 33%;
+        margin-top: 10%;
     }
 
     .navbar {
@@ -120,6 +124,12 @@ a:hover{
 
     #hidden-userpage-nav {
         transform: translateY(100%);
+    }
+
+    .btn {
+        font-size: 25px;
+        width: 57px;
+        overflow: hidden;
     }
     
 }
