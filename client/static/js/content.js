@@ -60,7 +60,6 @@ async function render(data){
         const getIdNum=document.getElementById(checkIds);
         getIdNum.addEventListener('click', (e) => {
             classOverview.className="hideClass";
-            // header.className="hideClass";
             getPostById(checkDatas);
         })
     } 
@@ -112,35 +111,46 @@ async function getPostById(data){
 
     async function addActivityCount() {
        
+        // const options = {
+        //     method: "PATCH",
+        //     headers: {
+        //         'Authorization': localStorage.getItem('token'),
+        //         "Content-Type": "application/json",
+        //     },
+        //     body:  JSON.stringify(data),
+    
+        // };
+        // var t=localStorage.getItem('token');
+        // console.log(t);
+   
+        // fetch(`https://localhost:3000/habits/${data.id}`, options)
+        //     .then(console.log("Count increased"))
+        //     .then(console.log(data.current_count))
+        //     .catch(err => console.warn("Oops, something went wrong."))
+
         const options = {
             method: "PATCH",
-            headers: {
-                Authorization: localStorage.getItem('token'),
-                "Content-Type": "application/json",
-            },
-            body: data,
-            
+            headers:new Headers( {
+                'Authorization': localStorage.getItem('token') }),
+    
         };
         var t=localStorage.getItem('token');
         console.log(t);
-        console.log(data.id);
-        fetch(`https://localhost:3000/habits/${data.id}`, options)
+   
+        await fetch(`http://localhost:3000/habits/${data.id}`, options)
             .then(console.log("Count increased"))
+            .then(console.log(data))
             .catch(err => console.warn("Oops, something went wrong."))
     };
 
 
     addCount.addEventListener('click', () => {
         addActivityCount();
-        data.current_count=data.current_count+1;
-        console.log(data.current_count);
+        taskCount.textContent=`${data.current_count+1} of ${data.frequency}`;
     })
 
 
     backButton.addEventListener('click',() => {
-        // sec.className='hideClass';
-        // backButton.className='hideClass';
-        // classOverview.className='showClass';
         goBack();
     })
 }
