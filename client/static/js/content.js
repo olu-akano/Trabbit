@@ -1,4 +1,6 @@
 const classOverview=document.getElementById("classOverview");
+
+
 const checkIds=[];
 const checkDatas=[];
 let count=0;
@@ -66,8 +68,6 @@ renderHabits();
 
 async function getPostById(data){
 
-    
-    
     const sec=document.getElementById('activity');
     const newHabitName=document.createElement('h2');
     const taskSitiuation=document.createElement('h2');
@@ -90,6 +90,7 @@ async function getPostById(data){
     strakCount.style.textAlign='center';
     addCount.style.textAlign='center';
     
+    sec.className='showHabit';
     backButton.type='submit';
     backButton.textContent="Back";
     backButton.className="showButton";
@@ -98,12 +99,12 @@ async function getPostById(data){
     addCount.type='submit';
     addCount.textContent=data.current_count;
 
+    sec.append(backButton);
     sec.append(newHabitName);
     sec.append(taskSitiuation);
     sec.append(taskCount);
     sec.append(newStrak);
     sec.append(strakCount);
-    sec.append(backButton);
     sec.append(addCount);
 
 
@@ -133,6 +134,18 @@ async function getPostById(data){
         addCount.textContent =   data.current_count;
         console.log(data.current_count);
     })
+
+
+    backButton.addEventListener('click',() => {
+        sec.className='hideClass';
+        classOverview.className='showClass';
+        // goBack();
+    })
+}
+
+function goBack(){
+    sec.className='hideClass';
+    classOverview.className='showClass';
 
 }
 
