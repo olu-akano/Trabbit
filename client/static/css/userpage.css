@@ -67,7 +67,6 @@ body {
 
 .showClass{
     visibility: visible;
-    position: fixed; 
 }
 
 .showHabit{
@@ -83,7 +82,7 @@ body {
 }
 
 
-.showButton{
+#showButton{
     top: 20px;
     left: 20px;
     background-color:var(--secondary);

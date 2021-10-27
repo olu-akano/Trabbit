@@ -1,5 +1,5 @@
 const classOverview=document.getElementById("classOverview");
-
+const header=document.querySelector("header");
 
 const checkIds=[];
 const checkDatas=[];
@@ -12,7 +12,6 @@ async function renderHabits(){
         console.log(habits.length); 
 
         for(var i=0;i< habits.length; i++){
-            console.log(`num: ${i}`);
             render(habits[i])
         }
 
@@ -59,6 +58,7 @@ async function render(data){
         const getIdNum=document.getElementById(checkIds);
         getIdNum.addEventListener('click', (e) => {
             classOverview.className="hideClass";
+            // header.className="hideClass";
             getPostById(checkDatas);
         })
     } 
@@ -89,15 +89,17 @@ async function getPostById(data){
     newStrak.style.textAlign='center';
     strakCount.style.textAlign='center';
     addCount.style.textAlign='center';
+    addCount.style.position='center';
     
     sec.className='showHabit';
     backButton.type='submit';
     backButton.textContent="Back";
-    backButton.className="showButton";
+    backButton.id="showButton";
+    backButton.className="showHabit";
 
 
     addCount.type='submit';
-    addCount.textContent=data.current_count;
+    addCount.textContent="Add count";
 
     sec.append(backButton);
     sec.append(newHabitName);
@@ -131,13 +133,14 @@ async function getPostById(data){
     addCount.addEventListener('click', () => {
         addActivityCount();
         data.current_count=data.current_count+1;
-        addCount.textContent =   data.current_count;
         console.log(data.current_count);
     })
 
 
     backButton.addEventListener('click',() => {
         sec.className='hideClass';
+        backButton.className='hideClass';
+        // header.className='showClass';
         classOverview.className='showClass';
         // goBack();
     })
@@ -145,6 +148,7 @@ async function getPostById(data){
 
 function goBack(){
     sec.className='hideClass';
+    header.className='showClass';
     classOverview.className='showClass';
 
 }
