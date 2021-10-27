@@ -1,4 +1,5 @@
-//----Form selectors load based on what is chosen----
+///----Form selectors load based on what is chosen----\\\
+
 //All the required selectors
 const categorySelector = document.getElementById('habit-category-selector');
 const exerciseDiv = document.getElementById('exercise-habit');
@@ -58,11 +59,15 @@ frequency.onchange = () => {
 }
 
 
-//----Text counter for description box----
+///----Text counter for description box----\\\
+
 countChars = () => {
     let len = description.value.length;
     document.getElementById('character-counter').innerHTML = `${len}/500 characters used`
 }
+
+
+///----Add new habit functionality----\\\
 
 const form = document.getElementById('habit-form');
 
