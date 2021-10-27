@@ -39,10 +39,11 @@
     padding-top: 70px;
     padding-left: 40px;
     transition: 0.5s;
+    border-right: 5px solid var(--secondary);
 }
 
 #hidden-userpage-nav {
-    transform: translateX(-100%);
+    transform: translateX(-200%);
 }
 
 #show-userpage-nav {
@@ -89,4 +90,35 @@ a:hover{
     background-color: var(--tertiary);
     border-color: var(--tertiary);
     transition: 0.3s;
+}
+
+
+/* Responsiveness for tablet */
+@media (max-width: 1000px) and (min-width: 450px) and (max-height: 1100px) {
+    li {
+        font-size: 20px;        
+    }
+}
+
+/* Responsiveness for phone */
+@media (max-width: 450px) and (max-height: 1000px) {
+    li {
+        font-size: 25px;
+        text-align: center;        
+    }
+
+    .navbar {
+        bottom: 0;
+        width: 100vw;
+        padding: 0;
+    }    
+
+    .nav-btn {
+        bottom: 0;
+    }
+
+    #hidden-userpage-nav {
+        transform: translateY(100%);
+    }
+    
 }
