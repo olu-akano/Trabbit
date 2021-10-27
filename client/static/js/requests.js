@@ -37,7 +37,7 @@ async function addNewHabit(e) {
         
         //for loop to get the right habit form
         let habit = "";
-        for(i = 1; i < form.length - 4; i++) {            
+        for(i = 1; i < form.length - 3; i++) {            
             if(!!e.target[i].value) {
                 habit = e.target[i].value
             }
@@ -48,7 +48,7 @@ async function addNewHabit(e) {
             frequency: e.target[4].value,
             currentcount: 0,
             streak: 0,
-            // description: e.target[5].value ---Commented out for now
+            description: e.target[5].value
         };
         console.log(newHabit);
         const options = {
