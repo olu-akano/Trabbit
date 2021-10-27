@@ -76,9 +76,11 @@ async function getPostById(data){
     const strakCount=document.createElement('h2');
     const addCount=document.createElement('button');
 
+    let currentCount=data.current_count;
+
     newHabitName.textContent=`Your ${data.habitname} activity information`;
     taskSitiuation.textContent=`Task situation `;
-    taskCount.textContent=`${data.current_count} of ${data.frequency}`;
+    taskCount.textContent=`${currentCount} of ${data.frequency}`;
     newStrak.textContent=`Streak`;
     strakCount.textContent=data.streak;
 
@@ -122,14 +124,14 @@ async function getPostById(data){
    
         await fetch(`http://localhost:3000/habits/${data.id}`, options)
             .then(console.log("Count increased"))
-            .then(console.log(data))
             .catch(err => console.warn("Oops, something went wrong."))
     };
 
 
     addCount.addEventListener('click', () => {
         addActivityCount();
-        taskCount.textContent=`${data.current_count+1} of ${data.frequency}`;
+        currentCount++;
+        taskCount.textContent=`${currentCount} of ${data.frequency}`;
     })
 
 
