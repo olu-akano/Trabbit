@@ -56,9 +56,8 @@ async function addNewHabit(e) {
             headers: { "Content-Type": "application/json", "Authorization": localStorage.getItem('token') },
             body: JSON.stringify(newHabit)
         };
-
-        const response = await fetch('http://localhost:3000/habits', options);
-        const data = await response.json();
+        await fetch('http://localhost:3000/habits', options);
+        console.alert('New habit added!')
 
     } catch(err) {
         console.warn('The error is:', err)
