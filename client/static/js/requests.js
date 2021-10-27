@@ -46,7 +46,7 @@ async function addNewHabit(e) {
         newHabit = {
             habitname: habit,
             frequency: e.target[4].value,
-            currentcount: 0,
+            current_count: 0,
             streak: 0,
             description: e.target[5].value
         };
