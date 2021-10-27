@@ -43,7 +43,7 @@
 }
 
 #hidden-userpage-nav {
-    transform: translateX(-100%);
+    transform: translateX(-200%);
 }
 
 #show-userpage-nav {
@@ -103,6 +103,22 @@ a:hover{
 /* Responsiveness for phone */
 @media (max-width: 450px) and (max-height: 1000px) {
     li {
-
+        font-size: 25px;
+        text-align: center;        
     }
+
+    .navbar {
+        bottom: 0;
+        width: 100vw;
+        padding: 0;
+    }    
+
+    .nav-btn {
+        bottom: 0;
+    }
+
+    #hidden-userpage-nav {
+        transform: translateY(100%);
+    }
+    
 }
