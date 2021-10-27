@@ -126,24 +126,33 @@ async function getPostById(givenData){
         sec.append(section);
 
 
-        async function addActivityCount() {
+        async function addActivityCount(data) {
+            try{
+                    const v={"current_count": ++data.current_count,"streak": data.streak};
+                    const options = {
+                    method: "PATCH",
+                    headers:new Headers({"Authorization":localStorage.getItem("token"),
+                                        "Content-Type":"application/json"}),
+                    body:JSON.stringify(v)
+                    // body : data ,
+                };
 
-            const options = {
-                method: "PATCH",
-                headers:new Headers( { 'Authorization': localStorage.getItem('token') }),
-        
-            };
-            var t=localStorage.getItem('token');
-            console.log(t);
-       
-            await fetch(`http://localhost:3000/habits/${data.id}`, options)
-                .then(console.log("Count increased"))
-                .catch(err => console.warn("Oops, something went wrong."))
+                var t=localStorage.getItem('token');
+                console.log(t);
+                console.log(data.id);
+                const updatedData=await fetch(`http://localhost:3000/habits/${data.id}`, options)
+                const updatedDataJson=await updatedData.json();
+                console.log(updatedDataJson);
+            }
+            catch(err){
+                console.log(err);
+            }
+            
         };
     
     
         addCount.addEventListener('click', () => {
-            addActivityCount();
+            addActivityCount(data);
             currentCount++;
             taskCount.textContent=`${currentCount} of ${data.frequency}`;
         })
