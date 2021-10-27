@@ -36,7 +36,7 @@ class User {
                 const newUser = new User(newUserData[0]);
                 resolve (newUser);
             } catch(err) {
-                reject('Error creating user');
+                reject(`Error creating user: ${err}`);
             }
         });
     }
