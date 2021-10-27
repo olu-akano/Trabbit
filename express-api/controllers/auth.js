@@ -37,7 +37,7 @@ router.post('/login', async (req, res) => {
                     token: "Bearer " + token,
                 });
             }
-            jwt.sign(payload, process.env.SECRET, { expiresIn: 60 }, sendToken);
+            jwt.sign(payload, process.env.SECRET, { expiresIn: 120 }, sendToken);
         } else {
             throw new Error('User could not be authenticated')  
         }
@@ -48,3 +48,4 @@ router.post('/login', async (req, res) => {
 })
 
 module.exports = router;
+

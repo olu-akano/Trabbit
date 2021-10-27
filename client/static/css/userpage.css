@@ -88,3 +88,27 @@ body {
     background-color:var(--secondary);
 }
 
+
+/* Responsiveness for phone */
+@media (max-width: 450px) and (max-height: 1000px) {
+    body {
+        background-color: blue;
+    }
+}
+
+/* Responsiveness for tablet */
+@media (max-width: 850px) and (min-width: 450px) and (max-height: 1100px) {
+    body {
+        background-color: cyan;
+    }
+}
+
+
+
+/* Responsiveness for landscape maybe?*/
+/* @media (orientation: landscape) {
+    body {
+        background-color: red;
+    }
+} */
+

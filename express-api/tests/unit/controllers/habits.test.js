@@ -1,0 +1,39 @@
+const habitsController = require('../../../controllers/habits')
+const Habit = require('../../../models/habits')
+
+const mockSend = jest.fn();
+const mockJson = jest.fn();
+const mockStatus = jest.fn(code => ({ send: mockSend, json: mockJson, end: jest.fn() }));
+const mockRes = { status: mockStatus};
+
+describe ('habits controller', () => {
+    beforeEach(() => jest.clearAllMocks());
+
+    afterAll(() => jest.resetAllMocks ());
+
+    describe('index', () => {
+        test('it returns habits with a 200 status code', async () => {
+            let testHabits = ['habit1', 'habit2']
+            jest.spyOn(Habit, 'all', 'get')
+                 .mockResolvedValue(testHabits);
+            await habitsController.index(null, mockRes);
+            expect(mockStatus).toHaveBeenCalledWith(200);
+            expect(mockJson).toHaveBeenCalledWith(testHabits);
+        })
+    }); 
+
+    describe('show', () => {
+        test('it returns an habit with a 200 status code', async () => {
+            let testHabit = {
+                habitname: 'Test Habit', frequency: 2, current_count: 4, streak:2
+            }
+            jest.spyOn(Habit, 'findById')
+                .mockResolvedValue(new Habit(testHabit));
+                
+            const mockReq = { params: { id: 1 } }
+            await habitsController.show(mockReq, mockRes);
+            expect(mockStatus).toHaveBeenCalledWith(200);
+            expect(mockJson).toHaveBeenCalledWith(new Habit(testHabit));
+        })
+    });
+})

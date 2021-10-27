@@ -37,7 +37,7 @@ async function addNewHabit(e) {
         
         //for loop to get the right habit form
         let habit = "";
-        for(i = 1; i < form.length - 4; i++) {            
+        for(i = 1; i < form.length - 3; i++) {            
             if(!!e.target[i].value) {
                 habit = e.target[i].value
             }
@@ -46,9 +46,9 @@ async function addNewHabit(e) {
         newHabit = {
             habitname: habit,
             frequency: e.target[4].value,
-            currentcount: 0,
+            current_count: 0,
             streak: 0,
-            // description: e.target[5].value ---Commented out for now
+            description: e.target[5].value
         };
         console.log(newHabit);
         const options = {
@@ -56,9 +56,8 @@ async function addNewHabit(e) {
             headers: { "Content-Type": "application/json", "Authorization": localStorage.getItem('token') },
             body: JSON.stringify(newHabit)
         };
-
-        const response = await fetch('http://localhost:3000/habits', options);
-        const data = await response.json();
+        await fetch('http://localhost:3000/habits', options);
+        console.alert('New habit added!')
 
     } catch(err) {
         console.warn('The error is:', err)
