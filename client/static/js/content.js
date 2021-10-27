@@ -65,14 +65,16 @@ async function render(data){
 renderHabits();
 
 async function getPostById(data){
-    console.log(data.habitname);
-    console.log('working');
+
+    
+    
     const sec=document.getElementById('activity');
     const newHabitName=document.createElement('h2');
     const taskSitiuation=document.createElement('h2');
     const taskCount=document.createElement('h2');
     const newStrak=document.createElement('h2');
     const strakCount=document.createElement('h2');
+    const backButton=document.createElement('button');
     const addCount=document.createElement('button');
 
     newHabitName.textContent=`Your ${data.habitname} activity information`;
@@ -87,6 +89,10 @@ async function getPostById(data){
     newStrak.style.textAlign='center';
     strakCount.style.textAlign='center';
     addCount.style.textAlign='center';
+    
+    backButton.type='submit';
+    backButton.textContent="Back";
+    backButton.className="showButton";
 
 
     addCount.type='submit';
@@ -97,31 +103,35 @@ async function getPostById(data){
     sec.append(taskCount);
     sec.append(newStrak);
     sec.append(strakCount);
+    sec.append(backButton);
     sec.append(addCount);
 
 
-    function addActivityCount(e) {
-        const data = {
-            current_count: Number,
-        };
+    async function addActivityCount() {
+       
         const options = {
-            method: "PUT",
+            method: "PATCH",
             headers: {
+                Authorization: localStorage.getItem('token'),
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(data),
+            body: data,
+            
         };
-        console.log(data._id);
+        var t=localStorage.getItem('token');
+        console.log(t);
+        console.log(data.id);
         fetch(`https://localhost:3000/habits/${data.id}`, options)
             .then(console.log("Count increased"))
             .catch(err => console.warn("Oops, something went wrong."))
     };
 
 
-    addCount.addEventListener('click', (e) => {
-        e.preventDefault();
-        addActivityCount(e);
-        addCount.textContent =   1 + data.current_count;
+    addCount.addEventListener('click', () => {
+        addActivityCount();
+        data.current_count=data.current_count+1;
+        addCount.textContent =   data.current_count;
+        console.log(data.current_count);
     })
 
 }

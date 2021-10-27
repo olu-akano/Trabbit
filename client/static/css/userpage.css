@@ -74,3 +74,12 @@ body {
     background-color: var(--primary);
 }
 
+
+.showButton{
+    visibility: visible;
+    position: fixed; 
+    top: 20px;
+    left: 20px;
+    background-color:var(--secondary);
+}
+
