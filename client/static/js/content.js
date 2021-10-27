@@ -1,6 +1,6 @@
 const classOverview=document.getElementById("classOverview");
 const header=document.querySelector("header");
-const sec=document.getElementById('activity');
+
 const backButton=document.createElement('button');
 
 const checkIds=[];
@@ -68,7 +68,9 @@ async function render(data){
 renderHabits();
 
 async function getPostById(data){
-
+    
+    const sec=document.getElementById('activity');
+    const section=document.createElement('section');
     const newHabitName=document.createElement('h2');
     const taskSitiuation=document.createElement('h2');
     const taskCount=document.createElement('h2');
@@ -92,7 +94,8 @@ async function getPostById(data){
     addCount.style.textAlign='center';
     addCount.style.position='center';
     
-    sec.className='showHabit';
+    section.id='post'
+    section.className='showHabit';
     backButton.type='submit';
     backButton.textContent="Back";
     backButton.id="showButton";
@@ -102,13 +105,14 @@ async function getPostById(data){
     addCount.type='submit';
     addCount.textContent="Add count";
 
-    sec.append(backButton);
-    sec.append(newHabitName);
-    sec.append(taskSitiuation);
-    sec.append(taskCount);
-    sec.append(newStrak);
-    sec.append(strakCount);
-    sec.append(addCount);
+    section.append(backButton);
+    section.append(newHabitName);
+    section.append(taskSitiuation);
+    section.append(taskCount);
+    section.append(newStrak);
+    section.append(strakCount);
+    section.append(addCount);
+    sec.append(section)
 
 
     async function addActivityCount() {
@@ -138,13 +142,16 @@ async function getPostById(data){
     backButton.addEventListener('click',() => {
         goBack();
     })
+
+    function goBack(){
+        console.log("working");
+        section.className='hideClass';
+        backButton.className='hideClass';
+        classOverview.className='showClass';
+    }
 }
 
-function goBack(){
-    sec.className='hideClass';
-    backButton.className='hideClass';
-    classOverview.className='showClass';
-}
+
 
 
 // When page is loaded, render habits
