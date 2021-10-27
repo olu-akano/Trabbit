@@ -24,6 +24,8 @@ body {
     background-color: var(--primary);
     font-size: 25px;
     border-radius: 5px;
+    z-index: 1;
+    width: 70vw;
 }
 
 #habit-form { 

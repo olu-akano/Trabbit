@@ -94,17 +94,18 @@ a:hover{
 
 
 /* Responsiveness for tablet */
-@media (max-width: 1000px) and (min-width: 450px) and (max-height: 1100px) {
+@media (max-width: 1000px) and (min-width: 530px) and (max-height: 1100px) {
     li {
         font-size: 20px;        
     }
 }
 
 /* Responsiveness for phone */
-@media (max-width: 450px) and (max-height: 1000px) {
+@media (max-width: 530px) and (max-height: 1000px) {
     li {
-        font-size: 25px;
-        text-align: center;        
+        font-size: 35px;
+        text-align: center;
+        margin-top: 33%;
     }
 
     .navbar {
