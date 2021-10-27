@@ -23,7 +23,6 @@ body {
     background-color: var(--primary);
     font-size: 25px;
     border-radius: 5px;
-    z-index: 1;
     width: 70vw;
 }
 
@@ -120,7 +119,7 @@ body {
 /* Responsiveness for phone */
 @media (max-width: 530px) and (max-height: 1000px) {
     td {
-        font-size: 22px;
+        font-size: 18px;
     }
 
     .emoji-row {
@@ -138,4 +137,8 @@ body {
     .habit {
         height: 50px;
     } 
+
+    #new-habit-btn {
+        
+    }  
 }

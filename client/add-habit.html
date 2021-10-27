@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./static/css/styling.css">        
     <title>Trabbit - Add new habit</title>
 </head>
-<body>
+<div>
     <div class="nav-btn" id="show-nav-btn">&#9776;</div>
     <nav class="navbar" id="hidden-userpage-nav">
         <li>
@@ -29,73 +29,75 @@
         <p style="font-size: 23px;">First select the category, then pick the relevant new habbit and then the number of days you want to achieve it. Finally, add a description for more detail on the hobby, and if you select 'other' make sure to say what it is!</p>
     </header>
 
-    <main id="new-habit-main">
-        <form id="habit-form">
+    <div style="display: flex; justify-content: center;">
+        <main id="new-habit-main">
+            <form id="habit-form">
 
-            <div class="habit-form-child">
-                <label for="habit-category">Choose your category:</label>
-                <select name="habit-name" id="habit-category-selector">
-                    <option value="" selected disabled hidden>---Category---</option>
-                    <option value="Exercise">Exercise</option>
-                    <option value="Dietary">Health</option>
-                    <option value="Hobby">Hobby</option>
-                </select>
-            </div>    
+                <div class="habit-form-child">
+                    <label for="habit-category">Choose your category:</label>
+                    <select name="habit-name" id="habit-category-selector">
+                        <option value="" selected disabled hidden>---Category---</option>
+                        <option value="Exercise">Exercise</option>
+                        <option value="Dietary">Health</option>
+                        <option value="Hobby">Hobby</option>
+                    </select>
+                </div>    
 
-            <div id="exercise-habit" style="display: none;" class="habit-form-child">
-                <label for="exercise-name">Choose your habit:</label>
-                <select id="exercise-name">
-                    <option value=""selected disabled hidden>---Exercise---</option>
-                    <option value="Run">Run</option>
-                    <option value="Cycle">Cycle</option>
-                    <option value="Walk">Walk</option>
-                    <option value="Gym">Gym</option>
-                    <option value="Other exercise">Other exercise</option>
-                </select>
-            </div>
+                <div id="exercise-habit" style="display: none;" class="habit-form-child">
+                    <label for="exercise-name">Choose your habit:</label>
+                    <select id="exercise-name">
+                        <option value=""selected disabled hidden>---Exercise---</option>
+                        <option value="Run">Run</option>
+                        <option value="Cycle">Cycle</option>
+                        <option value="Walk">Walk</option>
+                        <option value="Gym">Gym</option>
+                        <option value="Other exercise">Other exercise</option>
+                    </select>
+                </div>
 
-            <div id="diet-habit" style="display: none;"  class="habit-form-child">
-                 <label for="dietary-name">Choose your habit:</label>
-                <select id="dietary-name">
-                    <option value=""selected disabled hidden>---Health---</option>
-                    <option value="Water">Water</option>
-                    <option value="Breakfast">Breakfast</option>
-                    <option value="5-a-day">5-a-day</option>
-                    <option value="Sleep">8 hours sleep</option>
-                    <option value="Other dietary">Other dietary</option>
-                </select>
-            </div>
+                <div id="diet-habit" style="display: none;"  class="habit-form-child">
+                        <label for="dietary-name">Choose your habit:</label>
+                    <select id="dietary-name">
+                        <option value=""selected disabled hidden>---Health---</option>
+                        <option value="Water">Water</option>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="5-a-day">5-a-day</option>
+                        <option value="Sleep">8 hours sleep</option>
+                        <option value="Other dietary">Other dietary</option>
+                    </select>
+                </div>
 
-            <div id="hobby-habit" style="display: none;" class="habit-form-child">
-                <label for="hobby-name">Choose your habit:</label>
-                <select id="hobby-name">
-                    <option value=""selected disabled hidden>---Hobby---</option>
-                    <option value="Music">Music</option>
-                    <option value="Art">Art</option>
-                    <option value="Sport">Sport</option>
-                    <option value="Other hobby">Other hobby</option>
-                </select>
-            </div>
-            <div id="frequency-selector" style="display: none;" class="habit-form-child">
-                <label for="frequency">Choose how many days a week:</label>
-                <select id="frequency">
-                    <option value=""selected disabled hidden>---Frequency---</option>
-                    <option value=1>1</option>
-                    <option value=2>2</option>
-                    <option value=3>3</option>
-                    <option value=4>4</option>
-                    <option value=5>5</option>
-                    <option value=6>6</option>
-                    <option value=7>7</option>
-                </select>  
-            </div>
+                <div id="hobby-habit" style="display: none;" class="habit-form-child">
+                    <label for="hobby-name">Choose your habit:</label>
+                    <select id="hobby-name">
+                        <option value=""selected disabled hidden>---Hobby---</option>
+                        <option value="Music">Music</option>
+                        <option value="Art">Art</option>
+                        <option value="Sport">Sport</option>
+                        <option value="Other hobby">Other hobby</option>
+                    </select>
+                </div>
+                <div id="frequency-selector" style="display: none;" class="habit-form-child">
+                    <label for="frequency">Choose how many days a week:</label>
+                    <select id="frequency">
+                        <option value=""selected disabled hidden>---Frequency---</option>
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                        <option value=6>6</option>
+                        <option value=7>7</option>
+                    </select>  
+                </div>
 
-            <textarea style="width:50%; display: none;" onkeyup="countChars()" name="description" id="new-habit-description" cols="30" rows="10" maxlength="500" placeholder="Enter a description of your new habit here..."></textarea>
-            <div id="character-counter"></div>
-            <input id="new-habit-submit" style="display: none;" class="btn" type="submit" value="Add your new habit!">
+                <textarea style="width:50%; display: none;" onkeyup="countChars()" name="description" id="new-habit-description" cols="30" rows="10" maxlength="500" placeholder="Enter a description of your new habit here..."></textarea>
+                <div id="character-counter"></div>
+                <input id="new-habit-submit" style="display: none;" class="btn" type="submit" value="Add your new habit!">
 
-        </form>
-    </main>
+            </form>
+        </main>
+    </div>
     <script src="./static/js/requests.js"></script>
     <script src="./static/js/nav-bar.js"></script>
     <!-- Defered to allow addHabit function to work -->
