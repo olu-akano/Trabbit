@@ -73,6 +73,7 @@ async function getPostById(givenData){
     const sec=document.getElementById('activity');
     const section=document.createElement('section');
     const newHabitName=document.createElement('h2');
+    const description=document.createElement('h2');
     const taskSitiuation=document.createElement('h2');
     const taskCount=document.createElement('h2');
     const newStrak=document.createElement('h2');
@@ -92,6 +93,7 @@ async function getPostById(givenData){
         let currentCount=data.current_count;
     
         newHabitName.textContent=`Your ${data.habitname} activity information`;
+        description.textContent=`*(${data.description})*`;
         taskSitiuation.textContent=`Task situation `;
         taskCount.textContent=`${currentCount} of ${data.frequency}`;
         newStrak.textContent=`Streak`;
@@ -99,6 +101,7 @@ async function getPostById(givenData){
     
         newHabitName.style.textAlign='center';
         taskSitiuation.style.textAlign='center';
+        description.style.textAlign='center';
         taskCount.style.textAlign='center';
         newStrak.style.textAlign='center';
         strakCount.style.textAlign='center';
@@ -118,6 +121,7 @@ async function getPostById(givenData){
     
         section.append(backButton);
         section.append(newHabitName);
+        section.append(description);
         section.append(taskSitiuation);
         section.append(taskCount);
         section.append(newStrak);
@@ -134,12 +138,8 @@ async function getPostById(givenData){
                     headers:new Headers({"Authorization":localStorage.getItem("token"),
                                         "Content-Type":"application/json"}),
                     body:JSON.stringify(v)
-                    // body : data ,
                 };
-
-                var t=localStorage.getItem('token');
-                console.log(t);
-                console.log(data.id);
+              
                 const updatedData=await fetch(`http://localhost:3000/habits/${data.id}`, options)
                 const updatedDataJson=await updatedData.json();
                 console.log(updatedDataJson);
@@ -149,9 +149,9 @@ async function getPostById(givenData){
             }
             
         };
-    
-    
+       
         addCount.addEventListener('click', () => {
+
             addActivityCount(data);
             currentCount++;
             taskCount.textContent=`${currentCount} of ${data.frequency}`;
