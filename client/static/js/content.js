@@ -130,8 +130,7 @@ async function getPostById(givenData){
 
             const options = {
                 method: "PATCH",
-                headers:new Headers( {
-                    'Authorization': localStorage.getItem('token') }),
+                headers:new Headers( { 'Authorization': localStorage.getItem('token') }),
         
             };
             var t=localStorage.getItem('token');
