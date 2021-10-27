@@ -67,8 +67,9 @@ async function render(data){
 
 renderHabits();
 
-async function getPostById(data){
-    
+async function getPostById(givenData){
+
+
     const sec=document.getElementById('activity');
     const section=document.createElement('section');
     const newHabitName=document.createElement('h2');
@@ -78,77 +79,92 @@ async function getPostById(data){
     const strakCount=document.createElement('h2');
     const addCount=document.createElement('button');
 
-    let currentCount=data.current_count;
-
-    newHabitName.textContent=`Your ${data.habitname} activity information`;
-    taskSitiuation.textContent=`Task situation `;
-    taskCount.textContent=`${currentCount} of ${data.frequency}`;
-    newStrak.textContent=`Streak`;
-    strakCount.textContent=data.streak;
-
-    newHabitName.style.textAlign='center';
-    taskSitiuation.style.textAlign='center';
-    taskCount.style.textAlign='center';
-    newStrak.style.textAlign='center';
-    strakCount.style.textAlign='center';
-    addCount.style.textAlign='center';
-    addCount.style.position='center';
-    
-    section.id='post'
-    section.className='showHabit';
-    backButton.type='submit';
-    backButton.textContent="Back";
-    backButton.id="showButton";
-    backButton.className="showHabit";
-
-
-    addCount.type='submit';
-    addCount.textContent="Add count";
-
-    section.append(backButton);
-    section.append(newHabitName);
-    section.append(taskSitiuation);
-    section.append(taskCount);
-    section.append(newStrak);
-    section.append(strakCount);
-    section.append(addCount);
-    sec.append(section)
-
-
-    async function addActivityCount() {
-
-        const options = {
-            method: "PATCH",
-            headers:new Headers( {
-                'Authorization': localStorage.getItem('token') }),
-    
-        };
-        var t=localStorage.getItem('token');
-        console.log(t);
-   
-        await fetch(`http://localhost:3000/habits/${data.id}`, options)
-            .then(console.log("Count increased"))
-            .catch(err => console.warn("Oops, something went wrong."))
+    const options = {
+        method: 'GET',
+        headers:new Headers( { 'Authorization': localStorage.getItem('token') }),
     };
+    await fetch(`http://localhost:3000/habits/${givenData.id}`, options)
+        .then(d => d.json())
+        .then(data => postHabit(data))
 
-
-    addCount.addEventListener('click', () => {
-        addActivityCount();
-        currentCount++;
+    function postHabit(data){
+    
+        let currentCount=data.current_count;
+    
+        newHabitName.textContent=`Your ${data.habitname} activity information`;
+        taskSitiuation.textContent=`Task situation `;
         taskCount.textContent=`${currentCount} of ${data.frequency}`;
-    })
+        newStrak.textContent=`Streak`;
+        strakCount.textContent=data.streak;
+    
+        newHabitName.style.textAlign='center';
+        taskSitiuation.style.textAlign='center';
+        taskCount.style.textAlign='center';
+        newStrak.style.textAlign='center';
+        strakCount.style.textAlign='center';
+        addCount.style.textAlign='center';
+        addCount.style.position='center';
+        
+        section.id='post'
+        section.className='showHabit';
+        backButton.type='submit';
+        backButton.textContent="Back";
+        backButton.id="showButton";
+        backButton.className="showHabit";
+    
+    
+        addCount.type='submit';
+        addCount.textContent="Add count";
+    
+        section.append(backButton);
+        section.append(newHabitName);
+        section.append(taskSitiuation);
+        section.append(taskCount);
+        section.append(newStrak);
+        section.append(strakCount);
+        section.append(addCount);
+        sec.append(section);
 
 
-    backButton.addEventListener('click',() => {
-        goBack();
-    })
+        async function addActivityCount() {
 
-    function goBack(){
-        console.log("working");
-        section.className='hideClass';
-        backButton.className='hideClass';
-        classOverview.className='showClass';
+            const options = {
+                method: "PATCH",
+                headers:new Headers( {
+                    'Authorization': localStorage.getItem('token') }),
+        
+            };
+            var t=localStorage.getItem('token');
+            console.log(t);
+       
+            await fetch(`http://localhost:3000/habits/${data.id}`, options)
+                .then(console.log("Count increased"))
+                .catch(err => console.warn("Oops, something went wrong."))
+        };
+    
+    
+        addCount.addEventListener('click', () => {
+            addActivityCount();
+            currentCount++;
+            taskCount.textContent=`${currentCount} of ${data.frequency}`;
+        })
+    
+    
+        backButton.addEventListener('click',() => {
+            goBack();
+        })
+    
+        function goBack(){
+            section.className='hideClass';
+            backButton.className='hideClass';
+            classOverview.className='showClass';
+        }
     }
+    
+   
+
+
+   
 }
 
 
