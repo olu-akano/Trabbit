@@ -29,19 +29,19 @@ async function render(data){
     tableRow.className="habit";
     const tableData_1=document.createElement('td');
     tableData_1.textContent=`\u2022`;
-    tableData_1.style.width='10%';
+    tableData_1.className = "bulletpoint-row";
     const tableData_2=document.createElement('td');
     tableData_2.textContent=data.habitname;
-    tableData_2.style.width='50%';
+    tableData_2.className = "name-row";
     const tableData_3=document.createElement('td');
     tableData_3.textContent='More info...';
     tableData_3.className='more-info-btn';
     tableData_3.id='more-info-btn-'+count;
-    tableData_3.style.width='20%';
     checkIds.push(tableData_3.id);
     const tableData_4=document.createElement('td');
     const emojy="🔥";
     tableData_4.textContent=`Streak: ${data.streak} ${emojy} `;
+    tableData_4.className = "emoji-row";
 
     tableRow.append(tableData_1);
     tableRow.append(tableData_2);
