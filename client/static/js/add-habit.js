@@ -60,10 +60,11 @@ frequency.onchange = () => {
 
 
 ///----Text counter for description box----\\\
+const mainDiv = document.getElementById('character-counter');
 
-countChars = () => {
+countChars = (div) => {
     let len = description.value.length;
-    document.getElementById('character-counter').innerHTML = `${len}/500 characters used`
+    div.innerHTML = `${len}/500`
 }
 
 

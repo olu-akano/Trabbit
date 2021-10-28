@@ -139,6 +139,10 @@ body {
     } 
 
     #new-habit-btn {
-        
-    }  
+        font-size: 15px;
+    }
+    
+    #post {
+        font-size: 12px;
+    }
 }

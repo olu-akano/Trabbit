@@ -29,7 +29,7 @@
         <p style="font-size: 23px;">First select the category, then pick the relevant new habbit and then the number of days you want to achieve it. Finally, add a description for more detail on the hobby, and if you select 'other' make sure to say what it is!</p>
     </header>
 
-    <div style="display: flex; justify-content: center;">
+    <div class="center-flex-container">
         <main id="new-habit-main">
             <form id="habit-form">
 
@@ -91,7 +91,7 @@
                     </select>  
                 </div>
 
-                <textarea style="width:50%; display: none;" onkeyup="countChars()" name="description" id="new-habit-description" cols="30" rows="10" maxlength="500" placeholder="Enter a description of your new habit here..."></textarea>
+                <textarea style="width:50%; display: none;" onkeyup="countChars(mainDiv)" name="description" id="new-habit-description" cols="30" rows="10" maxlength="500" placeholder="Enter a description of your new habit here..."></textarea>
                 <div id="character-counter"></div>
                 <input id="new-habit-submit" style="display: none;" class="btn" type="submit" value="Add your new habit!">
 
