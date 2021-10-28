@@ -79,6 +79,7 @@ async function getPostById(givenData){
     const newStrak=document.createElement('h2');
     const strakCount=document.createElement('h2');
     const addCount=document.createElement('button');
+    const deleteButton=document.createElement('button');
 
     const options = {
         method: 'GET',
@@ -107,8 +108,7 @@ async function getPostById(givenData){
         taskCount.style.textAlign='center';
         newStrak.style.textAlign='center';
         strakCount.style.textAlign='center';
-        addCount.style.textAlign='center';
-        addCount.style.transform='translateX(27vw)';
+        addCount.style.transform='translateX(23vw)';
         
         section.id='post'
         section.className='showHabit';
@@ -120,6 +120,9 @@ async function getPostById(givenData){
     
         addCount.type='submit';
         addCount.textContent="Add count";
+        deleteButton.type='submit';
+        deleteButton.textContent="Delete";
+        // deleteButton.style.marginLeft="0";
     
         section.append(backButton);
         section.append(newHabitName);
@@ -129,6 +132,7 @@ async function getPostById(givenData){
         section.append(newStrak);
         section.append(strakCount);
         section.append(addCount);
+        section.append(deleteButton);
         sec.append(section);
 
 
@@ -158,6 +162,28 @@ async function getPostById(givenData){
             currentCount++;
             taskCount.textContent=`${currentCount} of ${data.frequency}`;
         })
+
+
+        deleteButton.addEventListener('click', () => {
+            deleteHabit(data);
+        })
+
+        async function deleteHabit(data){
+            try{
+                const options = {
+                method: "DELETE",
+                headers:new Headers({"Authorization":localStorage.getItem("token"),
+                                    "Content-Type":"application/json"}),
+                };
+                console.log(data.id);
+                const updatedData=await fetch(`http://localhost:3000/habits/${data.id}`, options);
+                goBack();
+                classOverview.className='hideClass';
+                renderHabits();
+            }catch(err){
+                console.log(err);
+            }
+        }
     
     
         backButton.addEventListener('click',() => {
