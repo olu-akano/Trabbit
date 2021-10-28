@@ -285,4 +285,39 @@ body {
     #userpage-habits {
         width: 80vw;
     }
+
+    .hideClass{
+        margin: 0;
+    }
+
+    #backBtn {
+        font-size: 15px;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        z-index: 10;
+    }
+
+    .infoPosition {
+       padding-bottom: 2px;
+       padding-top: 1px;
+    }
+
+    .infoBtn {
+        font-size: 15px;
+        font-weight: 300;
+    }
+
+    #post {
+        top: 0;
+        height: 100vh;
+        left: 0;
+        width: 100%;
+    }
+
+    #btnDiv {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
 }
