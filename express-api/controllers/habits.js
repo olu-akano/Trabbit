@@ -16,7 +16,7 @@ async function index(req, res){
 async function show(req, res){
     try {
         const habit = await Habit.findById(req.params.id);
-        res.json(habit);
+        res.status(200).json(habit);
     } catch(err) {
         res.status(404).json({err})
     }
