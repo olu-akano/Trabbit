@@ -52,7 +52,7 @@ async function addNewHabit(e) {
             habitname: habit,
             description: e.target[5].value,
             current_count: 0,
-            frequency: e.target[4].value,
+            frequency: parseInt(e.target[4].value),
             streak: 0
         };
         const options = {
@@ -63,8 +63,8 @@ async function addNewHabit(e) {
         const r = await fetch(`${server}/habits`, options);
         const addedHabit = await r.json();
         console.log(addedHabit);
-        window.alert('New habit added!')
-
+        window.alert('New habit added!');
+        location.reload();
     } catch(err) {
         console.warn('The error is:', err)
     }

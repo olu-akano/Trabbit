@@ -45,7 +45,6 @@ categorySelector.onchange = () => {
     }        
 } 
 
-
 //Show the frequency div after a habbit is chosen
 exercise.onchange = () => frequencyDiv.style.display = 'initial';
 diet.onchange = () => frequencyDiv.style.display = 'initial';
