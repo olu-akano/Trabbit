@@ -81,11 +81,14 @@ async function getPostById(givenData){
     const description=document.createElement('h2');
     const taskSitiuation=document.createElement('h2');
     const taskCount=document.createElement('h2');
-    const newStrak=document.createElement('h2');
+    const newStreak=document.createElement('h2');
     const streakCount=document.createElement('h2');
     const addCount=document.createElement('button');
     const deleteButton=document.createElement('button');
-    
+    const btnDiv = document.createElement('div');
+    const contentDiv = document.createElement('div')
+       
+
     const habit = await getHabit(givenData.id);
     postHabit(habit)
 
@@ -94,36 +97,66 @@ async function getPostById(givenData){
         let currentCount=data.current_count;
         let streakData = data.streak;
     
-        newHabitName.textContent=`Your ${data.habitname} activity information`;
+        newHabitName.textContent=`${data.habitname} details`;
         if(data.description){
-            description.textContent=`*(${data.description})*`;
+            description.textContent=`${data.description}`;
         }      
-        taskSitiuation.textContent=`Task situation `;
+        taskSitiuation.textContent=`Tracker:`;
         taskCount.textContent=`${currentCount} of ${data.frequency}`;
-        newStrak.textContent=`Streak`;
+        newStreak.textContent=`Streak`;
         streakCount.textContent=data.streak;
     
         newHabitName.style.textAlign='center';
         taskSitiuation.style.textAlign='center';
         description.style.textAlign='center';
         taskCount.style.textAlign='center';
-        newStrak.style.textAlign='center';
+        newStreak.style.textAlign='center';
         streakCount.style.textAlign='center';
-        addCount.style.transform='translateX(26vw)';
-        deleteButton.style.transform='translateX(27vw)';
+        // addCount.style.transform='translateX(26vw)';
+        // deleteButton.style.transform='translateX(27vw)';
         
         section.id='post'
         section.className='showHabit';
         backButton.type='submit';
-        backButton.textContent="Back";
-        backButton.id="showButton";
+        backButton.textContent="Back";        
         backButton.className="showHabit";
-    
+        
+        // Set id/class for each element of the more info page        
+        backButton.id="backBtn";
+
+        contentDiv.className = 'center-flex-container'
+
+        newHabitName.id = 'infoHeader';
+        newHabitName.className = 'infoPosition infoContent';
+
+        description.id = 'infoDescription';
+        description.className = 'infoPosition infoContent';
+
+        taskSitiuation.id = 'infoTrackerHeader';
+        taskSitiuation.className = 'infoPosition';
+
+        taskCount.id = 'infoTracker';
+        taskCount.className = 'infoPosition infoContent';
+
+        newStreak.id = 'infoStreakHeader';
+        newStreak.className = 'infoPosition';
+
+        streakCount.id = 'infoStreak';
+        streakCount.className = 'infoPosition infoContent';
+
+        btnDiv.id = 'btnDiv';
+
+        addCount.id = 'increaseCountBtn';
+        addCount.className = 'infoBtn';
+
+        deleteButton.id = 'deleteHabitBtn';
+        deleteButton.className = 'infoBtn';
+
     
         addCount.type='submit';
-        addCount.textContent="Add count";
+        addCount.textContent="Completed Habit today!";
         deleteButton.type='submit';
-        deleteButton.textContent="Delete";
+        deleteButton.textContent="Delete Habit";
         // deleteButton.style.marginLeft="0";
     
         section.append(backButton);
@@ -131,12 +164,13 @@ async function getPostById(givenData){
         section.append(description);
         section.append(taskSitiuation);
         section.append(taskCount);
-        section.append(newStrak);
+        section.append(newStreak);
         section.append(streakCount);
-        section.append(addCount);
-        section.append(line);
-        section.append(deleteButton);
-        sec.append(section);
+        section.append(btnDiv);
+        btnDiv.append(addCount);        
+        btnDiv.append(deleteButton);
+        contentDiv.append(section);
+        sec.append(contentDiv);
        
         addCount.addEventListener('click', () => {
             currentCount++;
