@@ -1,6 +1,7 @@
 const classOverview=document.getElementById("classOverview");
 const header=document.querySelector("header");
 const table=document.getElementById('habits-textcontent');
+const line=document.createElement('br');
 
 const backButton=document.createElement('button');
 
@@ -108,7 +109,8 @@ async function getPostById(givenData){
         taskCount.style.textAlign='center';
         newStrak.style.textAlign='center';
         strakCount.style.textAlign='center';
-        addCount.style.transform='translateX(23vw)';
+        addCount.style.transform='translateX(26vw)';
+        deleteButton.style.transform='translateX(27vw)';
         
         section.id='post'
         section.className='showHabit';
@@ -132,6 +134,7 @@ async function getPostById(givenData){
         section.append(newStrak);
         section.append(strakCount);
         section.append(addCount);
+        section.append(line);
         section.append(deleteButton);
         sec.append(section);
 
@@ -157,7 +160,6 @@ async function getPostById(givenData){
         };
        
         addCount.addEventListener('click', () => {
-
             addActivityCount(data);
             currentCount++;
             taskCount.textContent=`${currentCount} of ${data.frequency}`;
