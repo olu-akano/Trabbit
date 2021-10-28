@@ -17,7 +17,7 @@ describe('Users controller', () => {
                  .mockResolvedValue(['user1', 'user2']);
             await usersController.index(null, mockRes);
             expect(mockStatus).toHaveBeenCalledWith(200);
-            expect(mockJson).toHaveBeenCalledWith(['user1', 'user2']);
+            expect(mockJson).toHaveBeenCalledWith({"users": ["user1", "user2"]});
         })
     });
 
