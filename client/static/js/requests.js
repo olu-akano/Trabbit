@@ -122,7 +122,8 @@ async function userRegistration(regData){
         }
         const r = await fetch(`${server}/auth/register`, options);
         if(r.status === 403){
-            window.alert("Email already has an account!");
+            const e = await r.json();
+            window.alert(e.error);
             throw new Error('Registration not authorised');
         };
         const data = await r.json();
