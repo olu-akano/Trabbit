@@ -25,7 +25,7 @@ async function show(req, res){
 async function showUsers(req, res){
     try {
         const habit = await Habit.findByUsername(req.params.username);
-        res.json(habit);
+        res.status(200).json(habit);
     } catch(err) {
         res.status(404).json({err})
     }
