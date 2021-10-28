@@ -36,7 +36,7 @@ class User {
                 const newUser = new User(newUserData[0]);
                 resolve (newUser);
             } catch(err) {
-                reject('Error creating user');
+                reject(`Error creating user: ${err}`);
             }
         });
     }
@@ -47,10 +47,10 @@ class User {
                 const db = await init();
                 let userData = await db.collection('users').find({email: {$eq: `${email}`}}).toArray()
                 let user = new User ({...userData[0], email: userData[0].email});
-                res(user);
+                resolve(user);
             } catch (err) {
                 console.log(err)
-                rej("Error retrieving email")
+                reject("Error retrieving email")
             }
          });
         }

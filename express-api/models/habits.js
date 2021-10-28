@@ -4,7 +4,9 @@ const { ObjectId } = require('mongodb')
 class Habit {
     constructor(data){
         this.id = data.id;
+        this.username = data.username
         this.habitname = data.habitname;
+        this.description = data.description;
         this.streak = data.streak;
         this.current_count=data.current_count;
         this.frequency=data.frequency;
@@ -25,15 +27,29 @@ class Habit {
         })
     }
 
+    static findByUsername(username){
+        return new Promise (async (resolve, reject) => {
+            try {
+                const db = await init();
+                let habitData = await db.collection('habits').find( { username }).toArray();
+                console.log(habitData);
+                let habits = habitData.map(d => new Habit({...d, id: d._id}));
+                resolve (habits);
+            } catch (err) {
+                console.log(err);
+                reject(`Habits not found for ${username}`);
+            }
+        })
+    }
 
     static findById(id){
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init();
                 let habitData = await db.collection('habits').find( { _id: ObjectId(id) }).toArray();
-                console.log(habitData);
-                let habit = new Habit({...habitData[0], id: habitData[0]._id});
-                resolve (habit);
+                let habit = new Habit({...habitData[0], id: habitData[0]._id.toString()});
+                console.log(habit);
+                resolve(habit);
             } catch (err) {
                 console.log(err);
                 reject('Habit not found');
@@ -41,15 +57,13 @@ class Habit {
         });
     };
 
-
-    static create(habitname, streak, current_count, frequency ){
+    static create(data){
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init();
-                const habitData = await db.collection('habits').insertOne({ habitname:habitname,streak: streak,current_count: current_count, frequency:frequency });
+                const habitData = await db.collection('habits').insertOne({ ...data });
                 const habit=this.findById(habitData.insertedId);
-                const newHabit = new Habit(habit);
-                resolve (newHabit);
+                resolve(habit);
             } catch(err) { 
                 reject('Error creating habit');
             }
@@ -69,16 +83,16 @@ class Habit {
         })
     };
     
-    update(){
+    update(data){
         return new Promise(async(resolve, reject) => {
             try {
-                //add an if function later so it olnly increament the count if the task is not compelete yet
                 const db = await init();
-                const updateHabit = await db.collection('habits').findOneAndUpdate({ _id: ObjectId(this.id) }, { $inc: { current_count: 1 } }, { returnOriginal: false });
-                const  updatedHabit= new Habit(updateHabit.value);
-                resolve (updatedHabit);
-                console.log(updatedHabit);
+                const updateHabitData = await db.collection('habits').findOneAndUpdate({ _id: ObjectId(this.id) }, { $set: {...data} }, { returnDocument: 'after' });
+                const updateHabit = updateHabitData.value;
+                const  updatedHabit= new Habit({...updateHabit, id: updateHabit._id.toString()});
+                resolve(updatedHabit);
             } catch (err) {
+                console.log(err);
                 reject('Habit could not be updated');
             }
         })

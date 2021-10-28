@@ -27,7 +27,7 @@ router.post('/login', async (req, res) => {
     try {
         const user = await User.findByEmail(req.body.email)
         if(!user){ throw new Error('There is no user with this email') }
-        const authed = bcrypt.compare(req.body.password, user.passwordDigest)
+        const authed = bcrypt.compare(req.body.password, user.password_digest)
         if (!!authed){
             const payload = { username: user.username, email: user.email }
             const sendToken = (err, token) => {
@@ -48,3 +48,4 @@ router.post('/login', async (req, res) => {
 })
 
 module.exports = router;
+
