@@ -11,8 +11,11 @@ async function requestLogin(e){
             body: JSON.stringify(loginData)
         }
         const r = await fetch(`${server}/auth/login`, options);
+        if (r.status === 403){ 
+            window.alert("Invalid login");
+            throw new Error('Login not authorised');
+        };
         const data = await r.json();
-        if (!data.success){ throw new Error('Login not authorised'); };
         if (data.err){ throw new Error(data.err) }
         // Log user in
         login(data.token);
@@ -35,6 +38,10 @@ async function requestRegistration(e){
             body: JSON.stringify(regData)
         }
         const r = await fetch(`${server}/auth/register`, options);
+        if(r.status === 403){
+            window.alert("Email already has an account!");
+            throw new Error('Registration not authorised');
+        };
         const data = await r.json();
         if (data.err){ throw new Error(data.err) }
         requestLogin(e);
