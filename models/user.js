@@ -46,6 +46,7 @@ class User {
             try {
                 const db = await init();
                 let userData = await db.collection('users').find({email: {$eq: `${email}`}}).toArray()
+                if(!userData.length){ resolve(null) };
                 let user = new User ({...userData[0], email: userData[0].email});
                 resolve(user);
             } catch (err) {
