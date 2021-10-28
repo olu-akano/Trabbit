@@ -1,7 +1,7 @@
 describe ('habit endpoints', () => {
     let api;
-    beforeEach(async () => {
-        await resetTestDB()
+    beforeEach(() => {
+        seeds();
     });
 
     beforeAll(async () => {
