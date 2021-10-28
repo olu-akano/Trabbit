@@ -7,6 +7,12 @@ const checkIds=[];
 const checkDatas=[];
 let count=0;
 
+function welcomeUser(){
+    const username = localStorage.getItem('username');
+    const welcome = document.getElementById('welcome');
+    welcome.textContent = `Welcome to your Profile, ${username}!`;
+}
+
 async function renderHabits(){
     try {
         console.log('renderHabits');
@@ -64,8 +70,6 @@ async function render(data){
         })
     } 
 }
-
-renderHabits();
 
 async function getPostById(givenData){
     const sec=document.getElementById('activity');
@@ -167,10 +171,9 @@ async function getPostById(givenData){
             backButton.className='hideClass';
             classOverview.className='showClass';
         }
-    }
-    
-   
-
-
-   
+    }  
 }
+
+// Run functions on page load
+welcomeUser();
+renderHabits();
