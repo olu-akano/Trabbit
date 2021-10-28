@@ -19,6 +19,6 @@ server.use('/users', userRoutes)
 server.use('/habits', habitRoutes)
 
 // Root route
-server.get('/', (req, res) => res.send('Hello to Trabbit website!'))
+server.get('/', (req, res) => res.send('Welcome to Trabbit!'))
 
 module.exports = server;

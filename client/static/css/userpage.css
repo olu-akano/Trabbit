@@ -3,6 +3,7 @@
     --secondary: rgb(65, 105, 225);
     --tertiary: rgb(250, 213, 4);
     --background: rgb(233, 231, 208);
+    --dark: #142126;
 }
 
 * {
@@ -14,6 +15,10 @@ body {
     background-color: var(--background);
     color: white;
     margin: 0;
+}
+
+#welcome {
+    text-shadow: 0.5px 0.2px var(--dark);
 }
 
 #userpage-habits {
@@ -82,23 +87,119 @@ body {
     visibility: visible;
 }
 
+/* ---More info section--- */
+
 .showHabit {
     visibility: visible;
-    position: fixed; 
+    position: fixed;    
 }
 
-#post{
-    width: 60vw;
-    margin-left: 20vw;
-    top: 25vh;
+#post{    
+    width: 70vw;
     background-color: var(--primary);
+    top: 10%;
+    left: 15vw;
 }
 
-#showButton {
+.infoPosition {
+    width: 75%;
+    margin-left: 11%;
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+.infoContent {    
+    border-bottom: 1px solid white;
+}
+
+
+#backBtn {
     top: 20px;
     left: 20px;
-    background-color:var(--secondary);
+    width: 10%;    
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;    
 }
+
+#backBtn:hover {
+    color: var(--secondary);
+    background-color: var(--tertiary);
+    border-color: var(--tertiary);
+    transition: 0.3s;
+}
+
+#infoHeader {
+    font-size: 35px;
+    text-shadow: 0.5px 0.2px var(--dark);
+}
+
+#infoDescription {
+    font-size: 20px;
+}
+
+#infoTrackerHeader {
+    font-size: 25px;
+}
+
+#infoTracker {
+    font-size: 20px;
+}
+
+#infoStreakHeader {
+    font-size: 25px;
+}
+
+#infoStreak {
+    font-size: 20px;
+}
+
+#btnDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.infoBtn {
+    width: 40%;    
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#increaseCountBtn {
+    margin-bottom: 5px;
+    background-color: var(--background);
+    color: green;
+    border-color: var(--background);
+}
+
+#increaseCountBtn:hover {
+    color: var(--background);
+    background-color: green;
+    border-color: green;
+    transition: 0.3s;
+}
+
+#deleteHabitBtn {
+    margin-top: 5px;
+    margin-bottom: 3px;
+    background-color: var(--background);
+    color: red;
+    border-color: var(--background);
+}
+
+#deleteHabitBtn:hover {
+    color: var(--background);
+    background-color: red;
+    border-color: red;
+    transition: 0.3s;
+}
+
 
 /* ---Portrait--- */
 
@@ -143,9 +244,21 @@ body {
         font-size: 15px;
     }
     
-    #post {
-        font-size: 12px;
+    #backBtn {
+        font-size: 15px;
+        width: 20%;
     }
+
+    .infoPosition {
+       padding-bottom: 2px;
+       padding-top: 1px;
+    }
+
+    .infoBtn {
+        font-size: 15px;
+        font-weight: 300;
+    }
+
 }
 
 /* ---Landscape--- */
@@ -170,4 +283,39 @@ body {
     #userpage-habits {
         width: 80vw;
     }
+
+    .hideClass{
+        margin: 0;
+    }
+
+    #backBtn {
+        font-size: 15px;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        z-index: 10;
+    }
+
+    .infoPosition {
+       padding-bottom: 2px;
+       padding-top: 1px;
+    }
+
+    .infoBtn {
+        font-size: 15px;
+        font-weight: 300;
+    }
+
+    #post {
+        top: 0;
+        height: 100vh;
+        left: 0;
+        width: 100%;
+    }
+
+    #btnDiv {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
 }

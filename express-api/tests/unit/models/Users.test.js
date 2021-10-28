@@ -11,7 +11,7 @@ describe('User', () => {
 
     describe('all', () => {
         test('it resolves with users on successful db query', async () => {
-            jest.spyOn(db, 'query')
+            jest.spyOn(db, 'find')
                 .mockResolvedValueOnce({ rows: [{}, {}, {}, {}]});
             const all = await User.all;
             expect(all).toHaveLength(4)

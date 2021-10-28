@@ -2,10 +2,11 @@ services:
   api:
     container_name: trabbit_test_api
     environment: 
-      - MONGO_INITDB_ROOT_USERNAME=trabbit
       - MONGO_INITDB_DATABASE=habits
       - MONGO_INITDB_ROOT_PASSWORD=corgie
       - NODE_ENV=test
+      - DB_NAME=habits
+      - DB_CONNECTION=mongodb://trabbit:corgie@db:27017
     depends_on:
       - db
     tty: true
@@ -14,6 +15,7 @@ services:
     volumes:
       - "test_db:/var/lib/mongodb/data"
     environment: 
+      - MONGO_INITDB_ROOT_USERNAME=trabbit
       - MONGO_INITDB_DATABASE=habits
       - MONGO_INITDB_ROOT_PASSWORD=corgie
 volumes:
