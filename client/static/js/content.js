@@ -10,7 +10,7 @@ let count=0;
 async function renderHabits(){
     try {
         console.log('renderHabits');
-        const habits = await getAllHabits();
+        const habits = await getUserHabits();
         console.log(habits.length); 
 
         for(var i=0;i< habits.length; i++){

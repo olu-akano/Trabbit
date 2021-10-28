@@ -1,5 +1,5 @@
-// const server = "http://localhost:3000";  // localhost server
-const server = "https://trabbit-server.herokuapp.com";  // heroku server
+const server = "http://localhost:3000";  // localhost server
+// const server = "https://trabbit-server.herokuapp.com";  // heroku server
 
 // Retrieve random inspirational quote
 async function getQuote(){
@@ -14,12 +14,13 @@ async function getQuote(){
 }
 
 // Get user's habits
-async function getAllHabits(){
+async function getUserHabits(){
     try {
+        const username = localStorage.getItem('username');
         const options = {
             headers: new Headers({'Authorization': localStorage.getItem('token')}),
         }
-        const r = await fetch(`${server}/habits`, options);
+        const r = await fetch(`${server}/habits/users/${username}`, options);
         const data = await r.json();
         console.log('data');
         console.log(data[0]);
