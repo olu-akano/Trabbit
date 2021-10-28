@@ -153,11 +153,33 @@ async function getPostById(givenData){
             await deleteHabit(data);
             goBack();
         })
+
+        async function deleteHabit(data){
+            try{
+                const options = {
+                method: "DELETE",
+                headers:new Headers({"Authorization":localStorage.getItem("token"),
+                                    "Content-Type":"application/json"}),
+                };
+                console.log(data.id);
+                
+                const updatedData=await fetch(`${server}/habits/${data.id}`, options);
+
+                goBack();
+                renderHabits();
+                location.reload();
+
+            }catch(err){
+                console.log(err);
+            }
+        }
+
         
         backButton.addEventListener('click', async () => {
             // Update server with new current_count and streak
             const newData = {"current_count": currentCount, "streak": streakData}
             await addActivityCount(newData, data.id);
+
             goBack();
         })
     
