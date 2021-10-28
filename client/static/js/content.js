@@ -188,11 +188,7 @@ async function getPostById(givenData){
                 };
                 console.log(data.id);
                 
-                const updatedData=await fetch(`http://localhost:3000/habits/${data.id}`, options);
-
-                // for(var i=0; i< data.length){
-
-                // }
+                const updatedData=await fetch(`${server}/habits/${data.id}`, options);
                 goBack();
                 renderHabits();
                 location.reload();
