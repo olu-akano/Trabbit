@@ -151,7 +151,7 @@ body {
 /* ---Landscape--- */
 
 /* Responsiveness for tablet */
-@media (orientation: landscape) {
+@media (orientation: landscape) and (max-height: 1000px) and (min-height: 600px) and (max-width: 1100px) {
     td {
         font-size: 20px;
     }  
@@ -162,5 +162,12 @@ body {
     
     .name-row, .more-info-btn, .emoji-row {
         width: 30%;
+    }
+}
+
+/* Responsiveness for phone */
+@media (orientation: landscape) and (max-width: 1000px) and (max-height: 600px) {   
+    #userpage-habits {
+        width: 80vw;
     }
 }
