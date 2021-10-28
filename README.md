@@ -38,5 +38,9 @@ The website was deployed using Netlify for the client and Heroku for the server(
 - Excellent work flow from the team
 - The team was able to build a functional web app
 
+# Challenges
+- Deploying the database
+- Integration testing 
+
 # Licence
 - [MIT Licence](https://opensource.org/licenses/mit-license.php)
