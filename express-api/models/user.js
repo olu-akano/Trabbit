@@ -6,7 +6,6 @@ class User {
         this.email=data.email;
         this.username = data.username;
         this.password_digest = data.password_digest;
-        //add any other variables a user has later
     }
 
     static get all() {
@@ -22,7 +21,6 @@ class User {
             }
         })
     }
-
 
     static create(data){
         return new Promise (async (resolve, reject) => {

@@ -9,7 +9,6 @@ const jwt = require("jsonwebtoken");
 const User = require('../models/user');
 
 // register route
-
 router.post('/register', async (req, res) => {
     try {
         const user = await User.findByEmail(req.body.email);
@@ -25,7 +24,6 @@ router.post('/register', async (req, res) => {
 })
 
 // login route
-
 router.post('/login', async (req, res) => {
     try {
         const user = await User.findByEmail(req.body.email)
@@ -51,4 +49,3 @@ router.post('/login', async (req, res) => {
 })
 
 module.exports = router;
-

@@ -5,17 +5,7 @@ async function requestLogin(e){
         const password = e.target.password.value;
         const loginData = { email, password };
         // Make request to server
-        const options = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(loginData)
-        }
-        const r = await fetch(`${server}/auth/login`, options);
-        if (r.status === 403){ 
-            window.alert("Invalid login");
-            throw new Error('Login not authorised');
-        };
-        const data = await r.json();
+        const data = await userLogin(loginData);
         if (data.err){ throw new Error(data.err) }
         // Log user in
         login(data.token);
@@ -32,17 +22,7 @@ async function requestRegistration(e){
         const password = e.target.password.value;
         const regData = { username, email, password };
         // Make request to server
-        const options = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(regData)
-        }
-        const r = await fetch(`${server}/auth/register`, options);
-        if(r.status === 403){
-            window.alert("Email already has an account!");
-            throw new Error('Registration not authorised');
-        };
-        const data = await r.json();
+        const data = await userRegistration(regData);
         if (data.err){ throw new Error(data.err) }
         requestLogin(e);
     } catch(err) {
