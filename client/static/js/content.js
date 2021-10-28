@@ -7,10 +7,16 @@ const checkIds=[];
 const checkDatas=[];
 let count=0;
 
+function welcomeUser(){
+    const username = localStorage.getItem('username');
+    const welcome = document.getElementById('welcome');
+    welcome.textContent = `Welcome to your Profile, ${username}!`;
+}
+
 async function renderHabits(){
     try {
         console.log('renderHabits');
-        const habits = await getAllHabits();
+        const habits = await getUserHabits();
         console.log(habits.length); 
 
         for(var i=0;i< habits.length; i++){
@@ -65,11 +71,7 @@ async function render(data){
     } 
 }
 
-renderHabits();
-
 async function getPostById(givenData){
-
-
     const sec=document.getElementById('activity');
     const section=document.createElement('section');
     const newHabitName=document.createElement('h2');
@@ -84,7 +86,7 @@ async function getPostById(givenData){
         method: 'GET',
         headers:new Headers( { 'Authorization': localStorage.getItem('token') }),
     };
-    await fetch(`http://localhost:3000/habits/${givenData.id}`, options)
+    await fetch(`${server}/habits/${givenData.id}`, options)
         .then(d => d.json())
         .then(data => postHabit(data))
 
@@ -148,7 +150,7 @@ async function getPostById(givenData){
                 };
 
                 console.log(localStorage.getItem('token'))
-                const updatedData=await fetch(`http://localhost:3000/habits/${data.id}`, options)
+                const updatedData=await fetch(`${server}/habits/${data.id}`, options)
                 const updatedDataJson=await updatedData.json();
                 console.log(updatedDataJson);
             }
@@ -183,10 +185,6 @@ async function getPostById(givenData){
     }  
 }
 
-
-
-
-
-
-// When page is loaded, render habits
-// window.onload = renderHabits
+// Run functions on page load
+welcomeUser();
+renderHabits();

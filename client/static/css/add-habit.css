@@ -58,4 +58,8 @@ textarea {
     #new-habit-main {
         font-size: 20px;
     }
+
+    #new-habit-description {
+        font-size: 15px;
+    }
 }

@@ -1,3 +1,6 @@
+const server = "http://localhost:3000";  // localhost server
+// const server = "https://trabbit-server.herokuapp.com";  // heroku server
+
 // Retrieve random inspirational quote
 async function getQuote(){
     try {
@@ -11,12 +14,13 @@ async function getQuote(){
 }
 
 // Get user's habits
-async function getAllHabits(){
+async function getUserHabits(){
     try {
+        const username = localStorage.getItem('username');
         const options = {
             headers: new Headers({'Authorization': localStorage.getItem('token')}),
         }
-        const r = await fetch('http://localhost:3000/habits', options);
+        const r = await fetch(`${server}/habits/users/${username}`, options);
         const data = await r.json();
         console.log('data');
         console.log(data[0]);
@@ -56,8 +60,8 @@ async function addNewHabit(e) {
             headers: { "Content-Type": "application/json", "Authorization": localStorage.getItem('token') },
             body: JSON.stringify(newHabit)
         };
-        await fetch('http://localhost:3000/habits', options);
-        console.alert('New habit added!')
+        await fetch(`${server}/habits`, options);
+        window.alert('New habit added!')
 
     } catch(err) {
         console.warn('The error is:', err)
