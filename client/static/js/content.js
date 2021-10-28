@@ -20,6 +20,8 @@ async function renderHabits(){
         console.log('renderHabits');
         const habits = await getUserHabits();
         console.log(habits.length); 
+        // Clear any old renders
+        table.innerHTML = "";
 
         for(var i=0;i< habits.length; i++){
             render(habits[i])
@@ -83,14 +85,9 @@ async function getPostById(givenData){
     const streakCount=document.createElement('h2');
     const addCount=document.createElement('button');
     const deleteButton=document.createElement('button');
-
-    const options = {
-        method: 'GET',
-        headers:new Headers( { 'Authorization': localStorage.getItem('token') }),
-    };
-    await fetch(`${server}/habits/${givenData.id}`, options)
-        .then(d => d.json())
-        .then(data => postHabit(data))
+    
+    const habit = await getHabit(givenData.id);
+    postHabit(habit)
 
     function postHabit(data){
     
@@ -140,27 +137,6 @@ async function getPostById(givenData){
         section.append(line);
         section.append(deleteButton);
         sec.append(section);
-
-
-        async function addActivityCount(data, id) {
-            try{
-                const options = {
-                    method: "PATCH",
-                    headers:new Headers({"Authorization":localStorage.getItem("token"),
-                                        "Content-Type":"application/json"}),
-                    body:JSON.stringify(data)
-                };
-
-                console.log(localStorage.getItem('token'))
-                const updatedData=await fetch(`${server}/habits/${id}`, options)
-                const updatedDataJson=await updatedData.json();
-                console.log(updatedDataJson);
-            }
-            catch(err){
-                console.log(err);
-            }
-            
-        };
        
         addCount.addEventListener('click', () => {
             currentCount++;
@@ -170,13 +146,12 @@ async function getPostById(givenData){
                 streakCount.textContent = streakData;
             }
             taskCount.textContent=`${currentCount} of ${data.frequency}`;
-            const newData = {"current_count": currentCount, "streak": streakData}
-            addActivityCount(newData, data.id);
         })
-
-
-        deleteButton.addEventListener('click', () => {
-            deleteHabit(data);
+        
+        
+        deleteButton.addEventListener('click', async () => {
+            await deleteHabit(data);
+            goBack();
         })
 
         async function deleteHabit(data){
@@ -190,9 +165,6 @@ async function getPostById(givenData){
                 
                 const updatedData=await fetch(`${server}/habits/${data.id}`, options);
 
-                // for(var i=0; i< data.length){
-
-                // }
                 goBack();
                 renderHabits();
                 location.reload();
@@ -201,9 +173,13 @@ async function getPostById(givenData){
                 console.log(err);
             }
         }
-    
-    
-        backButton.addEventListener('click',() => {
+
+        
+        backButton.addEventListener('click', async () => {
+            // Update server with new current_count and streak
+            const newData = {"current_count": currentCount, "streak": streakData}
+            await addActivityCount(newData, data.id);
+
             goBack();
         })
     
@@ -211,6 +187,7 @@ async function getPostById(givenData){
             section.className='hideClass';
             backButton.className='hideClass';
             classOverview.className='showClass';
+            renderHabits();
         }
     }  
 }
