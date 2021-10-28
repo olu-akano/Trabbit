@@ -68,8 +68,6 @@ async function render(data){
 renderHabits();
 
 async function getPostById(givenData){
-
-
     const sec=document.getElementById('activity');
     const section=document.createElement('section');
     const newHabitName=document.createElement('h2');
@@ -84,7 +82,7 @@ async function getPostById(givenData){
         method: 'GET',
         headers:new Headers( { 'Authorization': localStorage.getItem('token') }),
     };
-    await fetch(`http://localhost:3000/habits/${givenData.id}`, options)
+    await fetch(`${server}/habits/${givenData.id}`, options)
         .then(d => d.json())
         .then(data => postHabit(data))
 
@@ -142,7 +140,7 @@ async function getPostById(givenData){
                     body:JSON.stringify(v)
                 };
               
-                const updatedData=await fetch(`http://localhost:3000/habits/${data.id}`, options)
+                const updatedData=await fetch(`${server}/habits/${data.id}`, options)
                 const updatedDataJson=await updatedData.json();
                 console.log(updatedDataJson);
             }
@@ -176,9 +174,3 @@ async function getPostById(givenData){
 
    
 }
-
-
-
-
-// When page is loaded, render habits
-// window.onload = renderHabits
