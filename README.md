@@ -13,7 +13,7 @@ Trabbit is our LAP 2 Group Project for beth-appreciation-channel. It is a habit 
 - MongoDB
 - Bcrypt
 
-The website was deployed using Netlify for the client and Heroku for the server(the website is deployed [here](https://trabbit-server.herokuapp.com/)).
+The website was deployed using Netlify for the client and Heroku for the server (the website is deployed [here](https://trabbit-server.herokuapp.com/)).
 
 # Installation and Usage
 ## Prerequisites
