@@ -1,5 +1,5 @@
-// const server = "http://localhost:3000";  // localhost server
-const server = "https://trabbit-server.herokuapp.com";  // heroku server
+const server = "http://localhost:3000";  // localhost server
+// const server = "https://trabbit-server.herokuapp.com";  // heroku server
 const username = localStorage.getItem('username');
 
 // Retrieve random inspirational quote
@@ -34,7 +34,22 @@ async function getUserHabits(){
     }
 }
 
-//Post user's new habit
+// Get habit by id
+async function getHabit(id){
+    try {
+        const options = {
+            method: 'GET',
+            headers:new Headers( { 'Authorization': localStorage.getItem('token') }),
+        };
+        const r = await fetch(`${server}/habits/${id}`, options);
+        const habit = await r.json()
+        return habit;
+    } catch (err) {
+        console.warn(`Could not retrieve habit: ${err}`);
+    }
+}
+
+// Post user's new habit
 async function addNewHabit(e) {
     e.preventDefault();
     try {
@@ -69,3 +84,39 @@ async function addNewHabit(e) {
         console.warn('The error is:', err)
     }
 }
+
+// Delete habit
+async function deleteHabit(data){
+    try{
+        const options = {
+            method: "DELETE",
+            headers:new Headers({"Authorization":localStorage.getItem("token"),
+            "Content-Type":"application/json"}),
+        };
+        console.log(data.id);
+        
+        await fetch(`${server}/habits/${data.id}`, options);
+    }catch(err){
+        console.log(err);
+    }
+}
+
+// Update habit counter data
+async function addActivityCount(data, id) {
+    try{
+        const options = {
+            method: "PATCH",
+            headers:new Headers({"Authorization":localStorage.getItem("token"),
+                                "Content-Type":"application/json"}),
+            body:JSON.stringify(data)
+        };
+
+        console.log(localStorage.getItem('token'))
+        const updatedData=await fetch(`${server}/habits/${id}`, options)
+        const updatedDataJson=await updatedData.json();
+        console.log(updatedDataJson);
+    }
+    catch(err){
+        console.log(err);
+    }
+};
