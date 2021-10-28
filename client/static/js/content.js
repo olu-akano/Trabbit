@@ -136,14 +136,20 @@ async function getPostById(givenData){
 
         async function addActivityCount(data) {
             try{
-                    const v={"current_count": ++data.current_count,"streak": data.streak};
+                    data.current_count++;
+                    if(data.current_count === data.frequency){
+                        data.current_count = 0
+                        data.streak++
+                    }
+                    const v={"current_count": data.current_count,"streak": data.streak};
                     const options = {
                     method: "PATCH",
                     headers:new Headers({"Authorization":localStorage.getItem("token"),
                                         "Content-Type":"application/json"}),
                     body:JSON.stringify(v)
                 };
-              
+
+                console.log(localStorage.getItem('token'))
                 const updatedData=await fetch(`${server}/habits/${data.id}`, options)
                 const updatedDataJson=await updatedData.json();
                 console.log(updatedDataJson);
@@ -158,6 +164,11 @@ async function getPostById(givenData){
 
             addActivityCount(data);
             currentCount++;
+            if (currentCount == data.frequency) {
+                currentCount = 0;
+                let streakData = data.streak
+                strakCount.textContent = streakData;
+            }
             taskCount.textContent=`${currentCount} of ${data.frequency}`;
         })
     
