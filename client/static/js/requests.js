@@ -1,5 +1,6 @@
 const server = "http://localhost:3000";  // localhost server
 // const server = "https://trabbit-server.herokuapp.com";  // heroku server
+const username = localStorage.getItem('username');
 
 // Retrieve random inspirational quote
 async function getQuote(){
@@ -16,14 +17,13 @@ async function getQuote(){
 // Get user's habits
 async function getUserHabits(){
     try {
-        const username = localStorage.getItem('username');
         const options = {
             headers: new Headers({'Authorization': localStorage.getItem('token')}),
         }
         const r = await fetch(`${server}/habits/users/${username}`, options);
         const data = await r.json();
         console.log('data');
-        console.log(data[0]);
+        console.log(data);
         if(data.err){
             console.warn(data.err);
             logout();
@@ -34,7 +34,22 @@ async function getUserHabits(){
     }
 }
 
-//Post user's new habit
+// Get habit by id
+async function getHabit(id){
+    try {
+        const options = {
+            method: 'GET',
+            headers:new Headers( { 'Authorization': localStorage.getItem('token') }),
+        };
+        const r = await fetch(`${server}/habits/${id}`, options);
+        const habit = await r.json()
+        return habit;
+    } catch (err) {
+        console.warn(`Could not retrieve habit: ${err}`);
+    }
+}
+
+// Post user's new habit
 async function addNewHabit(e) {
     e.preventDefault();
     try {
@@ -48,22 +63,60 @@ async function addNewHabit(e) {
         }
 
         newHabit = {
+            username: username,
             habitname: habit,
-            frequency: e.target[4].value,
+            description: e.target[5].value,
             current_count: 0,
-            streak: 0,
-            description: e.target[5].value
+            frequency: parseInt(e.target[4].value),
+            streak: 0
         };
-        console.log(newHabit);
         const options = {
             method: 'POST',
             headers: { "Content-Type": "application/json", "Authorization": localStorage.getItem('token') },
             body: JSON.stringify(newHabit)
         };
-        await fetch(`${server}/habits`, options);
-        window.alert('New habit added!')
-
+        const r = await fetch(`${server}/habits`, options);
+        const addedHabit = await r.json();
+        console.log(addedHabit);
+        window.alert('New habit added!');
+        location.reload();
     } catch(err) {
         console.warn('The error is:', err)
     }
 }
+
+// Delete habit
+async function deleteHabit(data){
+    try{
+        const options = {
+            method: "DELETE",
+            headers:new Headers({"Authorization":localStorage.getItem("token"),
+            "Content-Type":"application/json"}),
+        };
+        console.log(data.id);
+        
+        await fetch(`${server}/habits/${data.id}`, options);
+    }catch(err){
+        console.log(err);
+    }
+}
+
+// Update habit counter data
+async function addActivityCount(data, id) {
+    try{
+        const options = {
+            method: "PATCH",
+            headers:new Headers({"Authorization":localStorage.getItem("token"),
+                                "Content-Type":"application/json"}),
+            body:JSON.stringify(data)
+        };
+
+        console.log(localStorage.getItem('token'))
+        const updatedData=await fetch(`${server}/habits/${id}`, options)
+        const updatedDataJson=await updatedData.json();
+        console.log(updatedDataJson);
+    }
+    catch(err){
+        console.log(err);
+    }
+};

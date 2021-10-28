@@ -100,6 +100,8 @@ body {
     background-color:var(--secondary);
 }
 
+/* ---Portrait--- */
+
 /* Responsiveness for tablet */
 @media (max-width: 1000px) and (min-width: 530px) and (max-height: 1100px) {    
     td {
@@ -113,7 +115,6 @@ body {
     .name-row, .more-info-btn, .emoji-row {
         width: 30%;
     }
-
 }
 
 /* Responsiveness for phone */
@@ -144,5 +145,29 @@ body {
     
     #post {
         font-size: 12px;
+    }
+}
+
+/* ---Landscape--- */
+
+/* Responsiveness for tablet */
+@media (orientation: landscape) and (max-height: 1000px) and (min-height: 600px) and (max-width: 1100px) {
+    td {
+        font-size: 20px;
+    }  
+    
+    .habit {
+        height: 100px;
+    }  
+    
+    .name-row, .more-info-btn, .emoji-row {
+        width: 30%;
+    }
+}
+
+/* Responsiveness for phone */
+@media (orientation: landscape) and (max-width: 1000px) and (max-height: 600px) {   
+    #userpage-habits {
+        width: 80vw;
     }
 }

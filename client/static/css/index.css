@@ -217,6 +217,8 @@ button:disabled {
 } 
 
 
+/* ---Portrait--- */
+
 /* Responsiveness for tablet */
 @media (max-width: 1000px) and (min-width: 600px) and (max-height: 1100px) {
     body {
@@ -250,6 +252,7 @@ button:disabled {
 @media (max-width: 600px) and (max-height: 1000px) {     
     body {
         background-size: initial;
+        background-position-y: initial;
     }
 
     #trabbitHeading {
@@ -258,14 +261,6 @@ button:disabled {
 
     #welcomeHeading {
         font-size: 35px;
-    }
-
-    .quote-text {
-        font-size: 40px;
-    }
-
-    .quote-author {
-        font-size: 20px;
     }
 
     .split {
@@ -279,8 +274,6 @@ button:disabled {
 
     .right {
         display: none;
-        position: fixed;
-        bottom: 0;
     }
 
     #signupModal {
@@ -301,4 +294,75 @@ button:disabled {
     .form-heading {
         display: none;
     }
+}
+
+/* ---Landscape--- */
+
+/* Responsiveness for tablet */
+@media (orientation: landscape) and (max-height: 1000px) and (min-height: 600px) and (max-width: 1100px) {
+    body {
+        background-size: initial;
+    }
+
+    #trabbitHeading {
+        font-size: 40px;
+    }
+
+    #welcomeHeading {
+        font-size: 35px;
+    }
+
+    .quote-text {
+        font-size: 40px;
+    }
+
+    .quote-author {
+        font-size: 20px;
+    }
+
+    #signupModal {
+        background-color: rgba(0,0,0,0.5);
+        height: 100%;
+        width: 100%;
+    }
+}
+
+/* Responsiveness for phone */
+@media (orientation: landscape) and (max-width: 1000px) and (max-height: 600px) {
+    body {
+        background-size: initial;
+        background-position-y: center;
+    }
+
+    #trabbitHeading {
+        font-size: 30px;
+    }
+
+    #welcomeHeading {
+        font-size: 25px;
+        margin-left: 20px;
+    }
+
+    .quote-text {
+        font-size: 30px;
+    }
+
+    .quote-author {
+        font-size: 15px;
+    }
+
+    #signupModal {
+        background-color: rgba(0,0,0,0.5);
+        height: 100%;
+        width: 100%;
+    }
+
+    #closeModal {
+        font-size: 20px;
+    }
+
+    #signupContent {
+        width: 75%;
+        font-size: 20px;
+    }    
 }

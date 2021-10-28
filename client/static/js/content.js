@@ -1,5 +1,7 @@
 const classOverview=document.getElementById("classOverview");
 const header=document.querySelector("header");
+const table=document.getElementById('habits-textcontent');
+const line=document.createElement('br');
 
 const backButton=document.createElement('button');
 
@@ -18,6 +20,8 @@ async function renderHabits(){
         console.log('renderHabits');
         const habits = await getUserHabits();
         console.log(habits.length); 
+        // Clear any old renders
+        table.innerHTML = "";
 
         for(var i=0;i< habits.length; i++){
             render(habits[i])
@@ -30,7 +34,6 @@ async function renderHabits(){
 
 async function render(data){
 
-    const table=document.getElementById('habits-textcontent');
     const tableRow=document.createElement('tr');
     tableRow.className="habit";
     const tableData_1=document.createElement('td');
@@ -79,20 +82,17 @@ async function getPostById(givenData){
     const taskSitiuation=document.createElement('h2');
     const taskCount=document.createElement('h2');
     const newStrak=document.createElement('h2');
-    const strakCount=document.createElement('h2');
+    const streakCount=document.createElement('h2');
     const addCount=document.createElement('button');
-
-    const options = {
-        method: 'GET',
-        headers:new Headers( { 'Authorization': localStorage.getItem('token') }),
-    };
-    await fetch(`${server}/habits/${givenData.id}`, options)
-        .then(d => d.json())
-        .then(data => postHabit(data))
+    const deleteButton=document.createElement('button');
+    
+    const habit = await getHabit(givenData.id);
+    postHabit(habit)
 
     function postHabit(data){
     
         let currentCount=data.current_count;
+        let streakData = data.streak;
     
         newHabitName.textContent=`Your ${data.habitname} activity information`;
         if(data.description){
@@ -101,16 +101,16 @@ async function getPostById(givenData){
         taskSitiuation.textContent=`Task situation `;
         taskCount.textContent=`${currentCount} of ${data.frequency}`;
         newStrak.textContent=`Streak`;
-        strakCount.textContent=data.streak;
+        streakCount.textContent=data.streak;
     
         newHabitName.style.textAlign='center';
         taskSitiuation.style.textAlign='center';
         description.style.textAlign='center';
         taskCount.style.textAlign='center';
         newStrak.style.textAlign='center';
-        strakCount.style.textAlign='center';
-        addCount.style.textAlign='center';
-        addCount.style.transform='translateX(27vw)';
+        streakCount.style.textAlign='center';
+        addCount.style.transform='translateX(26vw)';
+        deleteButton.style.transform='translateX(27vw)';
         
         section.id='post'
         section.className='showHabit';
@@ -122,6 +122,9 @@ async function getPostById(givenData){
     
         addCount.type='submit';
         addCount.textContent="Add count";
+        deleteButton.type='submit';
+        deleteButton.textContent="Delete";
+        // deleteButton.style.marginLeft="0";
     
         section.append(backButton);
         section.append(newHabitName);
@@ -129,51 +132,54 @@ async function getPostById(givenData){
         section.append(taskSitiuation);
         section.append(taskCount);
         section.append(newStrak);
-        section.append(strakCount);
+        section.append(streakCount);
         section.append(addCount);
+        section.append(line);
+        section.append(deleteButton);
         sec.append(section);
-
-
-        async function addActivityCount(data) {
-            try{
-                    data.current_count++;
-                    if(data.current_count === data.frequency){
-                        data.current_count = 0
-                        data.streak++
-                    }
-                    const v={"current_count": data.current_count,"streak": data.streak};
-                    const options = {
-                    method: "PATCH",
-                    headers:new Headers({"Authorization":localStorage.getItem("token"),
-                                        "Content-Type":"application/json"}),
-                    body:JSON.stringify(v)
-                };
-
-                console.log(localStorage.getItem('token'))
-                const updatedData=await fetch(`${server}/habits/${data.id}`, options)
-                const updatedDataJson=await updatedData.json();
-                console.log(updatedDataJson);
-            }
-            catch(err){
-                console.log(err);
-            }
-            
-        };
        
         addCount.addEventListener('click', () => {
-
-            addActivityCount(data);
             currentCount++;
-            if (currentCount == data.frequency) {
+            if (currentCount === data.frequency) {
                 currentCount = 0;
-                let streakData = data.streak
-                strakCount.textContent = streakData;
+                streakData++
+                streakCount.textContent = streakData;
             }
             taskCount.textContent=`${currentCount} of ${data.frequency}`;
         })
-    
-    
-        backButton.addEventListener('click',() => {
+        
+        
+        deleteButton.addEventListener('click', async () => {
+            await deleteHabit(data);
+            goBack();
+        })
+
+        async function deleteHabit(data){
+            try{
+                const options = {
+                method: "DELETE",
+                headers:new Headers({"Authorization":localStorage.getItem("token"),
+                                    "Content-Type":"application/json"}),
+                };
+                console.log(data.id);
+                
+                const updatedData=await fetch(`${server}/habits/${data.id}`, options);
+
+                goBack();
+                renderHabits();
+                location.reload();
+
+            }catch(err){
+                console.log(err);
+            }
+        }
+
+        
+        backButton.addEventListener('click', async () => {
+            // Update server with new current_count and streak
+            const newData = {"current_count": currentCount, "streak": streakData}
+            await addActivityCount(newData, data.id);
+
             goBack();
         })
     
@@ -181,6 +187,7 @@ async function getPostById(givenData){
             section.className='hideClass';
             backButton.className='hideClass';
             classOverview.className='showClass';
+            renderHabits();
         }
     }  
 }

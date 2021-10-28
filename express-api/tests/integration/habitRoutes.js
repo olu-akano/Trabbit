@@ -39,8 +39,8 @@ describe ('habit endpoints', () => {
             .delete('/habits/1')
         expect(res.statusCode).toEqual(204);
 
-        const bookRes = await request(api).get('/habits/1');
-        expect(bookRes.statusCode).toEqual(404);
-        expect(bookRes.body).toHaveProperty('err');
+        const habitRes = await request(api).get('/habits/1');
+        expect(habitRes.statusCode).toEqual(404);
+        expect(habitRes.body).toHaveProperty('err');
     }); 
 })
