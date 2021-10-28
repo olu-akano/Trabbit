@@ -219,6 +219,10 @@ button:disabled {
 
 /* Responsiveness for tablet */
 @media (max-width: 1000px) and (min-width: 600px) and (max-height: 1100px) {
+    body {
+        background-size: initial;
+    }
+
     #trabbitHeading {
         font-size: 40px;
     }
@@ -244,6 +248,10 @@ button:disabled {
 
 /* Responsiveness for phone */
 @media (max-width: 600px) and (max-height: 1000px) {     
+    body {
+        background-size: initial;
+    }
+
     #trabbitHeading {
         font-size: 40px;
     }
