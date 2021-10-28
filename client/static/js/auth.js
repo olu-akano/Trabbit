@@ -10,7 +10,7 @@ async function requestLogin(e){
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(loginData)
         }
-        const r = await fetch('http://localhost:3000/auth/login', options);
+        const r = await fetch(`${server}/auth/login`, options);
         const data = await r.json();
         if (!data.success){ throw new Error('Login not authorised'); };
         if (data.err){ throw new Error(data.err) }
@@ -34,7 +34,7 @@ async function requestRegistration(e){
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(regData)
         }
-        const r = await fetch('http://localhost:3000/auth/register', options);
+        const r = await fetch(`${server}/auth/register`, options);
         const data = await r.json();
         if (data.err){ throw new Error(data.err) }
         requestLogin(e);
