@@ -72,3 +72,16 @@ countChars = (div) => {
 const form = document.getElementById('habit-form');
 
 form.addEventListener('submit', addNewHabit)
+
+
+///---On load reset the selectors to their defaults---\\\
+window.onload = resetValues;
+
+function resetValues() {
+    categorySelector.value = "";
+    exercise.value = "";
+    diet.value = "";
+    hobby.value = "";
+    frequency.value = "";
+    description.value = "";
+}
