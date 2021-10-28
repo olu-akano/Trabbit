@@ -149,4 +149,30 @@ a:hover{
     }
 }
 
-/* (max-width: 1200) and (max-height: 1200) */
+/* Responsiveness for phone */
+@media (orientation: landscape) and (max-width: 1000px) and (max-height: 600px) {
+    li {
+        font-size: 35px;
+        text-align: center;
+    }
+
+    .navbar {
+        bottom: 0;
+        width: 100vw;
+        padding: 0;
+    }    
+
+    .nav-btn {
+        bottom: 0;
+    }
+
+    #hidden-userpage-nav {
+        transform: translateY(100%);
+    }
+
+    .btn {
+        font-size: 25px;
+        width: 57px;
+        overflow: hidden;
+    }     
+}
