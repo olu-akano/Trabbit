@@ -16,6 +16,7 @@ body {
     background-image: url(../images/background.webp);
     background-position-x: center;
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /*---- Split the page ----*/
@@ -214,3 +215,123 @@ button:disabled {
     text-decoration: none;
     cursor: pointer;
 } 
+
+
+/* ---Portrait--- */
+
+/* Responsiveness for tablet */
+@media (max-width: 1000px) and (min-width: 600px) and (max-height: 1100px) {
+    body {
+        background-size: initial;
+    }
+
+    #trabbitHeading {
+        font-size: 40px;
+    }
+
+    #welcomeHeading {
+        font-size: 35px;
+    }
+
+    .quote-text {
+        font-size: 40px;
+    }
+
+    .quote-author {
+        font-size: 20px;
+    }
+
+    #signupModal {
+        background-color: rgba(0,0,0,0.5);
+        height: 100%;
+        width: 100%;
+    }
+}
+
+/* Responsiveness for phone */
+@media (max-width: 600px) and (max-height: 1000px) {     
+    body {
+        background-size: initial;
+    }
+
+    #trabbitHeading {
+        font-size: 40px;
+    }
+
+    #welcomeHeading {
+        font-size: 35px;
+    }
+
+    .quote-text {
+        font-size: 40px;
+    }
+
+    .quote-author {
+        font-size: 20px;
+    }
+
+    .split {
+        width: 100%;
+    }
+
+    #welcomeContainer {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .right {
+        display: none;
+        position: fixed;
+        bottom: 0;
+    }
+
+    #signupModal {
+        background-color: rgba(0,0,0,0.5);
+        height: 100%;
+        width: 100%;
+    }
+
+    #closeModal {
+        font-size: 20px;
+    }
+
+    #signupContent {
+        width: 75%;
+        font-size: 20px;
+    }
+
+    .form-heading {
+        display: none;
+    }
+}
+
+/* ---Landscape--- */
+
+/* Responsiveness for tablet */
+@media (orientation: landscape) {
+    body {
+        background-size: initial;
+    }
+
+    #trabbitHeading {
+        font-size: 40px;
+    }
+
+    #welcomeHeading {
+        font-size: 35px;
+    }
+
+    .quote-text {
+        font-size: 40px;
+    }
+
+    .quote-author {
+        font-size: 20px;
+    }
+
+    #signupModal {
+        background-color: rgba(0,0,0,0.5);
+        height: 100%;
+        width: 100%;
+    }
+}

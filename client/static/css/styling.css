@@ -65,6 +65,11 @@ a:hover{
     color: white;
 }
 
+.center-flex-container {
+    display: flex;
+    justify-content: center;
+}
+
 .header {
     text-align: center;
     color: var(--primary);
@@ -92,6 +97,7 @@ a:hover{
     transition: 0.3s;
 }
 
+/* ---Portrait--- */
 
 /* Responsiveness for tablet */
 @media (max-width: 1000px) and (min-width: 530px) and (max-height: 1100px) {
@@ -132,3 +138,15 @@ a:hover{
         overflow: hidden;
     }    
 }
+
+/* ---Landscape--- */
+
+/* Responsiveness for tablet */
+@media (orientation: landscape) {
+    .btn {
+        width: 175px;
+        font-size: 17px;
+    }
+}
+
+/* (max-width: 1200) and (max-height: 1200) */

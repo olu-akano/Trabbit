@@ -100,6 +100,8 @@ body {
     background-color:var(--secondary);
 }
 
+/* ---Portrait--- */
+
 /* Responsiveness for tablet */
 @media (max-width: 1000px) and (min-width: 530px) and (max-height: 1100px) {    
     td {
@@ -113,7 +115,6 @@ body {
     .name-row, .more-info-btn, .emoji-row {
         width: 30%;
     }
-
 }
 
 /* Responsiveness for phone */
@@ -139,6 +140,27 @@ body {
     } 
 
     #new-habit-btn {
-        
+        font-size: 15px;
+    }
+    
+    #post {
+        font-size: 12px;
+    }
+}
+
+/* ---Landscape--- */
+
+/* Responsiveness for tablet */
+@media (orientation: landscape) {
+    td {
+        font-size: 20px;
     }  
+    
+    .habit {
+        height: 100px;
+    }  
+    
+    .name-row, .more-info-btn, .emoji-row {
+        width: 30%;
+    }
 }
