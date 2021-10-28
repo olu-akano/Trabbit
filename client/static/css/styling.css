@@ -140,6 +140,8 @@ a:hover{
 }
 
 /* ---Landscape--- */
+
+/* Responsiveness for tablet */
 @media (orientation: landscape) {
     .btn {
         width: 175px;

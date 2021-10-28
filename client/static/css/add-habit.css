@@ -46,6 +46,8 @@ textarea {
     outline: none;
 }
 
+/* ---Portrait--- */
+
 /* Responsiveness for tablet */
 @media (max-width: 1000px) and (min-width: 530px) and (max-height: 1100px) {
     #new-habit-main {
@@ -61,5 +63,14 @@ textarea {
 
     #new-habit-description {
         font-size: 15px;
+    }
+}
+
+/* ---Landscape--- */
+
+/* Responsiveness for tablet */
+@media (orientation: landscape) {
+    #new-habit-main {
+        font-size: 20px;
     }
 }
