@@ -107,6 +107,7 @@ body {
     width: 75%;
     margin-left: 11%;
     padding-top: 15px;
+    padding-bottom: 5px;
 }
 
 .infoContent {    
@@ -245,9 +246,21 @@ body {
         font-size: 15px;
     }
     
-    #post {
-        font-size: 12px;
+    #backBtn {
+        font-size: 15px;
+        width: 20%;
     }
+
+    .infoPosition {
+       padding-bottom: 2px;
+       padding-top: 1px;
+    }
+
+    .infoBtn {
+        font-size: 15px;
+        font-weight: 300;
+    }
+
 }
 
 /* ---Landscape--- */
