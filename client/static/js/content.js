@@ -80,7 +80,7 @@ async function getPostById(givenData){
     const taskSitiuation=document.createElement('h2');
     const taskCount=document.createElement('h2');
     const newStrak=document.createElement('h2');
-    const strakCount=document.createElement('h2');
+    const streakCount=document.createElement('h2');
     const addCount=document.createElement('button');
     const deleteButton=document.createElement('button');
 
@@ -95,6 +95,7 @@ async function getPostById(givenData){
     function postHabit(data){
     
         let currentCount=data.current_count;
+        let streakData = data.streak;
     
         newHabitName.textContent=`Your ${data.habitname} activity information`;
         if(data.description){
@@ -103,14 +104,14 @@ async function getPostById(givenData){
         taskSitiuation.textContent=`Task situation `;
         taskCount.textContent=`${currentCount} of ${data.frequency}`;
         newStrak.textContent=`Streak`;
-        strakCount.textContent=data.streak;
+        streakCount.textContent=data.streak;
     
         newHabitName.style.textAlign='center';
         taskSitiuation.style.textAlign='center';
         description.style.textAlign='center';
         taskCount.style.textAlign='center';
         newStrak.style.textAlign='center';
-        strakCount.style.textAlign='center';
+        streakCount.style.textAlign='center';
         addCount.style.transform='translateX(26vw)';
         deleteButton.style.transform='translateX(27vw)';
         
@@ -134,30 +135,24 @@ async function getPostById(givenData){
         section.append(taskSitiuation);
         section.append(taskCount);
         section.append(newStrak);
-        section.append(strakCount);
+        section.append(streakCount);
         section.append(addCount);
         section.append(line);
         section.append(deleteButton);
         sec.append(section);
 
 
-        async function addActivityCount(data) {
+        async function addActivityCount(data, id) {
             try{
-                    data.current_count++;
-                    if(data.current_count === data.frequency){
-                        data.current_count = 0
-                        data.streak++
-                    }
-                    const v={"current_count": data.current_count,"streak": data.streak};
-                    const options = {
+                const options = {
                     method: "PATCH",
                     headers:new Headers({"Authorization":localStorage.getItem("token"),
                                         "Content-Type":"application/json"}),
-                    body:JSON.stringify(v)
+                    body:JSON.stringify(data)
                 };
 
                 console.log(localStorage.getItem('token'))
-                const updatedData=await fetch(`${server}/habits/${data.id}`, options)
+                const updatedData=await fetch(`${server}/habits/${id}`, options)
                 const updatedDataJson=await updatedData.json();
                 console.log(updatedDataJson);
             }
@@ -168,14 +163,15 @@ async function getPostById(givenData){
         };
        
         addCount.addEventListener('click', () => {
-            addActivityCount(data);
             currentCount++;
-            if (currentCount == data.frequency) {
+            if (currentCount === data.frequency) {
                 currentCount = 0;
-                let streakData = data.streak
-                strakCount.textContent = streakData;
+                streakData++
+                streakCount.textContent = streakData;
             }
             taskCount.textContent=`${currentCount} of ${data.frequency}`;
+            const newData = {"current_count": currentCount, "streak": streakData}
+            addActivityCount(newData, data.id);
         })
 
 
@@ -199,7 +195,7 @@ async function getPostById(givenData){
                 // }
                 goBack();
                 renderHabits();
-                window.location.pathname = '/userpage.html';
+                location.reload();
 
             }catch(err){
                 console.log(err);
