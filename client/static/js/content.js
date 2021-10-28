@@ -1,5 +1,7 @@
 const classOverview=document.getElementById("classOverview");
 const header=document.querySelector("header");
+const table=document.getElementById('habits-textcontent');
+const line=document.createElement('br');
 
 const backButton=document.createElement('button');
 
@@ -30,7 +32,6 @@ async function renderHabits(){
 
 async function render(data){
 
-    const table=document.getElementById('habits-textcontent');
     const tableRow=document.createElement('tr');
     tableRow.className="habit";
     const tableData_1=document.createElement('td');
@@ -81,6 +82,7 @@ async function getPostById(givenData){
     const newStrak=document.createElement('h2');
     const strakCount=document.createElement('h2');
     const addCount=document.createElement('button');
+    const deleteButton=document.createElement('button');
 
     const options = {
         method: 'GET',
@@ -109,8 +111,8 @@ async function getPostById(givenData){
         taskCount.style.textAlign='center';
         newStrak.style.textAlign='center';
         strakCount.style.textAlign='center';
-        addCount.style.textAlign='center';
-        addCount.style.transform='translateX(27vw)';
+        addCount.style.transform='translateX(26vw)';
+        deleteButton.style.transform='translateX(27vw)';
         
         section.id='post'
         section.className='showHabit';
@@ -122,6 +124,9 @@ async function getPostById(givenData){
     
         addCount.type='submit';
         addCount.textContent="Add count";
+        deleteButton.type='submit';
+        deleteButton.textContent="Delete";
+        // deleteButton.style.marginLeft="0";
     
         section.append(backButton);
         section.append(newHabitName);
@@ -131,6 +136,8 @@ async function getPostById(givenData){
         section.append(newStrak);
         section.append(strakCount);
         section.append(addCount);
+        section.append(line);
+        section.append(deleteButton);
         sec.append(section);
 
 
@@ -161,7 +168,6 @@ async function getPostById(givenData){
         };
        
         addCount.addEventListener('click', () => {
-
             addActivityCount(data);
             currentCount++;
             if (currentCount == data.frequency) {
@@ -171,6 +177,34 @@ async function getPostById(givenData){
             }
             taskCount.textContent=`${currentCount} of ${data.frequency}`;
         })
+
+
+        deleteButton.addEventListener('click', () => {
+            deleteHabit(data);
+        })
+
+        async function deleteHabit(data){
+            try{
+                const options = {
+                method: "DELETE",
+                headers:new Headers({"Authorization":localStorage.getItem("token"),
+                                    "Content-Type":"application/json"}),
+                };
+                console.log(data.id);
+                
+                const updatedData=await fetch(`http://localhost:3000/habits/${data.id}`, options);
+
+                // for(var i=0; i< data.length){
+
+                // }
+                goBack();
+                renderHabits();
+                window.location.pathname = '/userpage.html';
+
+            }catch(err){
+                console.log(err);
+            }
+        }
     
     
         backButton.addEventListener('click',() => {
