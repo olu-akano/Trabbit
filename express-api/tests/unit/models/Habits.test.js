@@ -44,7 +44,7 @@ describe('Author', () => {
             jest.spyOn(db, 'query')
                 .mockResolvedValueOnce({rows: [ authorData] });
             const result = await Author.findById(1);
-            expect(result).toBeInstanceOf(Author)
+            expect(result).toBeInstanceOf(Habit)
         })
     });
 
