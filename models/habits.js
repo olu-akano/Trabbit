@@ -10,7 +10,6 @@ class Habit {
         this.streak = data.streak;
         this.current_count=data.current_count;
         this.frequency=data.frequency;
-        //add any other variables a habit has later
     }
 
     static get all() {
@@ -32,7 +31,6 @@ class Habit {
             try {
                 const db = await init();
                 let habitData = await db.collection('habits').find( { username }).toArray();
-                console.log(habitData);
                 let habits = habitData.map(d => new Habit({...d, id: d._id}));
                 resolve (habits);
             } catch (err) {
@@ -48,7 +46,6 @@ class Habit {
                 const db = await init();
                 let habitData = await db.collection('habits').find( { _id: ObjectId(id) }).toArray();
                 let habit = new Habit({...habitData[0], id: habitData[0]._id.toString()});
-                console.log(habit);
                 resolve(habit);
             } catch (err) {
                 console.log(err);
@@ -62,7 +59,7 @@ class Habit {
             try {
                 const db = await init();
                 const habitData = await db.collection('habits').insertOne({ ...data });
-                const habit=this.findById(habitData.insertedId);
+                const habit = this.findById(habitData.insertedId);
                 resolve(habit);
             } catch(err) { 
                 reject('Error creating habit');
@@ -89,7 +86,7 @@ class Habit {
                 const db = await init();
                 const updateHabitData = await db.collection('habits').findOneAndUpdate({ _id: ObjectId(this.id) }, { $set: {...data} }, { returnDocument: 'after' });
                 const updateHabit = updateHabitData.value;
-                const  updatedHabit= new Habit({...updateHabit, id: updateHabit._id.toString()});
+                const updatedHabit= new Habit({...updateHabit, id: updateHabit._id.toString()});
                 resolve(updatedHabit);
             } catch (err) {
                 console.log(err);
