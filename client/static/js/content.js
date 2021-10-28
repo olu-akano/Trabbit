@@ -1,5 +1,6 @@
 const classOverview=document.getElementById("classOverview");
 const header=document.querySelector("header");
+const table=document.getElementById('habits-textcontent');
 
 const backButton=document.createElement('button');
 
@@ -24,7 +25,6 @@ async function renderHabits(){
 
 async function render(data){
 
-    const table=document.getElementById('habits-textcontent');
     const tableRow=document.createElement('tr');
     tableRow.className="habit";
     const tableData_1=document.createElement('td');
@@ -176,10 +176,16 @@ async function getPostById(givenData){
                                     "Content-Type":"application/json"}),
                 };
                 console.log(data.id);
+                
                 const updatedData=await fetch(`http://localhost:3000/habits/${data.id}`, options);
+
+                // for(var i=0; i< data.length){
+
+                // }
                 goBack();
-                classOverview.className='hideClass';
                 renderHabits();
+                window.location.pathname = '/userpage.html';
+
             }catch(err){
                 console.log(err);
             }
