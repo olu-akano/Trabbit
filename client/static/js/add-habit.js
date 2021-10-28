@@ -46,17 +46,28 @@ categorySelector.onchange = () => {
 } 
 
 //Show the frequency div after a habbit is chosen
-exercise.onchange = () => frequencyDiv.style.display = 'initial';
-diet.onchange = () => frequencyDiv.style.display = 'initial';
-hobby.onchange = () => frequencyDiv.style.display = 'initial';
+exercise.onchange = () => {
+    frequencyDiv.style.display = 'initial'; 
+    location.hash = 'bottom';
+}
+
+diet.onchange = () => {
+    frequencyDiv.style.display = 'initial'; 
+    location.hash = 'bottom';
+}
+
+hobby.onchange = () => {
+    frequencyDiv.style.display = 'initial'; 
+    location.hash = 'bottom';
+}
 
 
 //Show the description text field and submit button once frequncy is selected
 frequency.onchange = () => {
     description.style.display = 'initial';
     submit.style.display = 'initial';
+    location.hash = 'bottom';
 }
-
 
 ///----Text counter for description box----\\\
 const mainDiv = document.getElementById('character-counter');
@@ -85,3 +96,6 @@ function resetValues() {
     frequency.value = "";
     description.value = "";
 }
+
+///---When a drop down is loaded, bring the window down to the previous one---\\\
+

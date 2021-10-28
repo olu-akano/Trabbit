@@ -1,5 +1,5 @@
-// const server = "http://localhost:3000";  // localhost server
-const server = "https://trabbit-server.herokuapp.com";  // heroku server
+const server = "http://localhost:3000";  // localhost server
+// const server = "https://trabbit-server.herokuapp.com";  // heroku server
 const username = localStorage.getItem('username');
 
 // Retrieve random inspirational quote
