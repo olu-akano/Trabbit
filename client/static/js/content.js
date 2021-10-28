@@ -1,9 +1,5 @@
 const classOverview=document.getElementById("classOverview");
-const header=document.querySelector("header");
 const table=document.getElementById('habits-textcontent');
-const line=document.createElement('br');
-
-const backButton=document.createElement('button');
 
 const checkIds=[];
 const checkDatas=[];
@@ -17,9 +13,7 @@ function welcomeUser(){
 
 async function renderHabits(){
     try {
-        console.log('renderHabits');
         const habits = await getUserHabits();
-        console.log(habits.length); 
         // Clear any old renders
         table.innerHTML = "";
 
@@ -59,8 +53,6 @@ async function render(data){
 
     table.append(tableRow);
     checkDatas.push(data);
-    console.log(`checkData: ${checkDatas[0].streak}`);
-    console.log(`checkId: ${checkIds}`);
 
     setID(checkIds[count],checkDatas[count])
     count++;
@@ -93,6 +85,7 @@ async function getPostById(givenData){
     postHabit(habit)
 
     function postHabit(data){
+        const backButton=document.createElement('button');
     
         let currentCount=data.current_count;
         let streakData = data.streak;
@@ -112,8 +105,6 @@ async function getPostById(givenData){
         taskCount.style.textAlign='center';
         newStreak.style.textAlign='center';
         streakCount.style.textAlign='center';
-        // addCount.style.transform='translateX(26vw)';
-        // deleteButton.style.transform='translateX(27vw)';
         
         section.id='post'
         section.className='showHabit';
@@ -157,7 +148,6 @@ async function getPostById(givenData){
         addCount.textContent="Completed Habit today!";
         deleteButton.type='submit';
         deleteButton.textContent="Delete Habit";
-        // deleteButton.style.marginLeft="0";
     
         section.append(backButton);
         section.append(newHabitName);
@@ -187,33 +177,11 @@ async function getPostById(givenData){
             await deleteHabit(data);
             goBack();
         })
-
-        async function deleteHabit(data){
-            try{
-                const options = {
-                method: "DELETE",
-                headers:new Headers({"Authorization":localStorage.getItem("token"),
-                                    "Content-Type":"application/json"}),
-                };
-                console.log(data.id);
-                
-                const updatedData=await fetch(`${server}/habits/${data.id}`, options);
-
-                goBack();
-                renderHabits();
-                location.reload();
-
-            }catch(err){
-                console.log(err);
-            }
-        }
-
         
         backButton.addEventListener('click', async () => {
             // Update server with new current_count and streak
             const newData = {"current_count": currentCount, "streak": streakData}
             await addActivityCount(newData, data.id);
-
             goBack();
         })
     

@@ -41,7 +41,6 @@ window.onclick = (event) => {
   }
 } 
 
-
 // Check password confirmation in registration form
 const password = document.getElementById('newPassword');
 const confirmPassword = document.getElementById('confirmPassword');

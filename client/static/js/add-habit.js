@@ -13,7 +13,6 @@ const diet = document.getElementById('dietary-name');
 const hobby = document.getElementById('hobby-name');
 const frequency = document.getElementById('frequency');
 
-
 //Shows the correct habits after category chosen
 categorySelector.onchange = () => { 
     let categoryType = categorySelector.value;       
@@ -61,7 +60,6 @@ hobby.onchange = () => {
     location.hash = 'bottom';
 }
 
-
 //Show the description text field and submit button once frequncy is selected
 frequency.onchange = () => {
     description.style.display = 'initial';
@@ -71,23 +69,44 @@ frequency.onchange = () => {
 
 ///----Text counter for description box----\\\
 const mainDiv = document.getElementById('character-counter');
-
 countChars = (div) => {
     let len = description.value.length;
     div.innerHTML = `${len}/500`
 }
 
-
 ///----Add new habit functionality----\\\
-
 const form = document.getElementById('habit-form');
-
 form.addEventListener('submit', addNewHabit)
 
+async function addNewHabit(e) {
+    e.preventDefault();
+    try {
+        //for loop to get the right habit form
+        let habit = "";
+        for(i = 1; i < form.length - 3; i++) {            
+            if(!!e.target[i].value) {
+                habit = e.target[i].value
+            }
+        }
+        newHabit = {
+            username: username,
+            habitname: habit,
+            description: e.target[5].value,
+            current_count: 0,
+            frequency: parseInt(e.target[4].value),
+            streak: 0
+        };
+        const r = await postHabit(newHabit);
+        if (!r.success){ throw new Error("Error posting habit") };
+        window.alert('New habit added!');
+        location.reload();
+    } catch(err) {
+        console.warn('The error is:', err)
+    }
+}
 
 ///---On load reset the selectors to their defaults---\\\
 window.onload = resetValues;
-
 function resetValues() {
     categorySelector.value = "";
     exercise.value = "";
@@ -96,6 +115,3 @@ function resetValues() {
     frequency.value = "";
     description.value = "";
 }
-
-///---When a drop down is loaded, bring the window down to the previous one---\\\
-
