@@ -37,6 +37,7 @@ The website was deployed using Netlify for the client and Heroku for the server 
 # Wins
 - Excellent work flow from the team
 - The team was able to build a functional web app
+- Full resposiveness for tablet and phone, both landscape and portrait.
 
 # Challenges
 - Deploying the database

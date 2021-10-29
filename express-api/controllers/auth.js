@@ -9,23 +9,23 @@ const jwt = require("jsonwebtoken");
 const User = require('../models/user');
 
 // register route
-
 router.post('/register', async (req, res) => {
     try {
-        const user = await User.findByEmail(req.body.email);
-        if (!!user){ throw new Error('This email address already has an account!') };
+        const usernameExists = await User.findByUsername(req.body.username);
+        if (!!usernameExists){ throw new Error('Username already taken!') };
+        const emailExists = await User.findByEmail(req.body.email);
+        if (!!emailExists){ throw new Error('This email address already has an account!') };
         const salt = await bcrypt.genSalt();
         const hashed = await bcrypt.hash(req.body.password, salt)
         await User.create({...req.body, password: hashed})
         res.status(201).json({msg: 'User created'})
     } catch (err) {
         console.log(err);
-        res.status(403).send(err.message);
+        res.status(403).json({error: err.message});
     }
 })
 
 // login route
-
 router.post('/login', async (req, res) => {
     try {
         const user = await User.findByEmail(req.body.email)
@@ -51,4 +51,3 @@ router.post('/login', async (req, res) => {
 })
 
 module.exports = router;
-

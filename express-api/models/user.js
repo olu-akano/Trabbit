@@ -6,7 +6,6 @@ class User {
         this.email=data.email;
         this.username = data.username;
         this.password_digest = data.password_digest;
-        //add any other variables a user has later
     }
 
     static get all() {
@@ -22,7 +21,6 @@ class User {
             }
         })
     }
-
 
     static create(data){
         return new Promise (async (resolve, reject) => {
@@ -53,8 +51,23 @@ class User {
                 console.log(err)
                 reject("Error retrieving email")
             }
-         });
-        }
+        });
+    }
+
+    static findByUsername(username){
+        return new Promise(async (resolve, reject)=> {
+            try {
+                const db = await init();
+                let userData = await db.collection('users').find({username: {$eq: `${username}`}}).toArray()
+                if(!userData.length){ resolve(null) };
+                let user = new User ({...userData[0], username: userData[0].username});
+                resolve(user);
+            } catch (err) {
+                console.log(err)
+                reject("Error retrieving username")
+            }
+        });
     };
+};
 
 module.exports = User;

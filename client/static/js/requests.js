@@ -22,8 +22,6 @@ async function getUserHabits(){
         }
         const r = await fetch(`${server}/habits/users/${username}`, options);
         const data = await r.json();
-        console.log('data');
-        console.log(data);
         if(data.err){
             console.warn(data.err);
             logout();
@@ -50,38 +48,17 @@ async function getHabit(id){
 }
 
 // Post user's new habit
-async function addNewHabit(e) {
-    e.preventDefault();
+async function postHabit(habit){
     try {
-        
-        //for loop to get the right habit form
-        let habit = "";
-        for(i = 1; i < form.length - 3; i++) {            
-            if(!!e.target[i].value) {
-                habit = e.target[i].value
-            }
-        }
-
-        newHabit = {
-            username: username,
-            habitname: habit,
-            description: e.target[5].value,
-            current_count: 0,
-            frequency: parseInt(e.target[4].value),
-            streak: 0
-        };
         const options = {
             method: 'POST',
             headers: { "Content-Type": "application/json", "Authorization": localStorage.getItem('token') },
-            body: JSON.stringify(newHabit)
+            body: JSON.stringify(habit)
         };
-        const r = await fetch(`${server}/habits`, options);
-        const addedHabit = await r.json();
-        console.log(addedHabit);
-        window.alert('New habit added!');
-        location.reload();
+        await fetch(`${server}/habits`, options);
+        return {success: true}
     } catch(err) {
-        console.warn('The error is:', err)
+        console.warn(`Error adding post: ${err}`);
     }
 }
 
@@ -93,11 +70,9 @@ async function deleteHabit(data){
             headers:new Headers({"Authorization":localStorage.getItem("token"),
             "Content-Type":"application/json"}),
         };
-        console.log(data.id);
-        
         await fetch(`${server}/habits/${data.id}`, options);
-    }catch(err){
-        console.log(err);
+    } catch(err) {
+        console.warn(err);
     }
 }
 
@@ -110,13 +85,51 @@ async function addActivityCount(data, id) {
                                 "Content-Type":"application/json"}),
             body:JSON.stringify(data)
         };
-
-        console.log(localStorage.getItem('token'))
-        const updatedData=await fetch(`${server}/habits/${id}`, options)
-        const updatedDataJson=await updatedData.json();
-        console.log(updatedDataJson);
-    }
-    catch(err){
-        console.log(err);
+        await fetch(`${server}/habits/${id}`, options)
+    } catch(err) {
+        console.warn(err);
     }
 };
+
+// Request user login
+async function userLogin(loginData){
+    try{
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(loginData)
+        }
+        const r = await fetch(`${server}/auth/login`, options);
+        if (r.status === 403){ 
+            window.alert("Invalid login");
+            throw new Error('Login not authorised');
+        };
+        const data = await r.json();
+        return data
+    } catch(err) {
+        console.warn(err);
+        return { err }
+    }
+}
+
+// Request user registration
+async function userRegistration(regData){
+    try{
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(regData)
+        }
+        const r = await fetch(`${server}/auth/register`, options);
+        if(r.status === 403){
+            const e = await r.json();
+            window.alert(e.error);
+            throw new Error('Registration not authorised');
+        };
+        const data = await r.json();
+        return data
+    } catch(err) {
+        console.warn(err);
+        return { err }
+    }
+}

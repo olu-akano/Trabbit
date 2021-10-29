@@ -1,5 +1,3 @@
-const express = require('express');
-const router = express.Router();
 const Habit = require('../models/habits')
 
 // habits index route 
@@ -60,4 +58,5 @@ async function destroy (req, res) {
         res.status(404).json({err});
     };
 }
+
 module.exports = { index , show, showUsers, create , update ,destroy };
